@@ -1,0 +1,274 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="badge pull-left" ng-class="{'badge-warning' : self.shop.shopStatus == 0 , 'badge-success' : self.shop.shopStatus == 1 ,  'badge-danger' : self.shop.shopStatus == 2  }">
+                        {{self.shop.shopStatus | shopStatusFilter}}
+                    </span>
+                    
+                    <span class="badge badge-info pull-left cursor-pointer mr-2" ui-sref="dashboard.complaint.add({id :self.shop.id})" >
+                       ثبت شکایت
+                    </span>
+
+                </div>
+            </div>
+            <div class="card-body">
+
+
+
+                <div class="col-md-12" ng-if="self.shop.shopStatus == 0 && self.accept == false && self.deAccept == false">
+                    <button class="btn btn-success" ng-click="self.accept = true">
+                        تایید
+                    </button>
+
+                    <button class="btn btn-danger" ng-click="self.deAccept = true">
+                        رد کردن
+                    </button>
+                    <div class="clearfix"></div>
+                    <br />
+                </div>
+
+
+                <div ng-if="self.accept">
+                    <div class="alert alert-success">
+                        <div>
+                            <textarea class="form-control" ng-model="self.acceptDescription" placeholder="توضیحات"></textarea>
+                        </div>
+                        <br />
+                        آیا از تایید فروشگاه مطمن هستید ؟ <button class="btn btn-success" ng-click="self.acceptFun()">تایید</button> <button class="btn btn-default" ng-click="self.accept = false">انصراف</button>
+                    </div>
+                </div>
+
+                <div ng-if="self.deAccept">
+                    <div class="alert alert-danger">
+                        <div>
+                            <textarea class="form-control" ng-model="self.deAcceptDescription" placeholder="توضیحات"></textarea>
+                        </div>
+                        <br />
+                        آیا از رد کردن فروشگاه مطمن هستید ؟ <button class="btn btn-danger" ng-click="self.deAcceptFun()">رد کردن</button> <button class="btn btn-default" ng-click="self.deAccept = false">انصراف</button>
+                    </div>
+                </div>
+
+                <br />
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.shop.name}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            میزان تخفیف پیش فرض : <b>
+                                {{self.shop.defaultDiscount}}
+                            </b>
+                        </small>
+                    </div>
+
+                    <div class="col-md-12">
+                        <small>
+                            توضیحات : <b>
+                                {{self.shop.descriptionStatus}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.shop.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.shop.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            کد ملی : <b>
+                                {{self.shop.nationalCode}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.shop.emailAddress}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            توضیحات : <b>
+                                {{self.shop.description}}
+                            </b>
+                        </small>
+
+                    </div>
+
+
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> اطلاعات حساب بانکی
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            شماره حساب : <b>
+                                {{self.shop.bankAccount.accountNumber}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام صاحب حساب :
+                            <b>
+                                {{self.shop.bankAccount.accountOwnerName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            شماره شبا :
+                            <b>
+                                {{self.shop.bankAccount.iban}}
+                            </b>
+                        </small>
+
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> اطلاعات فروشگاه
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <small>
+                            شماره حساب : <b>
+                                {{self.shop.shopAddress.phoneNumber}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-6">
+                        <small>
+                            شهر :
+                            <b>
+                                {{self.shop.shopAddress.cityName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <small>
+                            آدرس :
+                            <b>
+                                {{self.shop.shopAddress.addressText}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div>
+                            <ng-map center="{{ self.center}}" zoom="15">
+
+                                <custom-marker id="custom-marker"
+                                               position="{{self.pin}}">
+                                    <div>
+                                        <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto" />
+                                    </div>
+                                </custom-marker>
+
+                            </ng-map>
+                        </div>
+
+
+                    </div>
+                </div>
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مدارک تصویری
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <small>
+                            تصویر ثبت کننده : <b>
+
+                            </b>
+                        </small>
+
+                        <div class="img-thumbnail">
+                            <img class="img-fluid" ng-src="{{self.fileManagerGetUri}}/{{self.shop.imageDocuments.faceImage}} " />
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <small>
+                            تصویر کارت ملی : <b>
+
+                            </b>
+                        </small>
+
+                        <div class="img-thumbnail">
+                            <img class="img-fluid" ng-src="{{self.fileManagerGetUri}}/{{self.shop.imageDocuments.nationalCardImage}} " />
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

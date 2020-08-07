@@ -1,0 +1,101 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <form name="search" id="search">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="province">استان</label>
+                  <select class="form-control" ng-required="true" id="province" ng-model="self.seach.province" ng-options="item as item.name for item in  self.province"></select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="city">شهر</label>
+                  <select class="form-control" ng-required="true" id="city" ng-model="self.seach.city" ng-options="item.id as item.cityName for item in self.seach.province.cities"></select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <br />
+                <button class="btn btn-success mt-2" ng-click="self.getShops()" ng-disabled="search.$invalid">
+                  دریافت
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <style>
+            .popBase {
+              display: none;
+            }
+
+            .popUp {
+              position: absolute;
+              background-color: white;
+              top: -57px;
+              left: -37px;
+              padding: 10px;
+              width: 100px;
+              box-shadow: 0px 0px 20px #80808061;
+              display: block;
+              font-family: "IRANSans";
+              z-index: 10000
+            }
+
+              .popUp:before {
+                content: "";
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid white;
+                position: absolute;
+                bottom: -10px;
+                left: 42px;
+              }
+          </style>
+
+          <ng-map center="[{{self.shops[0].position.latitude}} , {{self.shops[0].position.longitude}}]" zoom="15" style="height: 600px" ng-if="showItems">
+
+            <custom-marker id="custom-marker" position="[{{shop.position.latitude}},{{shop.position.longitude}}]" ng-repeat="shop in self.shops">
+              <div class="cursor-pointer" style="position: relative" ng-init="hover = false"
+                   ng-mouseenter="hover = true"
+                   ng-mouseleave="hover = false"
+                   ui-sref="dashboard.shop.details({id : shop.id})">
+                <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 30px; margin: 0 auto" />
+                <div class="popBase" ng-class="{'popUp': hover}">
+                  {{shop.name}}
+                </div>
+              </div>
+            </custom-marker>
+
+          </ng-map>
+
+
+          <ng-map center="[{{self.shops[0].position.latitude}} , {{self.shops[0].position.longitude}}]" zoom="15" style="height: 600px" ng-if="!showItems">
+
+            <custom-marker id="custom-marker" position="[{{shop.position.latitude}},{{shop.position.longitude}}]" ng-repeat="shop in self.shops">
+              <div class="cursor-pointer" style="position: relative" ng-init="hover = false">
+                <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 30px; margin: 0 auto" />
+
+              </div>
+            </custom-marker>
+
+          </ng-map>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

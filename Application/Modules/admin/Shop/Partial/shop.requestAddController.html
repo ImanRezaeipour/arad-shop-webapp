@@ -1,0 +1,186 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.request"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="addForm" name="addForm">
+                    <div class="row">
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="shopName">
+                                    نام فروشگاه <small class="text-danger" ng-if="addForm.shopName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="shopName" name="shopName" tabindex="1" ng-class="{'is-invalid' : addForm.shopName.$touched &&  addForm.shopName.$invalid == true}" ng-model="self.user.shopName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopName.$touched && addForm.shopName.$error.required == true">
+                                        نام فروشگاه اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="firstName">
+                                    نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.user.firstName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                        نام اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="lastName">
+                                    نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                        نام خانوادگی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="mobileNumber">
+                                    شماره موبایل <small class="text-danger" ng-if="addForm.mobileNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" ng-pattern="/^[0-9]*$/" ng-maxlength="11" id="mobileNumber" name="mobileNumber" tabindex="1" ng-class="{'is-invalid' : addForm.mobileNumber.$touched &&  addForm.mobileNumber.$invalid == true}" ng-model="self.user.mobileNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.mobileNumber.$touched && addForm.mobileNumber.$error.required == true">
+                                        شماره تلفن همراه اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="phoneNumber">
+                                    شماره تلفن ثابت <small class="text-danger" ng-if="addForm.phoneNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" ng-pattern="/^[0-9]*$/" id="phoneNumber" name="phoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.phoneNumber.$touched &&  addForm.phoneNumber.$invalid == true}" ng-model="self.user.phoneNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.phoneNumber.$touched && addForm.phoneNumber.$error.required == true">
+                                        شماره تلفن منزل اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> اطلاعات تماس
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+
+
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="province">
+                                    استان <small class="text-danger" ng-if="addForm.province.$error.required == true">*</small>
+                                </label>
+
+                                <select class="form-control" id="province" name="province" tabindex="1" ng-model="self.user.province" ng-required="true" ng-class="{'is-invalid' : addForm.province.$touched &&  addForm.province.$invalid == true}" ng-options="item as item.name for item in self.provinces"></select>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.province.$touched && addForm.province.$error.required == true">
+                                        استان اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="city">
+                                    شهر <small class="text-danger" ng-if="addForm.city.$error.required == true">*</small>
+                                </label>
+
+                                <select class="form-control" id="city" name="city" tabindex="1" ng-model="self.user.shopAcceptorAddress.cityId" ng-required="true" ng-class="{'is-invalid' : addForm.city.$touched &&  addForm.city.$invalid == true}" ng-options="item.id as item.cityName for item in self.user.province.cities"></select>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.city.$touched && addForm.city.$error.required == true">
+                                        شهر اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="address">
+                                    آدرس محل فروشگاه <small class="text-danger" ng-if="addForm.address.$error.required == true">*</small>
+                                </label>
+                                <textarea class="form-control" id="address" name="address" tabindex="1" ng-class="{'is-invalid' : addForm.address.$touched &&  addForm.address.$invalid == true}" ng-model="self.user.shopAcceptorAddress.addressText" ng-required="true"> </textarea>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.address.$touched && addForm.address.$error.required == true">
+                                        آدرس اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                                <button class="btn btn-success" ng-click="self.addShop()" tabindex="1"  ng-disabled="addForm.$invalid">
+                                    ذخیره
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>

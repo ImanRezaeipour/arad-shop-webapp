@@ -1,0 +1,126 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    
+                    <span class="pull-left" ng-if="self.type == 2">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.list"></i>
+                    </span> 
+                    
+                    <span class="pull-left" ng-if="self.type == 1">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.customer.list"></i>
+                    </span>
+
+                    <span class="pull-left pr-2">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن پیام عمومی" ui-sref="dashboard.message.privateAdd({id : self.id , type :self.type})"></i>
+                    </span>   
+                    
+                
+            
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <div class="col-md-12" ng-if="self.type == 2">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row" ng-if="self.type == 2">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.info.name}}
+                            </b>
+                        </small>
+
+                    </div>
+<!--                    <div class="col-md-4">-->
+<!--                        <small>-->
+<!--                            میزان تخفیف پیش فرض : <b>-->
+<!--                                {{self.info.defultDiscount}}-->
+<!--                            </b>-->
+<!--                        </small>-->
+<!--                    </div>-->
+                </div>
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.info.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.info.lastName}}
+                            </b>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.info.emailAddress}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+                <br />
+
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ایجاد</a>
+                                    </th>
+                                    <th data-field="Title">
+                                        <a class="k-link" href="#">عنوان</a>
+                                    </th>
+                                
+                                    <th data-field="Body">
+                                        <a class="k-link" href="#"> متن </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <td class="col-md-2 col-lg-2 col-xl-2">
+                                        {{dataItem.creationTime}}
+                                    </td>
+                                    <td class="col-md-3 col-lg-3 col-xl-3">
+                                        {{dataItem.title}}
+                                    </td>
+                                    <td class="col-md-5  col-lg-5 col-xl-5">
+                                        {{dataItem.body}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

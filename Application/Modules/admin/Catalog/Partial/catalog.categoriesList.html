@@ -1,0 +1,185 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus" ui-sref="dashboard.catalog.categoriesAdd({id : null})"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+
+                <script type="text/ng-template" id="nodes_renderer.html">
+                    <div ui-tree-handle class="tree-node tree-node-content">
+
+                        <a class="" ng-if="node.subCategories && node.subCategories.length > 0" data-nodrag ng-click="self.toggle(this)">
+                            <span class="glyphicon cursor-pointer"
+                                  ng-class="{'fa fa-angle-left': !collapsed,'fa fa-angle-down': collapsed}"></span>
+                        </a> {{node.name}}
+
+
+                        <div ng-if="node.isRemove != true" class="pull-left">
+
+
+                            <a data-nodrag ng-click="newSubItem(this)" ng-if="node.isRoot == true" class="pull-left cursor-pointer" ui-sref="dashboard.catalog.categoriesAdd({id:node.id})">
+                                <span class="fa fa-plus"></span>
+                            </a>
+                            <a data-nodrag ng-click="self.showChild = true;selectNode(node)" ng-if="node.isRoot == true" class="pull-left pr-3 cursor-pointer">
+                                <span class="fa fa-sort"></span>
+                            </a>
+
+                            <small class="pull-left" ng-if="node.isRoot == true">
+                                &nbsp; 	&nbsp;
+                            </small>
+
+                            <small class="pull-left" ng-if="node.isRoot != true">
+                                &nbsp; 	&nbsp; &nbsp; 	&nbsp;	&nbsp; &nbsp;
+                            </small>
+
+                            <a data-nodrag ng-click="node.isRemove = true" class="pull-left cursor-pointer pl-3">
+                                <span class="fa fa-times text-danger"></span>
+                            </a>
+
+
+                            <a data-nodrag ng-click="newSubItem(this)" class="pull-left cursor-pointer" ui-sref="dashboard.catalog.categoriesEdit({id:node.id})">
+                                <span class="fa fa-edit text-warning"></span>
+                            </a>
+
+
+                            <div class="material-switch pull-left pr-3">
+                                <input id="someSwitchOptionDefault-{{node.id}}" ng-model="node.isActive" name="someSwitchOption-{{node.id}}" type="checkbox" ng-change="self.changeActiveDeactive(node)" />
+                                <label for="someSwitchOptionDefault-{{node.id}}" class="label-success"></label>
+                            </div>
+
+                        </div>
+
+                        <div ng-if="node.isRemove == true && node.isRoot == true" class="btn-group pull-left">
+
+                            <button class="btn btn-danger btn-small btn-sm" ng-click="self.removeItem(node , this)" style="line-height : 1">
+                                <small>حذف</small>
+                            </button>
+
+                            <button class="btn btn-default btn-small btn-sm" ng-click="node.isRemove = false" style="line-height : 1">
+                                <small>انصراف</small>
+                            </button>
+                        </div>
+
+                        <div ng-if="node.isRemove == true && node.isRoot == false" class="btn-group pull-left">
+
+                            <button class="btn btn-danger btn-small btn-sm" ng-click="self.removeItemSub(node , this)" style="line-height : 1">
+                                <small>حذف</small>
+                            </button>
+
+                            <button class="btn btn-default btn-small btn-sm" ng-click="node.isRemove = false" style="line-height : 1">
+                                <small>انصراف</small>
+                            </button>
+                        </div>
+
+                    </div>
+                    <ol ui-tree-nodes="" ng-model="node.subCategories" ng-if="collapsed">
+                        <li ng-repeat="node in node.subCategories | orderBy : 'order'" ui-tree-node data-nodrop-enabled="true" ng-include="'nodes_renderer.html'">
+                        </li>
+                    </ol>
+                </script>
+                <!---->
+                <!--                <div class="row">-->
+                <!--                    <div class="col-sm-12">-->
+                <!--                        <h3>Basic Example</h3>-->
+                <!---->
+                <!--                        <button ng-click="expandAll()">Expand all</button>-->
+                <!--                        <button ng-click="collapseAll()">Collapse all</button>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <div class="row ">
+                    <div class="col-md-12">
+
+                        <div ng-if="self.showTree == true">
+
+                            <button class="btn btn-success btn-sm" ng-click="self.saveRoot()">
+                                <small>
+                                    ذخیره تغییرات
+                                </small>
+                            </button>
+
+                            <button class="btn btn-default btn-sm" ng-click="self.showTree = false">
+                                <small>
+                                    انصراف
+                                </small>
+                            </button>
+
+                        </div>
+
+
+                        <div ng-if="self.showChild == true">
+
+                            <button class="btn btn-success btn-sm" ng-click="self.saveChild()">
+                                <small>
+                                    ذخیره تغییرات
+                                </small>
+                            </button>
+
+                            <button class="btn btn-default btn-sm" ng-click="self.showChild = false">
+                                <small>
+                                    انصراف
+                                </small>
+                            </button>
+
+                        </div>
+
+
+
+                        <button class="btn btn-info btn-sm" ng-click="self.showTree = true;self.getRoot()" ng-if="self.showTree != true && self.showChild != true">
+                            <small>
+                                مرتب سازی
+                            </small>
+                        </button>
+
+                        <div ui-tree id="tree-root" ng-if="self.showTree != true  && self.showChild != true">
+                            <ol ui-tree-nodes ng-model="data" data-nodrag data-drag-enabled="false" collapsed="true">
+                                <li ng-repeat="node in data | orderBy : 'order'" data-nodrop-enabled="true" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                            </ol>
+                        </div>
+
+                        <div class="mt-2" ng-if="self.showTree == true">
+                            <ul ui-sortable ng-model="self.roots" class="list-group">
+                                <li class="list-group-item" ng-repeat="item in self.roots  track by $index">
+
+                                    <small>
+                                        {{$index}} - {{ item.name }}
+                                    </small>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-2" ng-if="self.showChild == true">
+                            <br />
+                            <h5 class="text-info">
+                                {{self.selectedNod.name}}
+                            </h5>
+                            <br />
+                            <ul ui-sortable ng-model="self.childs" class="list-group">
+                                <li class="list-group-item" ng-repeat="item in  self.childs  track by $index">
+                                    <small>
+                                        {{$index}} - {{ item.name }}
+                                    </small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

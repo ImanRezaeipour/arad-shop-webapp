@@ -1,0 +1,64 @@
+﻿
+
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+
+                </div>
+            </div>
+            <div class="card-body">
+
+                <form name="addForm" class="form-horizontal">
+                    <div class="form-group row">
+
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="emergencyPhoneNumber">
+                                    شماره تلفن ضروری <small class="text-danger" ng-if="addForm.emergencyPhoneNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" ng-pattern="/^[0-9]*$/" id="emergencyPhoneNumber" name="emergencyPhoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.emergencyPhoneNumber.$touched &&  addForm.emergencyPhoneNumber.$invalid == true}" ng-model="self.mobileNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.emergencyPhoneNumber.$touched && addForm.emergencyPhoneNumber.$error.required == true">
+                                        شماره تلفن ضروری اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-8">
+                            <br />
+                            <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-success btn-sm mt-2" ng-click="self.check()">
+                                بررسی
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div ng-if="self.code != null">
+                    <div class="alert alert-success">
+                        کد فعال سازی  :  <b>
+                            {{self.code}}
+                        </b>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

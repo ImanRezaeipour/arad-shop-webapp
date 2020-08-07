@@ -1,0 +1,499 @@
+﻿
+
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+
+                </div>
+            </div>
+            <div class="card-body">
+
+                <form name="addForm" class="form-horizontal">
+                    <div class="form-group row">
+
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="minimumDiscount">
+                                    حداقل تخفیف <small class="text-danger" ng-if="addForm.minimumDiscount.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control direction-ltr" id="minimumDiscount" name="minimumDiscount" tabindex="1" min="0" ng-class="{'is-invalid' : addForm.minimumDiscount.$touched &&  addForm.minimumDiscount.$invalid == true}" ng-model="self.setting.minimumDiscount" ng-required="true">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.minimumDiscount.$touched && addForm.minimumDiscount.$error.required == true">
+                                        حداقل تخفیف اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="maximumDiscount">
+                                    حداکثر تخفیف <small class="text-danger" ng-if="addForm.maximumDiscount.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+
+                                    <input type="number" min="0" class="form-control direction-ltr" id="maximumDiscount" name="maximumDiscount" tabindex="1" ng-class="{'is-invalid' : addForm.maximumDiscount.$touched &&  addForm.maximumDiscount.$invalid == true}" ng-model="self.setting.maximumDiscount" ng-required="true">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.maximumDiscount.$touched && addForm.maximumDiscount.$error.required == true">
+                                        حداکثر تخفیف اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="orderExpireOpenTime">
+                                زمان باز کردن سفارش <small class="text-danger" ng-if="addForm.OrderExpireOpenTime.$error.required == true">*</small>
+                            </label>
+
+                            <div class="input-group mb-3">
+
+                                <input type="number" min="1"
+                                       class="form-control direction-ltr"
+                                       id="orderExpireOpenTime"
+                                       name="orderExpireOpenTime"
+                                       ng-class="{'is-invalid' : addForm.orderExpireOpenTime.$touched &&  addForm.orderExpireOpenTime.$invalid == true}"
+                                       ng-model="self.setting.orderExpireOpenTime"
+                                       ng-required="true">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">ثانیه</span>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">
+                                <small ng-if="addForm.orderExpireOpenTime.$touched && addForm.orderExpireOpenTime.$error.required == true">
+                                    اجباری می باشد
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="orderItemResponseTime">
+                                    مدت زمان پاسخ هر قلم جنس <small class="text-danger" ng-if="addForm.orderItemResponseTime.$error.required == true">*</small>
+                                </label>
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1"
+                                           class="form-control direction-ltr"
+                                           id="orderItemResponseTime"
+                                           name="orderItemResponseTime"
+                                           ng-class="{'is-invalid' : addForm.orderItemResponseTime.$touched &&  addForm.orderItemResponseTime.$invalid == true}"
+                                           ng-model="self.setting.orderItemResponseTime"
+                                           ng-required="true">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ثانیه</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.orderItemResponseTime.$touched && addForm.orderItemResponseTime.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="orderSuggestionExpireTime">
+                                    زمان پایان یافتن پیشنهاد <small class="text-danger" ng-if="addForm.orderSuggestionExpireTime.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+
+                                    <input type="number" min="1" class="form-control direction-ltr" id="orderSuggestionExpireTime" name="orderSuggestionExpireTime" tabindex="1" ng-class="{'is-invalid' : addForm.orderSuggestionExpireTime.$touched &&  addForm.orderSuggestionExpireTime.$invalid == true}" ng-model="self.setting.orderSuggestionExpireTime" ng-required="true">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">دقیقه</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.orderSuggestionExpireTime.$touched && addForm.orderSuggestionExpireTime.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="maximumDeliveryTime">
+                                    بیشترین مدت زمان تحویل سفارش <small class="text-danger" ng-if="addForm.maximumDeliveryTime.$error.required == true">*</small>
+                                </label>
+
+
+                                <div class="input-group mb-3">
+
+                                    <input type="number" min="1" class="form-control direction-ltr" id="maximumDeliveryTime" name="maximumDeliveryTime" tabindex="1" ng-class="{'is-invalid' : addForm.maximumDeliveryTime.$touched &&  addForm.maximumDeliveryTime.$invalid == true}" ng-model="self.setting.maximumDeliveryTime" ng-required="true">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">دقیقه</span>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.maximumDeliveryTime.$touched && addForm.maximumDeliveryTime.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="minimumBuy">
+                                    حداقل سفارش <small class="text-danger" ng-if="addForm.minimumBuy.$error.required == true">*</small>
+                                </label>
+                                <input type="number" class="form-control direction-ltr" min="1" id="minimumBuy" name="minimumBuy" tabindex="1" ng-class="{'is-invalid' : addForm.minimumBuy.$touched &&  addForm.minimumBuy.$invalid == true}" ng-model="self.setting.minimumBuy" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.minimumBuy.$touched && addForm.minimumBuy.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="customerAppVersion">
+                                    ورژن  نرم افزار کاربر <small class="text-danger" ng-if="addForm.customerAppVersion.$error.required == true">*</small>
+                                </label>
+
+                                <input type="text" ng-pattern="'^[0-9._-]+$'" class="form-control direction-ltr" id="customerAppVersion" name="customerAppVersion" tabindex="1" ng-class="{'is-invalid' : addForm.customerAppVersion.$touched &&  addForm.customerAppVersion.$invalid == true}" ng-model="self.setting.customerAppVersion" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerAppVersion.$touched && addForm.customerAppVersion.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="downloadLink">
+                                    لینک دانلود نرم افزار کاربر <small class="text-danger" ng-if="addForm.customerDownloadLink.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="customerDownloadLink" name="customerDownloadLink" tabindex="1" ng-class="{'is-invalid' : addForm.customerDownloadLink.$touched &&  addForm.customerDownloadLink.$invalid == true}" ng-model="self.setting.customerDownloadLink" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerDownloadLink.$touched && addForm.customerDownloadLink.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="shopAppVersion">
+                                    ورژن نرم افزار فروشگاه <small class="text-danger" ng-if="addForm.shopAppVersion.$error.required == true">*</small>
+                                </label>
+                                <input type="text" ng-pattern="'^[0-9._-]+$'" class="form-control direction-ltr" id="shopAppVersion" name="shopAppVersion" tabindex="1" ng-class="{'is-invalid' : addForm.shopAppVersion.$touched &&  addForm.shopAppVersion.$invalid == true}" ng-model="self.setting.shopAppVersion" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopAppVersion.$touched && addForm.shopAppVersion.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="shopDownloadLink">
+                                    لینک دانلود نرم افزار فروشگاه <small class="text-danger" ng-if="addForm.shopDownloadLink.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="shopDownloadLink" name="shopDownloadLink" tabindex="1" ng-class="{'is-invalid' : addForm.shopDownloadLink.$touched &&  addForm.shopDownloadLink.$invalid == true}" ng-model="self.setting.shopDownloadLink" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopDownloadLink.$touched && addForm.shopDownloadLink.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="customerAppVersionIos">
+                                    ورژن  نرم افزار کاربر IOS
+                                    <small class="text-danger" ng-if="addForm.customerAppVersionIos.$error.required == true">*</small>
+                                </label>
+
+                                <input type="text" ng-pattern="'^[0-9._-]+$'" class="form-control direction-ltr" id="customerAppVersionIos" name="customerAppVersionIos" tabindex="1" ng-class="{'is-invalid' : addForm.customerAppVersionIos.$touched &&  addForm.customerAppVersionIos.$invalid == true}" ng-model="self.setting.customerAppVersionIos" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerAppVersionIos.$touched && addForm.customerAppVersionIos.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="customerDownloadLinkIos">
+                                    لینک دانلود نرم افزار کاربر IOS
+                                    <small class="text-danger" ng-if="addForm.customerDownloadLinkIos.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="customerDownloadLinkIos" name="customerDownloadLinkIos" tabindex="1" ng-class="{'is-invalid' : addForm.customerDownloadLinkIos.$touched &&  addForm.customerDownloadLinkIos.$invalid == true}" ng-model="self.setting.customerDownloadLinkIos" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerDownloadLinkIos.$touched && addForm.customerDownloadLinkIos.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="shopAppVersionIos">
+                                    ورژن نرم افزار فروشگاه IOS
+                                    <small class="text-danger" ng-if="addForm.shopAppVersionIos.$error.required == true">*</small>
+                                </label>
+                                <input type="text" ng-pattern="'^[0-9._-]+$'" class="form-control direction-ltr" id="shopAppVersionIos" name="shopAppVersionIos" tabindex="1" ng-class="{'is-invalid' : addForm.shopAppVersionIos.$touched &&  addForm.shopAppVersionIos.$invalid == true}" ng-model="self.setting.shopAppVersionIos" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopAppVersionIos.$touched && addForm.shopAppVersionIos.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="shopDownloadLinkIos">
+                                    لینک دانلود نرم افزار فروشگاه IOS
+                                    <small class="text-danger" ng-if="addForm.shopDownloadLinkIos.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="shopDownloadLinkIos" name="shopDownloadLinkIos" tabindex="1" ng-class="{'is-invalid' : addForm.shopDownloadLinkIos.$touched &&  addForm.shopDownloadLinkIos.$invalid == true}" ng-model="self.setting.shopDownloadLinkIos" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopDownloadLinkIos.$touched && addForm.shopDownloadLinkIos.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="factorExpierTime">
+                                    مدت زمان پایان اعتبار فاکتور <small class="text-danger" ng-if="addForm.factorExpierTime.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1" class="form-control direction-ltr" id="factorExpierTime" name="factorExpierTime" tabindex="1" ng-class="{'is-invalid' : addForm.factorExpireTime.$touched &&  addForm.factorExpireTime.$invalid == true}" ng-model="self.setting.factorExpireTime" ng-required="true">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">دقیقه</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.factorExpierTime.$touched && addForm.factorExpierTime.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label">
+                                    بررسی store ios
+                                </label>
+
+                                <div class="material-switch mt-2">
+                                    <input id="someSwitchOptionDefault-{{self.setting.iosStoreCheck}}" ng-model="self.setting.iosStoreCheck" name="someSwitchOption-{{self.setting.iosStoreCheck}}" type="checkbox" />
+                                    <label for="someSwitchOptionDefault-{{self.setting.iosStoreCheck}}" class="label-success"></label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="factorExpierTime">
+                                    کارمزد جذب مشتری منجر به خرید <small class="text-danger" ng-if="addForm.shopCustomerSubsetHaveFactorPaidAmount.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" currency-input class="form-control direction-ltr" id="shopCustomerSubsetHaveFactorPaidAmount" name="shopCustomerSubsetHaveFactorPaidAmount" tabindex="1" ng-class="{'is-invalid' : addForm.shopCustomerSubsetHaveFactorPaidAmount.$touched &&  addForm.shopCustomerSubsetHaveFactorPaidAmount.$invalid == true}" ng-model="self.setting.shopCustomerSubsetHaveFactorPaidAmount" ng-required="true">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ریال</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopCustomerSubsetHaveFactorPaidAmount.$touched && addForm.shopCustomerSubsetHaveFactorPaidAmount.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="factorExpierTime">
+                                    کارمزد جذب مشتری <small class="text-danger" ng-if="addForm.shopCustomerSubsetAmount.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" currency-input class="form-control direction-ltr" id="shopCustomerSubsetAmount" name="shopCustomerSubsetAmount" tabindex="1" ng-class="{'is-invalid' : addForm.shopCustomerSubsetAmount.$touched &&  addForm.shopCustomerSubsetAmount.$invalid == true}" ng-model="self.setting.shopCustomerSubsetAmount" ng-required="true">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ریال</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopCustomerSubsetAmount.$touched && addForm.shopCustomerSubsetAmount.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="shopCustomerSubsetHaveFactorPaidCount">
+                                    تعداد تسویه کارمزد جذب مشتری منجر به خرید در روز <small class="text-danger" ng-if="addForm.shopCustomerSubsetHaveFactorPaidCount.$error.required == true">*</small>
+                                </label>
+
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control direction-ltr" id="shopCustomerSubsetHaveFactorPaidCount" name="shopCustomerSubsetHaveFactorPaidCount" tabindex="1" ng-class="{'is-invalid' : addForm.shopCustomerSubsetHaveFactorPaidCount.$touched &&  addForm.shopCustomerSubsetHaveFactorPaidCount.$invalid == true}" ng-model="self.setting.shopCustomerSubsetHaveFactorPaidCount" ng-required="true">
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopCustomerSubsetHaveFactorPaidCount.$touched && addForm.shopCustomerSubsetHaveFactorPaidCount.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label">
+                                    فرآیند جذب مشتری
+                                </label>
+
+                                <div class="material-switch mt-2">
+                                    <input id="recommendedSystemIsActive" ng-model="self.setting.recommendedSystemIsActive" name="someSwitchOption-{{self.setting.recommendedSystemIsActive}}" type="checkbox" />
+                                    <label for="recommendedSystemIsActive" class="label-success"></label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="customerRequestOrderCount">
+                                    تعداد درخواست سفارش برای غیر فعال شدن 
+                                    <small class="text-danger" ng-if="addForm.customerRequestOrderCount.$error.required == true">*</small>
+                                </label>
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1"
+                                           class="form-control direction-ltr" 
+                                           id="customerRequestOrderCount" 
+                                           name="customerRequestOrderCount" 
+                                           tabindex="1" 
+                                           ng-class="{'is-invalid' : addForm.customerRequestOrderCount.$touched &&  addForm.customerRequestOrderCount.$invalid == true}" 
+                                           ng-model="self.setting.customerRequestOrderCount" ng-required="true">
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerRequestOrderCount.$touched && addForm.customerRequestOrderCount.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="customerRequestOrderDuration">
+                                    مدت تعداد درخواست سفارش برای غیر فعال شدن <small class="text-danger" ng-if="addForm.customerRequestOrderDuration.$error.required == true">*</small>
+                                </label>
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1" class="form-control direction-ltr" id="customerRequestOrderDuration" name="customerRequestOrderDuration" tabindex="1" ng-class="{'is-invalid' : addForm.customerRequestOrderDuration.$touched &&  addForm.customerRequestOrderDuration.$invalid == true}" ng-model="self.setting.customerRequestOrderDuration" ng-required="true">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ثانیه</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.customerRequestOrderDuration.$touched && addForm.customerRequestOrderDuration.$error.required == true">
+                                        اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <br />
+                            <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-success btn-sm mt-2" ng-click="self.save()">
+                                ذخیره <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,121 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.list"></i>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <br />
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <small>
+              نام : <b>
+                {{self.shop.name}}
+              </b>
+            </small>
+
+          </div>
+          <div class="col-md-4">
+            <small>
+              میزان تخفیف پیش فرض : <b>
+                {{self.shop.defaultDiscount}}
+              </b>
+            </small>
+          </div>
+
+          <div class="col-md-12">
+            <small>
+              توضیحات : <b>
+                {{self.shop.descriptionStatus}}
+              </b>
+            </small>
+          </div>
+        </div>
+        <br />
+
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> مشخصات فردی
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <small>
+              نام : <b>
+                {{self.shop.firstName}}
+              </b>
+            </small>
+
+          </div>
+          <div class="col-md-4">
+            <small>
+              نام خانوادگی : <b>
+                {{self.shop.lastName}}
+              </b>
+            </small>
+
+          </div>
+
+          <div class="col-md-4 form-group">
+            <small>
+              شماره تلفن : <b>
+                {{self.shop.shopAddress.phoneNumber}}
+              </b>
+            </small>
+          </div>
+        </div>
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="table-responsive-sm col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>
+                نام
+              </th>
+              <th>
+                نام خانوادگی
+              </th>
+              <th>
+                تغییرات صورت گرفته
+              </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in self.logs">
+              <td>
+                {{item.firstName}}
+              </td>
+              <td>
+                {{item.lastName}}
+              </td>
+              <td>
+
+                <span class="badge" ng-class="{'badge-warning' : item.shopStatus == 0 , 'badge-success' : item.shopStatus == 1 ,  'badge-danger' : item.shopStatus == 2,  'badge-info' : item.shopStatus == 3}">
+                  {{item.shopStatus | shopStatusFilter}}
+                </span>
+             
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

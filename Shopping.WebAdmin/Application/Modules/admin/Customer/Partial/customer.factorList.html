@@ -1,0 +1,159 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.info.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.info.lastName}}
+                            </b>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.info.emailAddress}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <!--                                CreationTime: {},-->
+                                    <!--                                FactoRawCount: { type: 'int' },-->
+                                    <!--                                TimeLeft: { type: 'int' },-->
+                                    <!--                                Discount: { type: 'int' },-->
+                                    <!--                                DiscountPrice: { type: 'decimal' },-->
+                                    <!--                                Price: { type: 'decimal' },-->
+                                    <!--                                FactorState: { type: 'int' },-->
+                                    <!--                                ShipmentState: { type: 'int' },-->
+                                    <!--                                -->
+
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ایجاد</a>
+                                    </th>
+                                    <th data-field="FactoRawCount">
+                                        <a class="k-link" href="#">تعداد سفارش</a>
+                                    </th>
+                                    <th data-field="TimeLeft">
+                                        <a class="k-link" href="#">زمان باقی مانده</a>
+                                    </th>
+                                    <th data-field="Discount">
+                                        <a class="k-link" href="#">تخفیف </a>
+                                    </th>
+
+                                    <th data-field="DiscountPrice">
+                                        <a class="k-link" href="#">مبلغ تخفیف </a>
+                                    </th>
+
+                                    <th data-field="Price">
+                                        <a class="k-link" href="#">مبلغ </a>
+                                    </th>
+
+                                    <th data-field="FactorState">
+                                        <a class="k-link" href="#">وضعبت فاکتور </a>
+                                    </th>
+
+                                    <th data-field="ShipmentState">
+                                        <a class="k-link" href="#">وضعبت تحویل </a>
+                                    </th>
+
+
+                                    <th>
+                                        ویرایش
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <td>
+                                        {{dataItem.creationTime}}
+                                    </td>
+
+                                    <td>
+
+                                        {{dataItem.factoRawCount}}
+
+
+                                    </td>
+
+
+
+                                    <td>
+                                        {{dataItem.timeLeft}}
+                                    </td>
+
+                                    <td>
+                                        {{dataItem.discount}}
+                                    </td>
+
+
+                                    <td>
+                                        {{dataItem.discountPrice | currency : '' : 0 }}
+                                    </td>
+
+
+                                    <td>
+                                        {{dataItem.price | currency : '' : 0}}
+                                    </td>
+
+                                    <td>
+                                        <span class="badge badge-warning">
+                                            {{dataItem.factorState | factorStateFilter}}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge badge-warning">
+                                            {{dataItem.shipmentState | shipmentStateFilter}}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" ui-sref="dashboard.factor.details({id : dataItem.id})">
+                                            <small>    جزئیات</small>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

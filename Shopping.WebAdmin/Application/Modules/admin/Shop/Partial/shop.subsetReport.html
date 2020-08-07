@@ -1,0 +1,136 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+
+          </h5>
+          <!--                    <span class="pull-left">-->
+          <!--                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن کاربر" ui-sref="dashboard.user.add"></i>-->
+          <!--                    </span>-->
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>تاریخ شروع</label>
+              <adm-dtp class="direction-ltr" full-data="date11_detail" maxdate="{{date12_detail.unix}}" ng-model='self.filter.fromDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" , default: "today" , freezeInput: "true"}'></adm-dtp>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>تاریخ پایان</label>
+              <adm-dtp class="direction-ltr" full-data="date12_detail" mindate="{{date11_detail.unix}}" ng-model='self.filter.toDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" , default: "today" , freezeInput: "true"}'></adm-dtp>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-group">
+              <br />
+              <button class="btn btn-success mt-2" ng-click="self.setFilter()">
+                <i class="fa fa-filter"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="k-rtl">
+          <kendo-grid options="mainGridOptions" id="grid">
+            <table>
+              <thead>
+                <tr>
+                  
+                  
+
+                  <th data-field="PersonNumber">
+                    <a class="k-link" href="#">کد فروشگاه</a>
+                  </th>
+
+
+                  <th data-field="Name">
+                    <a class="k-link" href="#">نام  </a>
+                  </th>
+                  <th data-field="FirstName">
+                    <a class="k-link" href="#">نام </a>
+                  </th>
+
+                  <th data-field="LastName">
+                    <a class="k-link" href="#">  نام خانوادگی </a>
+                  </th>
+
+                  <th data-field="MobileNumber">
+                    <a class="k-link" href="#"> شماره تلفن </a>
+                  </th>
+                  <th data-field="MarketerFullName">
+                    <a class="k-link" href="#"> بازاریاب </a>
+                  </th>
+
+                  <th data-field="CustomerSubsetsCount">
+                    <a class="k-link" href="#">کل جذب</a>
+                  </th>
+
+                  <th data-field="CustomerSubsetsHavePaidFactorCount">
+                    <a class="k-link" href="#">کل منجر به خرید </a>
+                  </th> 
+                  <th data-field="customerSubsetsSettlementCount">
+                    <a class="k-link" href="#">تسویه شده </a>
+                  </th> 
+                  <th data-field="customerSubsetsNotSettlementCount">
+                    <a class="k-link" href="#">تسویه نشده </a>
+                  </th>
+                 
+                </tr>
+              </thead>
+            </table>
+            <table role="grid">
+              <tbody role="rowgroup">
+                <tr k-row-template>
+                  <td>
+                    {{dataItem.personNumber}}
+                  </td>
+                  <td>
+                    {{dataItem.name}}
+                  </td>
+
+                  <td>
+                    {{dataItem.firstName}}
+                  </td>
+                  <td>
+                    {{dataItem.lastName}}
+                  </td>
+
+                  <td>
+                    {{dataItem.mobileNumber}}
+                  </td>
+
+                  <td>
+                    {{dataItem.marketerFullName}}
+                  </td>
+                  <td>
+                    {{dataItem.customerSubsetsCount}}
+                  </td>
+
+                  <td>
+                    {{dataItem.customerSubsetsHavePaidFactorCount}}
+                  </td> 
+                  
+                  <td>
+                    {{dataItem.customerSubsetsSettlementCount}}
+                  </td>  
+                  <td>
+                    {{dataItem.customerSubsetsNotSettlementCount}}
+                  </td>
+
+                 
+                </tr>
+              </tbody>
+            </table>
+          </kendo-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

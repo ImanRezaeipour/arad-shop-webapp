@@ -1,0 +1,159 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+
+          </h5>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>تاریخ شروع</label>
+              <adm-dtp class="direction-ltr" full-data="date11_detail" maxdate="{{date12_detail.unix}}" ng-model='self.filter.fromDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" , default: "today" , freezeInput: "true"}'></adm-dtp>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>تاریخ پایان</label>
+              <adm-dtp class="direction-ltr" full-data="date12_detail" mindate="{{date11_detail.unix}}" ng-model='self.filter.toDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" , default: "today" , freezeInput: "true"}'></adm-dtp>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-group">
+              <br />
+              <button class="btn btn-success mt-2" ng-click="self.setFilter()">
+                <i class="fa fa-filter"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <small>
+              جمع مبلغ نا خالص :
+            </small>
+            <b>
+              <small class="text-success">
+                {{self.total.sumDiscountPrice | currency : '' : 0}}
+              </small>
+            </b>
+            <small ng-if="self.total != null">
+              ر یال
+            </small>
+          </div>
+          <div class="col-md-4">
+            <small>
+            جمع مبلغ تخفیف :
+            </small>
+            <b>
+              <small class="text-success">
+                {{self.total.sumRealDiscount | currency : '' : 0}}
+
+              </small>
+            </b>
+            <small  ng-if="self.total != null">
+              ر یال
+            </small>
+
+          </div>
+          <div class="col-md-4">
+            
+            <small>
+              جمع مبلغ خالص واریز بانک :
+            </small>
+            <b>
+              <small class="text-success"> 
+                {{self.total.sumSystemDiscount | currency : '' : 0}}
+
+              </small>
+            </b>
+            <small  ng-if="self.total != null">
+              ر یال
+            </small>
+
+          </div>
+        </div>
+        <div class="k-rtl">
+          <kendo-grid options="mainGridOptions" id="grid">
+            <table>
+              <thead>
+                <tr>
+                  <th data-field="CreationTime">
+                    <a class="k-link" href="#">تاریخ ایجاد</a>
+                  </th>
+                  <th data-field="CustomerFirstName">
+                    <a class="k-link" href="#">نام مشتری</a>
+                  </th>
+                  <th data-field="CustomerLastName">
+                    <a class="k-link" href="#">نام خانوادگی مشتری</a>
+                  </th>
+                  <th data-field="ShopName">
+                    <a class="k-link" href="#">نام فروشگاه </a>
+                  </th>
+                  <th data-field="DiscountPrice">
+                    <a class="k-link" href="#">مبلغ نا خالص </a>
+                  </th>
+                  <th data-field="SystemDiscountPrice">
+                    <a class="k-link" href="#">مبلغ خالص واریز بانک </a>
+                  </th>
+                  <th data-field="RealDiscountPrice">
+                    <a class="k-link" href="#">مبلغ تخفیف </a>
+                  </th>
+                  <th data-field="ShopIban">
+                    <a class="k-link" href="#">شماره شبا </a>
+                  </th>
+                  <th>
+                    ویرایش
+                  </th>
+                </tr>
+              </thead>
+            </table>
+            <table role="grid">
+              <tbody role="rowgroup">
+                <tr k-row-template>
+                  <td>
+                    {{dataItem.creationTime}}
+                  </td>
+                  <td>
+                    {{dataItem.customerFirstName}}
+                  </td>
+                  <td>
+                    {{dataItem.customerLastName}}
+                  </td>
+                  <td>
+                    {{dataItem.shopName}}
+                  </td>
+                  <td>
+                    {{dataItem.discountPrice | currency : '' : 0 }}
+                  </td>
+                  <td>
+                    {{dataItem.systemDiscountPrice | currency : '' : 0}}
+                  </td>
+                  <td>
+                    {{dataItem.realDiscountPrice | currency : '' : 0}}
+                  </td>  
+                  <td>
+                    {{dataItem.shopIban}}
+                  </td>
+                  <td>
+                    <button class="btn btn-warning btn-sm" ui-sref="dashboard.factor.details({id : dataItem.id})">
+                      <small>    جزئیات</small>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </kendo-grid>
+          <br />
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

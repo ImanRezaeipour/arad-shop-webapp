@@ -1,0 +1,481 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.marketer.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="addForm" name="addForm">
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div id="upload-img" class="m-auto text-center custom-pointer" ng-class="{'border-danger' : self.user.image == null}">
+                                    <img ng-src="{{self.user.imageUrl}}" class="img-fluid" ng-if="self.user.image != null">
+                                    <i class="fa fa-user fa-3x" ng-if="self.user.image == null  && self.loadingUploader != true"></i>
+
+                                    <div ng-if="self.loadingUploader == true">
+                                        <i class="fa fa-spin fa-spinner fa-4x"></i>
+                                    </div>
+
+                                    <input id="my-file-selector"
+                                          
+                                           ngf-select
+                                           class=""
+                                         
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'profileImage')"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ng-required="false"
+                                           ngf-max-size="2MB"
+                                           ngf-model-invalid="errorFiles"
+                                           ngf-keep-distinct="true">
+                                </div>
+                            </div>
+                            
+                            <div class="text-center" >
+                              
+                                <small ng-if="errorFiles != null" class="text-danger">
+                                حداکثر 2 MB 
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2 pt-3  text-left">
+
+                            <script>
+                                function to_image(obj) {
+                                    
+                                    var canvas = document.getElementById(obj).querySelector("canvas");
+                                    canvas.toBlob(function (blob) {
+                                        saveAs(blob, "qrCode.png");
+                                    });
+                                }
+                            </script>
+                     
+                            <qr text="self.user.barcodeId" id="1" size="100"></qr>
+                            <!--                            <button class="btn btn-info" onclick="to_image(1)">-->
+                            <!--                                دانلود-->
+                            <!--                            </button>-->
+                            <!---->
+                            <!--                            <qr text="self.user.qrCode1" id="2" size="100"></qr>-->
+                            <!--                            <button class="btn btn-info" onclick="to_image(2)">-->
+                            <!--                                دانلود-->
+                            <!--                            </button>-->
+
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="firstName">
+                                    نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.user.firstName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                        نام اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="lastName">
+                                    نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                        نام خانوادگی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="nationalCode">
+                                    کد ملی <small class="text-danger" ng-if="addForm.nationalCode.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="10" minlength="10" ng-pattern="/^[0-9]*$/" id="nationalCode" name="nationalCode" tabindex="1" ng-class="{'is-invalid' : addForm.nationalCode.$touched &&  addForm.nationalCode.$invalid == true}" ng-model="self.user.nationalCode" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.nationalCode.$touched && addForm.nationalCode.$error.required == true">
+                                        کد ملی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="idNumber">
+                                    شماره شناسنامه <small class="text-danger" ng-if="addForm.idNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" ng-pattern="/^[0-9]*$/" id="idNumber" name="idNumber" tabindex="1" ng-class="{'is-invalid' : addForm.idNumber.$touched &&  addForm.idNumber.$invalid == true}" ng-model="self.user.idNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.idNumber.$touched && addForm.idNumber.$error.required == true">
+                                        شماره شناسنامه اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="gender">
+                                    جنسیت <small class="text-danger" ng-if="addForm.gender.$error.required == true">*</small>
+                                </label>
+
+                                <select class="form-control" id="gender" name="gender" tabindex="1" ng-model="self.user.gender" ng-required="true" ng-class="{'is-invalid' : addForm.gender.$touched &&  addForm.gender.$invalid == true}" ng-options="item.id as item.title for item in self.genders"></select>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.gender.$touched && addForm.gender.$error.required == true">
+                                        جنسیت اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="fatherName">
+                                    نام پدر <small class="text-danger" ng-if="addForm.fatherName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="fatherName" name="fatherName" tabindex="1" ng-class="{'is-invalid' : addForm.fatherName.$touched &&  addForm.fatherName.$invalid == true}" ng-model="self.user.fatherName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.fatherName.$touched && addForm.fatherName.$error.required == true">
+                                        نام پدر اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="birthDate">
+                                    تاریخ تولد <small class="text-danger" ng-if="addForm.birthDate.$error.required == true">*</small>
+                                </label>
+                                <adm-dtp class="direction-ltr" ng-model='self.user.birthDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" , default: "today" , freezeInput: "true"}'></adm-dtp>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.birthDate.$touched && addForm.birthDate.$error.required == true">
+                                        تاریخ تولد اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> اطلاعات تماس
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="mobileNumber">
+                                    شماره موبایل <small class="text-danger" ng-if="addForm.mobileNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" ng-pattern="/^[0-9]*$/" ng-maxlength="11" id="mobileNumber" name="mobileNumber" tabindex="1" ng-class="{'is-invalid' : addForm.mobileNumber.$touched &&  addForm.mobileNumber.$invalid == true}" ng-model="self.user.marketerAddress.mobileNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.mobileNumber.$touched && addForm.mobileNumber.$error.required == true">
+                                        شماره تلفن همراه اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="phoneNumber">
+                                    شماره تلفن ثابت <small class="text-danger" ng-if="addForm.phoneNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" ng-pattern="/^[0-9]*$/" id="phoneNumber" name="phoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.phoneNumber.$touched &&  addForm.phoneNumber.$invalid == true}" ng-model="self.user.marketerAddress.phoneNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.phoneNumber.$touched && addForm.phoneNumber.$error.required == true">
+                                        شماره تلفن منزل اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="emergencyPhoneNumber">
+                                    شماره تلفن ضروری <small class="text-danger" ng-if="addForm.emergencyPhoneNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" ng-pattern="/^[0-9]*$/" id="emergencyPhoneNumber" name="emergencyPhoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.emergencyPhoneNumber.$touched &&  addForm.emergencyPhoneNumber.$invalid == true}" ng-model="self.user.marketerAddress.requiredPhoneNumber" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.emergencyPhoneNumber.$touched && addForm.emergencyPhoneNumber.$error.required == true">
+                                        شماره تلفن ضروری اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+
+
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="province">
+                                    استان <small class="text-danger" ng-if="addForm.province.$error.required == true">*</small>
+                                </label>
+
+                                <select class="form-control" id="province" name="province" tabindex="1" ng-model="self.user.province" ng-required="true" ng-class="{'is-invalid' : addForm.province.$touched &&  addForm.province.$invalid == true}" ng-options="item as item.name for item in self.provinces"></select>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.province.$touched && addForm.province.$error.required == true">
+                                        استان اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="city">
+                                    شهر <small class="text-danger" ng-if="addForm.city.$error.required == true">*</small>
+                                </label>
+
+                                <select class="form-control" id="city" name="city" tabindex="1" ng-model="self.user.marketerAddress.city" ng-required="true" ng-class="{'is-invalid' : addForm.city.$touched &&  addForm.city.$invalid == true}" ng-options="item as item.cityName for item in self.user.province.cities"></select>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.city.$touched && addForm.city.$error.required == true">
+                                        شهر اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="address">
+                                    آدرس محل سکونت <small class="text-danger" ng-if="addForm.address.$error.required == true">*</small>
+                                </label>
+                                <textarea class="form-control" id="address" name="address" tabindex="1" ng-class="{'is-invalid' : addForm.address.$touched &&  addForm.address.$invalid == true}" ng-model="self.user.marketerAddress.addressText" ng-required="true"> </textarea>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.address.$touched && addForm.address.$error.required == true">
+                                        آدرس اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> اطلاعات معرف
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="reagentName">
+                                    نام معرف <small class="text-danger" ng-if="addForm.reagentName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="reagentName" name="reagentName" tabindex="1" ng-class="{'is-invalid' : addForm.reagentName.$touched &&  addForm.reagentName.$invalid == true}" ng-model="self.user.marketerReagent.reagentName" ng-required="false">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.reagentName.$touched && addForm.reagentName.$error.required == true">
+                                        نام معرف اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="reagentMobileNumber">
+                                    شماره همراه معرف <small class="text-danger" ng-if="addForm.reagentMobileNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" minlength="11"  ng-pattern="/^[0-9]*$/" ng-maxlength="11" id="reagentMobileNumber" name="reagentMobileNumber" tabindex="1" ng-class="{'is-invalid' : addForm.reagentMobileNumber.$touched &&  addForm.reagentMobileNumber.$invalid == true}" ng-model="self.user.marketerReagent.reagentMobileNumber" ng-required="false">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.reagentMobileNumber.$touched && addForm.reagentMobileNumber.$error.required == true">
+                                        شماره تلفن همراه معرف اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> تنظیمات
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="maxMarketerAllowed">
+                                    حداکثر تعداد مجازفروشگاه برای بازاریابی <small class="text-danger" ng-if="addForm.maxMarketerAllowed.$error.required == true">*</small>
+                                </label>
+                                <input type="number" class="form-control" min="1" id="maxMarketerAllowed" name="maxMarketerAllowed" tabindex="1" ng-class="{'is-invalid' : addForm.maxMarketerAllowed.$touched &&  addForm.maxMarketerAllowed.$invalid == true}" ng-model="self.user.maxMarketerAllowed" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.maxMarketerAllowed.$touched && addForm.maxMarketerAllowed.$error.required == true">
+                                        حداکثر تعداد مجازفروشگاه برای بازاریابی اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="fixedSalary">
+                                    حقوق ثابت<small class="text-danger" ng-if="addForm.fixedSalary.$error.required == true">*</small>
+                                </label>
+                                <input type="number" class="form-control" min="0" id="fixedSalary" name="fixedSalary" tabindex="1" ng-class="{'is-invalid' : addForm.fixedSalary.$touched &&  addForm.fixedSalary.$invalid == true}" ng-model="self.user.marketerSalary.fixedSalary" >
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.fixedSalary.$touched && addForm.fixedSalary.$error.required == true">
+                                         حقوق ثابت اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                    </div>  
+                    
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="interestRates">
+                                   درصد سود از فروش <small class="text-danger" ng-if="addForm.interestRates.$error.required == true">*</small>
+                                </label>
+                                <input type="number" class="form-control" min="0" max="100" id="interestRates" name="interestRates" tabindex="1" ng-class="{'is-invalid' : addForm.interestRates.$touched &&  addForm.interestRates.$invalid == true}" ng-model="self.user.marketerSalary.interestRates" >
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.interestRates.$touched && addForm.interestRates.$error.required == true">
+                                        درصد سود از فروش اجباری می باشد
+                                    </small>
+                                    <small ng-if="addForm.interestRates.$error">
+                                         حداقل 0 و حداکثر 100
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description">
+                                    توضیحات <small class="text-danger" ng-if="addForm.description.$error.required == true">*</small>
+                                </label>
+                                <textarea class="form-control" id="description" name="description" tabindex="1" ng-class="{'is-invalid' : addForm.description.$touched &&  addForm.description.$invalid == true}" ng-model="self.user.description" ng-required="false"> </textarea>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.description.$touched && addForm.description.$error.required == true">
+                                        آدرس اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="w-100"></div>
+                        <br />
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> تصویر مدارک
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-2" ng-repeat="item in self.user.documentsImages">
+                            <div class="form-group">
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+                                    <img ng-src="{{self.user.documentsImages[$index].imageUrl}}" class="img-fluid" ng-if="self.user.documentsImages[$index] != null">
+                                    <i class="fa fa-image fa-3x" ng-if="(self.user.documentsImages[$index] | isEmpty)"></i>
+                                    <input id="my-file-selector"
+                                           ngf-select
+                                           class=""
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'userImage' , {{$index}})"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ng-required=""
+                                           ngf-keep-distinct="true">
+                                    <i class="fa fa-trash-o text-danger" style="position: absolute; left: 24px; top: -20px;z-index: 100" ng-click="self.itemRemoveImage(item)" ng-if="!(self.user.documentsImages[$index] | isEmpty)"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div id="upload-img" class="m-auto text-center custom-pointer" ng-click="self.user.documentsImages.push({})">
+                                    <i class="fa fa-plus fa-4x"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                                <button class="btn btn-success" ng-click="self.editMarketer()" ng-disabled="addForm.$invalid">
+                                    ذخیره
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>

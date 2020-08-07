@@ -1,0 +1,202 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <label>توضیحات</label>
+                <textarea class="form-control" ng-model="self.description" ng-if="self.showDescription == true"></textarea>
+                <br />
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="ProductImage">
+                                        <a class="k-link" href="#">تصویر</a>
+                                    </th>
+                                    <th data-field="Title">
+                                        <a class="k-link" href="#">عنوان</a>
+                                    </th>
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ثبت </a>
+                                    </th>
+
+                                    <!--                                    <th data-field="ProductSuggestionGroup.BrandName">-->
+                                    <!--                                        <a class="k-link" href="#">برند </a>-->
+                                    <!--                                    </th>-->
+                                    <!---->
+                                    <!---->
+                                    <!--                                    <th data-field="ProductSuggestionGroup.CategoryRootName">-->
+                                    <!--                                        <a class="k-link" href="#">دسته بندی اصلی </a>-->
+                                    <!--                                    </th>-->
+
+                                    <th data-field="ProductSuggestionGroup.CategoryName">
+                                        <a class="k-link" href="#">زیر دسته بندی </a>
+                                    </th> 
+                                    <th data-field="ShopName">
+                                       <a class="k-link" href="#">نام فروشگاه </a>
+                                    </th>  
+                                    
+                                    <th data-field="FullName">
+                                        <a class="k-link" href="#"> نام و نام خانوادگی </a>
+                                    </th>
+
+                                    <th data-field="ProductSuggestionStatus">
+                                        <a class="k-link" href="#"> وضعیت درخواست </a>
+                                    </th>
+
+                                    <th data-field="Description">
+                                        <a class="k-link" href="#">توضیحات </a>
+                                    </th>
+                                    <!-- <th data-field="isActive">-->
+                                    <!-- <a class="k-link" href="#">وضعیت</a>-->
+                                    <!-- </th>-->
+                                    <th>
+                                        عملیات
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+
+
+                                    <!--{
+                                    field: "productImage"
+                                    }, {
+                                    field: "title"
+                                    }, {
+                                    field: "creationTime"
+                                    }, {
+                                    field: "productSuggestionGroup.brandName"
+                                    },{
+                                    field: "productSuggestionGroup.categoryRootName"
+                                    }, {
+                                    field: "productSuggestionGroup.categoryName"
+                                    }, {
+                                    field: "productSuggestionStatus"
+                                    }, {
+                                    field: "description"
+                                    },
+                                    { title: "" }-->
+
+
+                                    <td>
+
+                                        <img ng-src="{{fileManagerGetUri}}/{{dataItem.productImage}}" class="img-fluid img-circle img-thumbnail w-50" />
+                                    </td>
+                                    <td>
+                                        {{dataItem.title}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.creationTime}}
+                                    </td>
+
+                                    <!--                                    <td>-->
+                                    <!--                                        {{dataItem.productSuggestionGroup.brandName}}-->
+                                    <!--                                    </td>-->
+                                    <!---->
+                                    <!--                                    <td>-->
+                                    <!--                                        {{dataItem.productSuggestionGroup.categoryRootName}}-->
+                                    <!--                                    </td>-->
+
+                                    <td>
+                                        {{dataItem.productSuggestionGroup.categoryName}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.shopName}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.fullName}}
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge" ng-class="{'badge-warning' : dataItem.productSuggestionStatus == 0 , 'badge-success' :  dataItem.productSuggestionStatus == 1 ,  'badge-danger' :  dataItem.productSuggestionStatus == 2  }">
+
+                                            {{dataItem.productSuggestionStatus | shopStatusFilter}}
+                                        </span>
+                                    </td>
+
+                                    <!-- <td>-->
+                                    <!-- <div class="material-switch ">-->
+                                    <!-- <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)"/>-->
+                                    <!-- <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+                                    <!-- </div>-->
+                                    <!-- </td>-->
+
+                                    <td>
+                                        {{dataItem.description}}
+                                    </td>
+                                    <!-- <td>-->
+                                    <!-- <div class="material-switch ">-->
+                                    <!-- <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)"/>-->
+                                    <!-- <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+                                    <!-- </div>-->
+                                    <!-- -->
+                                    <!-- </td>-->
+                                    <td>
+
+                                        <!--                                        <div class="btn-group" ng-if="dataItem.acceptItem == null && dataItem.deAcceptItem == null && dataItem.productSuggestionStatus == 0">-->
+                                        <!--                                            <button class="btn btn-success btn-sm" ng-click="dataItem.acceptItem = true">-->
+                                        <!--                                                <small>-->
+                                        <!--                                                    <i class="fa fa-check"></i>-->
+                                        <!---->
+                                        <!--                                                </small>-->
+                                        <!--                                            </button>-->
+                                        <!--                                            <button class="btn btn-danger btn-sm" ng-click="dataItem.deAcceptItem = true;self.showDescription = true">-->
+                                        <!--                                                <small>-->
+                                        <!--                                                    <i class="fa fa-times"></i>-->
+                                        <!---->
+                                        <!--                                                </small>-->
+                                        <!--                                            </button>-->
+                                        <!---->
+                                        <!--                                            -->
+                                        <!--                                        </div>-->
+
+                                        <button class="btn btn-info btn-sm" ui-sref="dashboard.suggestionProduct.details({id : dataItem.id , type : 2})" ng-if="dataItem.acceptItem == null && dataItem.deAcceptItem == null ">
+                                            <small>
+                                                <i class="fa fa-eye"></i>
+
+                                            </small>
+                                        </button>
+
+                                        <div ng-if="dataItem.acceptItem">
+                                            <button class="btn btn-success btn-sm w-100  mb-1" ng-click="self.changeActiveDeactive(dataItem , 0)">
+                                                <small>تایید</small>
+
+                                            </button>
+                                            <button class="btn btn-default btn-sm w-100" ng-click="dataItem.acceptItem = null;self.showDescription = false">
+                                                <small>انصراف</small>
+                                            </button>
+                                        </div>
+
+                                        <div ng-if="dataItem.deAcceptItem">
+                                            <button class="btn btn-danger btn-sm w-100  mb-1" ng-click="self.changeActiveDeactive(dataItem , 1)">
+                                                <small>رد کردن</small>
+                                            </button>
+                                            <button class="btn btn-default btn-sm w-100" ng-click="dataItem.deAcceptItem = null;self.showDescription = false">
+                                                <small>انصراف</small>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

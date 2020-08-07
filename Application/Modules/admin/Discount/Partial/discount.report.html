@@ -1,0 +1,64 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.discount.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد فروش : <b>
+                                {{self.report.sellsCount}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد خرید اولی ها :
+                            <b>
+                                {{self.report.firstPurchaseCount}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد سفارش باقیمانده :
+                        </small>
+                        <b>
+                            {{self.report.remainOrderCount}} 
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            جمع بدهکاری به فروشگاه
+                        </small>
+                        <b>
+                            {{self.report.shopDebitSum}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            سود سیستم :
+                        </small>
+                        <b>
+                            {{self.report.financialBenefitSum | number}}
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

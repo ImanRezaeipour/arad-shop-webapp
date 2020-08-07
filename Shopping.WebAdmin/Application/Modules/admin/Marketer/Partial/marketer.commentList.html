@@ -1,0 +1,235 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن بازاریاب" ui-sref="dashboard.marketer.add"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="w-100"></div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="nationalCode">
+                                شناسه :
+                            </label>
+                            <b>
+                                {{self.user.id}}
+                            </b>
+                            <!--<input type="text" class="form-control direction-ltr" maxlength="10" minlength="10" ng-pattern="/^[0-9]*$/" id="nationalCode" name="nationalCode" tabindex="1" ng-class="{'is-invalid' : addForm.nationalCode.$touched &&  addForm.nationalCode.$invalid == true}" ng-model="self.user.nationalCode" ng-required="true">-->
+                            <div class="invalid-feedback">
+                                <small ng-if="addForm.nationalCode.$touched && addForm.nationalCode.$error.required == true">
+                                    کد ملی اجباری می باشد
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="firstName">
+                                نام :
+                            </label>
+                            <b>
+                                {{self.user.firstName}}
+                            </b>
+                            <!-- <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.user.firstName" ng-required="true">-->
+                            <div class="invalid-feedback">
+                                <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                    نام اجباری می باشد
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="lastName">
+                                نام خانوادگی :
+                            </label>
+                            <b>
+                                {{self.user.lastName}}
+                            </b>
+                            <!-- <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="true">-->
+                            <div class="invalid-feedback">
+                                <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                    نام خانوادگی اجباری می باشد
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12">
+                  
+                        <form>
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="comment">
+                                    <b>
+                                        نظر
+                                    </b>
+                                </label>
+
+                                <!-- <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="true">-->
+                                <textarea class="form-control" ng-model="self.comment"></textarea>
+                                <br />
+                                <button class="btn btn-success btn" ng-click="self.addComments()" ng-disabled="self.comment == '' || self.comment == null ">
+                                    ارسال
+                                </button>
+                            </div>
+                        </form>
+                   
+                </div>
+
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="comment">
+                                        <a class="k-link" href="#">نطرات</a>
+                                    </th>
+                               
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <!-- {-->
+                                    <!-- field: "CreationTime"-->
+                                    <!-- }, {-->
+                                    <!-- field: "Marketer.Id"-->
+                                    <!-- }, {-->
+                                    <!-- field: "Marketer.FirstName"-->
+                                    <!-- }, {-->
+                                    <!-- field: "Marketer.LastName"-->
+                                    <!-- }, {-->
+                                    <!-- field: "PeriodSalary.FromDate"-->
+                                    <!-- }, {-->
+                                    <!-- field: "PeriodSalary.ToDate"-->
+                                    <!-- }, {-->
+                                    <!-- field: "Amount"-->
+                                    <!-- }, {-->
+                                    <!-- field: "",-->
+                                    <!-- }-->
+                                    <td>
+                                        {{dataItem.comment}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!---->
+<!--<kendo-grid options="mainGridOptions">-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                $1$                                    <th data-field="CreationTime">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تاریخ ثبت</a>#1#-->
+<!--                $1$                                    </th> #1#-->
+<!--                $1$                                    <th data-field="Image">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تصویر</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="FirstName">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">نام </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="LastName">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">نام خانوادگی</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$#1#-->
+<!--                $1$                                    <th data-field="MaxMarketerAllowed">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تعداد مجاز فروشگاه</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="SubsetShopCount">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تعداد فروشگاه های در اختیار </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$#1#-->
+<!--                $1$                                    <th data-field="IsActive">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">وضعیت </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th>#1#-->
+<!--                $1$                                        عملیات#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--    </table>-->
+<!--    <table role="grid">-->
+<!--        <tbody role="rowgroup">-->
+<!--            <tr k-row-template>-->
+<!--                <td>-->
+<!--                    {{dataItem.creationTime}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <img ng-src="{{fileManagerGetUri}}/{{dataItem.Image}}" class="img-fluid img-circle img-thumbnail w-50" />-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.firstName}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.lastName}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.maxMarketerAllowed}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.subsetShopCount}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div class="material-switch switch-sm">-->
+<!--                        <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />-->
+<!--                        <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!---->
+<!--                <td>-->
+<!--                    <div class="btn-group">-->
+<!--                        <button type="button" class="btn btn-info dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                            <small>-->
+<!--                                عملیات-->
+<!---->
+<!--                            </small>-->
+<!--                        </button>-->
+<!--                        <div class="dropdown-menu" style="right: auto">-->
+<!--                            <a class="dropdown-item" href="" ui-sref="dashboard.shop.details({id : dataItem.id})">-->
+<!--                                <small class="">-->
+<!--                                    مشخصات-->
+<!--                                </small>-->
+<!--                            </a>-->
+<!---->
+<!--                            <a class="dropdown-item" href="" ui-sref="dashboard.complaint.add({id : dataItem.id})">-->
+<!--                                <small class="">-->
+<!--                                    ثبت شکایات-->
+<!--                                </small>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</kendo-grid>-->

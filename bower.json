@@ -1,0 +1,43 @@
+{
+  "name": "coreui-ajax",
+  "version": "1.0.0-alpha.6",
+  "dependencies": {
+    "bootstrap": "4.0",
+    "popper.js": "v1.12.9",
+    "fontawesome": "latest",
+    "simple-line-icons": "latest",
+    "pace": "latest",
+    "chart.js": "Chart.js#v2.7.1",
+    "vazir-font": "^14.0.0",
+    "ladda-angular": "^1.0.1",
+    "angular-toastr": "2.1.1",
+    "angular-animate": "v1.6.9",
+    "angular-local-storage": "v0.7.1",
+    "angular-breadcrumb": "v0.5.0",
+    "angular-bootstrap": "v1.1.0",
+    "angular-ui-select": "v0.19.8",
+    "angular-sanitize": "v1.6.9",
+    "ngmap": "v1.18.4",
+    "moment-jalaali": "v0.7.1",
+    "moment": "momentjs#2.20.1",
+    "at-table": "v1.0.7",
+    "ngAnimate-animate.css": "v0.1.1",
+    "angular-loading-bar": "0.9.0",
+    "adm-dtp": "*",
+    "angular-ui-router": "1.0.15",
+    "ladda": "1.0.6",
+    "angular-ui-sortable": "v0.19.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "angular": "^1.6.9",
+    "labjs": "^2.0.3"
+  },
+  "resolutions": {
+    "angular": "1.6.9",
+    "angular-sanitize": "v1.6.9",
+    "angular-animate": "v1.6.9",
+    "ladda": "1.0.6",
+    "chart.js": "v2.7.1"
+  }
+}

@@ -1,0 +1,370 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.factor.list"></i>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> مشخصات فاکتور
+          </h6>
+        </div>
+        <br />
+        <div class="col-md-12">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th data-field="CreationTime">
+                  <span class="k-link" href="#">تاریخ ایجاد</span>
+                </th>
+                <th data-field="FactoRawCount">
+                  <span class="k-link" href="#">تعداد سفارش</span>
+                </th>
+                <th data-field="TimeLeft">
+                  <span class="k-link" href="#">زمان باقی مانده</span>
+                </th>
+                <th data-field="Discount">
+                  <span class="k-link" href="#">تخفیف </span>
+                </th>
+
+                <th data-field="DiscountPrice">
+                  <span class="k-link" href="#">
+                    مبلغ تخفیف
+                    <small>
+                      (ریال)
+                    </small>
+                  </span>
+                </th>
+
+                <th data-field="Price">
+                  <span class="k-link" href="#">
+                    مبلغ
+                    <small>
+                      (ریال)
+                    </small>
+                  </span>
+                </th>
+
+                <th data-field="FactorState">
+                  <span class="k-link" href="#">وضعبت فاکتور </span>
+                </th>
+
+                <th data-field="ShipmentState">
+                  <span class="k-link" href="#">وضعبت تحویل </span>
+                </th>
+
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {{self.factor.creationTime}}
+                </td>
+                <td>
+                  {{self.factor.factoRawCount}}
+                </td>
+                <td>
+                  {{self.factor.timeLeft}}
+                </td>
+                <td>
+                  {{self.factor.discount}}
+                </td>
+                <td>
+                  {{self.factor.discountPrice | currency : '' : 0 }}
+                </td>
+                <td>
+                  {{self.factor.price | currency : '' : 0}}
+                </td>
+                <td>
+                  <span class="badge" ng-class="{'badge-warning' : dataItem.factorState == 0 ,  'badge-success' : dataItem.factorState == 1,'badge-danger': dataItem.factorState == 2}">
+                    {{self.factor.factorState | factorStateFilter}}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge badge-warning">
+                    {{self.factor.shipmentState | shipmentStateFilter}}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br />
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> فاکتور
+          </h6>
+        </div>
+        <br />
+        <div class="col-md-12 form-group">
+          <table class="table table-bordered table-responsive-sm table-sm">
+            <thead>
+              <tr>
+                <th>تصویر محصول</th>
+                <th>نام محصول</th>
+                <th>برند</th>
+                <th>
+                  مبلغ
+                  <small>
+                    (ریال)
+                  </small>
+                </th>
+                <th>تعداد</th>
+                <th>دارای تخفیف</th>
+                <th>توضیحات</th>
+                <!--                                <th>عملیات</th>-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in self.factor.factorRaws">
+                <td style="width: 100px">
+                  <img class="img-fluid" width="50" ng-src="{{self.fileManagerGetUri}}/{{item.productImage}}" />
+
+                </td>
+                <td>
+                  {{item.productName}}
+                </td>
+                <td>
+                  {{item.brandName}}
+                </td>
+                <td>
+                  {{item.price | currency : '' : 0 }}
+                </td>
+
+                <td>
+                  {{item.quantity }}
+                </td>
+                <td>
+                  <span class="badge badge-danger" ng-if="!item.haveDiscount">
+                    خیر
+                  </span> 
+                  <span class="badge badge-danger" ng-if="item.haveDiscount">
+                   بله
+                  </span>
+                
+                </td>
+
+                <td>
+                  {{item.description}}
+                </td>
+                <!--                                <td>-->
+                <!--                                    <button class="btn btn-info btn-sm" ui-sref="dashboard.catalog.productsEdit({id: item.id})">-->
+                <!--                                        <i class="fa fa-eye"></i>-->
+                <!--                                    </button>-->
+                <!--                                </td>-->
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+
+        <br />
+
+        <br />
+
+
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> مشخصات فردی
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group">
+
+
+            <!--                        emailAddress: "reza@reza.com"-->
+            <!--                        firstName: "رضا "-->
+            <!--                        id: "4d6770c5-cd0d-4f72-9135-cec8e0fe6cd6"-->
+            <!--                        isActive: true-->
+            <!--                        lastName: "نجاتی"-->
+
+            <small>
+              نام : <b>
+                {{self.factor.customer.firstName}}
+              </b>
+            </small>
+
+          </div>
+          <div class="col-md-4">
+            <small>
+              نام خانوادگی : <b>
+                {{self.factor.customer.lastName}}
+              </b>
+            </small>
+
+          </div>
+
+          <div class="col-md-4">
+            <small>
+              ایمیل : <b>
+                {{self.factor.customer.emailAddress}}
+              </b>
+            </small>
+
+          </div>
+
+          <div class="col-md-4">
+            <small>
+              مجوز فعالیت  :
+              <span class="badge badge-success" ng-if="self.factor.customer.isActive == true">
+                دارد
+              </span>
+
+              <span class="badge badge-danger" ng-if="self.factor.customer.isActive != true">
+                ندارد
+              </span>
+
+            </small>
+
+          </div>
+
+          <!--                    <div class="col-md-4">-->
+          <!--                        <button class="btn btn-info btn-sm">-->
+          <!--                            مشاهده پروفایل-->
+          <!--                        </button>-->
+          <!---->
+          <!--                    </div>-->
+
+
+        </div>
+        <br />
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i>
+
+            مشخصات فروشگاه
+
+          </h6>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <small>
+              نام فروشگاه : <b>
+                {{self.factor.shop.name}}
+              </b>
+            </small>
+          </div>
+          <div class="col-md-4 form-group">
+            <small>
+              نام : <b>
+                {{self.factor.shop.firstName}}
+              </b>
+            </small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              نام خانوادگی : <b>
+                {{self.factor.shop.lastName}}
+              </b>
+            </small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              شماره همراه : <b>
+                {{self.factor.shop.mobileNumber}}
+              </b>
+            </small>
+          </div>
+
+          <div class="col-md-4">
+            <small>
+              کد ملی : <b>
+                {{self.factor.shop.nationalCode}}
+              </b>
+            </small>
+          </div>
+
+          <div class="col-md-4">
+            <small>
+              ایمیل : <b>
+                {{self.factor.shop.emailAddress}}
+              </b>
+            </small>
+          </div>
+          <div class="col-md-12">
+            <small>
+              <br />
+              <button class="btn btn-info btn-sm" ui-sref="dashboard.shop.details({id :self.factor.shop.id})">
+                <small>
+                  برو به فروشگاه
+                </small>
+              </button>
+            </small>
+          </div>
+        </div>
+        <br />
+
+        <div class="col-md-12">
+          <h6 class="m-0 text-info">
+            <i class="fa fa-caret-left"></i> آدرس
+          </h6>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <small>
+              شهر : <b>
+                {{self.factor.factorAddress.cityName}}
+              </b>
+            </small>
+
+          </div>
+          <div class="col-md-6">
+            <small>
+              تلفن :
+              <b>
+                {{self.factor.factorAddress.phoneNumber}}
+              </b>
+            </small>
+
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <small>
+              آدرس :
+              <b>
+                {{self.factor.factorAddress.addressText}}
+              </b>
+            </small>
+
+          </div>
+
+          <div class="col-md-12">
+            <div>
+              <ng-map center="[{{self.factor.factorAddress.position.latitude}} ,{{self.factor.factorAddress.position.longitude}}]" zoom="15">
+
+                <custom-marker id="custom-marker"
+                               position="[{{self.factor.factorAddress.position.latitude}} ,{{self.factor.factorAddress.position.longitude}}]">
+                  <div>
+                    <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto" />
+                  </div>
+                </custom-marker>
+
+              </ng-map>
+            </div>
+
+
+          </div>
+        </div>
+        <br />
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>

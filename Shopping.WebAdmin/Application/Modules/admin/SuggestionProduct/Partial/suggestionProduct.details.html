@@ -1,0 +1,167 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.suggestionProduct.shopList"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <br />
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات محصول
+                    </h6>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <small>
+                                    عنوان : <b>
+                                        {{self.suggestion.title}}
+                                    </b>
+                                </small>
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <small>
+                                    تاریخ ثبت : <b>
+                                        {{self.suggestion.creationTime}}
+                                    </b>
+                                </small>
+                            </div>
+                            <div class="col-md-6 form-group" ng-if="self.type == 2">
+                                <small>
+                                    نام فروشگاه : <b>
+                                        {{self.suggestion.shopName}}
+                                    </b>
+                                </small>
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <small>
+                                      نام و نام خانوادگی : <b>
+                                        {{self.suggestion.fullName}}
+                                    </b>
+                                </small>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <small>
+                                    توضیحات : <b>
+                                        {{self.suggestion.description}}
+                                    </b>
+                                </small>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <small>
+                                  برند :
+                                    <b>
+                                        {{self.suggestion.productSuggestionGroup.brandName}}
+                                    </b>
+                                </small>
+                            </div> 
+                            
+                            <div class="col-md-12 form-group">
+                                <small>
+                                    دسته بندی : 
+                                    <b>
+                                        <span class="pr-2">
+                                            {{self.suggestion.productSuggestionGroup.categoryName}}
+                                        </span>
+                                 
+                                        <i class="fa fa-angle-left  pr-2 text-info"></i>
+                                        {{self.suggestion.productSuggestionGroup.categoryRootName}}
+                                    </b>
+                                </small>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <span class="badge" ng-class="{'badge-warning' : self.suggestion.productSuggestionStatus == 0 , 'badge-success' :  self.suggestion.productSuggestionStatus == 1 ,  'badge-danger' :  self.suggestion.productSuggestionStatus == 2  }">
+
+
+                                    {{self.suggestion.productSuggestionStatus | shopStatusFilter}}
+                                </span>
+                            </div>    
+                            
+                            
+                            <div class="col-md-12 form-group">
+                                <small>
+                                    توضیحات  {{self.suggestion.productSuggestionStatus | shopStatusFilter}} :
+                                    <b>
+                                        {{self.suggestion.productSuggestionStatusDescription}}
+                                    </b>
+                                </small>
+                               
+
+
+                            </div>  
+                           
+                            
+                            <div class="col-md-12 form-group">
+                                <div class="btn-group" ng-if="self.suggestion.acceptItem == null && self.suggestion.deAcceptItem == null && self.suggestion.productSuggestionStatus == 0">
+                                    <button class="btn btn-success btn-sm" ng-click="self.suggestion.acceptItem = true">
+                                        <small>
+                                           تایید
+
+                                        </small>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" ng-click="self.suggestion.deAcceptItem = true;self.showDescription = true">
+                                        <small>
+                                         رد کردن
+
+                                        </small>
+                                    </button>
+                                </div>
+                             
+
+                                <div ng-if="self.suggestion.acceptItem" class="alert alert-success">
+                                    <small>
+                                        آیا از تایید محصول اطمینان دارید؟
+                                    </small>
+                                   
+                                  
+                                    <button class="btn btn-success btn-sm" ng-click="self.changeActiveDeactive(self.suggestion , 0)">
+                                        <small>تایید</small>
+
+                                    </button>
+                                    <button class="btn btn-default btn-sm" ng-click="self.suggestion.acceptItem = null;self.showDescription = false">
+                                        <small>انصراف</small>
+                                    </button>
+                                </div>
+
+                                <div ng-if="self.suggestion.deAcceptItem" class="alert alert-danger">   
+                                    <small>آیا از رد کردن محصول اطمینان دارید؟</small>
+                                    <br/>
+                                    <textarea ng-model="self.description" class="form-control"></textarea>
+                                    <br/>
+                                    <button class="btn btn-danger btn-sm" ng-click="self.changeActiveDeactive(self.suggestion , 1)" ng-disabled="self.description == null || self.description == ''">
+                                        <small>رد کردن</small>
+                                    </button>
+                                    <button class="btn btn-default btn-sm" ng-click="self.suggestion.deAcceptItem = null;self.showDescription = false">
+                                        <small>انصراف</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <img class="img-thumbnail img-fluid" ng-src="{{self.fileManagerGetUri}}/{{self.suggestion.productImage}}" />
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

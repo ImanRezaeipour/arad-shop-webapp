@@ -1,0 +1,168 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    
+
+                    <div class="col-md-12">
+                        <h6 class="m-0 text-info">
+                            <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                        </h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <small>
+                                نام : <b>
+                                    {{self.info.name}}
+                                </b>
+                            </small>
+
+                        </div>
+                        <div class="col-md-4">
+                            <small>
+                                میزان تخفیف پیش فرض : <b>
+                                    {{self.info.defaultDiscount}}
+                                </b>
+                            </small>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="col-md-12">
+                        <h6 class="m-0 text-info">
+                            <i class="fa fa-caret-left"></i> مشخصات فردی
+                        </h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <small>
+                                نام : <b>
+                                    {{self.info.firstName}}
+                                </b>
+                            </small>
+
+                        </div>
+                        <div class="col-md-4">
+                            <small>
+                                نام خانوادگی : <b>
+                                    {{self.info.lastName}}
+                                </b>
+                            </small>
+                        </div>
+
+                        <div class="col-md-4">
+                            <small>
+                                ایمیل : <b>
+                                    {{self.info.emailAddress}}
+                                </b>
+                            </small>
+                        </div>
+                    </div>
+
+                    
+
+                    <form id="addForm" name="addForm">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="firstName">
+                                        نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.complaint.firstName" ng-required="true">
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                            نام اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="lastName">
+                                        نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.complaint.lastName" ng-required="true">
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                            نام خانوادگی اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="email">
+                                        ایمیل <small class="text-danger" ng-if="addForm.email.$error.required == true">*</small>
+                                    </label>
+                                    <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.complaint.email" >
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.email.$touched && addForm.email.$error.required == true">
+                                            ایمیل اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="title">
+                                        عنوان <small class="text-danger" ng-if="addForm.email.$error.required == true">*</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="title" name="title" tabindex="1" ng-class="{'is-invalid' : addForm.title.$touched &&  addForm.title.$invalid == true}" ng-model="self.complaint.title" ng-required="true">
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.title.$touched && addForm.title.$error.required == true">
+                                            عنوان اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="description">
+                                        توضیحات <small class="text-danger" ng-if="addForm.description.$error.required == true">*</small>
+                                    </label>
+                                    <!-- <input type="text" class="form-control" id="title" name="title" tabindex="1" ng-class="{'is-invalid' : addForm.title.$touched &&  addForm.title.$invalid == true}" ng-model="self.message.title" ng-required="true">-->
+                                    <textarea class="form-control p-3" id="description" rows="4" name="description" tabindex="1" ng-class="{'is-invalid' : addForm.description.$touched &&  addForm.description.$invalid == true}" ng-model="self.complaint.description" ng-required="true"></textarea>
+                                    <!-- <select class="form-control" ng-model="self.message.body" ng-options="item.id as item.title for item in self.messageTypes" name="body" id="body" ng-class="{'is-invalid' : addForm.messageType.$touched &&  addForm.messageType.$invalid == true}" ng-required="true"></select>-->
+                                    <!-- <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.user.email" ng-required="true">-->
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.description.$touched && addForm.description.$error.required == true">
+                                            متن پیام اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button ng-disabled="addForm.$invalid" class="btn btn-success text-white" ng-click="self.saveComplaint()">
+                                    ذخیره
+                                </button>
+
+
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

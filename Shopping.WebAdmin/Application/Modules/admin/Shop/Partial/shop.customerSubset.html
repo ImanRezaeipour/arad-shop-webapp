@@ -1,0 +1,131 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <br />
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.shop.name}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام و نام خانوادگی : <b>
+                                {{self.shop.firstName}}
+                                {{self.shop.lastName}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            شماره همراه : <b>
+                                {{self.shop.mobileNumber}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i>  اطلاعات جذب مشتری
+                    </h6>
+                </div>
+                <br />
+                <div class="row pt-0">
+                    <div class="col-md-4">
+                        <small>
+                            تعداد کل مشتری جذب شده : <b>
+                                {{self.shopCustomerSubsetReport.count}}
+                            </b>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            تعداد تسویه نشده  <b>
+                                {{self.shopCustomerSubsetReport.notSettlementCount}}
+                            </b>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            تعداد تسویه  شده  <b>
+                                {{self.shopCustomerSubsetReport.settlementCount}}
+                            </b>
+
+                        </small>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <small>
+                            تعداد مشتری جذب شده و منجر به خرید شده :   <b>
+                                {{self.shopCustomerSubsetReport.paidFactorCount}}
+                            </b>
+
+                        </small>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <small>
+                            مجموع کارمزد فروشگاه برای جذب (تسویه نشده):   <b>
+                                {{self.shopCustomerSubsetReport.shopCustomerSubsetSumAmount | currency : "" : 0}}
+                            </b>
+                            ریال
+                        </small>
+                    </div>
+                    <br />
+                    <div class="col-md-12 pt-3">
+                        <small>
+                            مجموع کارمزد فروشگاه جذب شده های منجر به خرید (تسویه نشده) :   <b>
+                                {{self.shopCustomerSubsetReport.shopCustomerSubsetHaveFactorPaidSumAmount | currency : "" : 0}}
+                            </b>
+                            ریال
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> تاریخه تسویه
+                    </h6>
+                </div>
+                <br />
+
+                <table class="table table-striped" at-table at-paginated at-list="self.settlementHisory" at-config="config">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td at-implicit at-sortable at-attribute="creationTime" at-title="تاریخ تسویه" at-initial-sorting="asc"></td>
+                            <td at-title="مقدار">
+                                {{item.amount | currency : "" : 0}}
+                            </td>
+                            <td at-implicit at-sortable at-attribute="userInfo.firstName" at-title="نام تسویه کننده"></td>
+                            <td at-implicit at-sortable at-attribute="userInfo.lastName" at-title="نام خانوادگی تسویه کننده"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <at-pagination at-list="self.settlementHisory" at-config="config"></at-pagination>
+            </div>
+        </div>
+    </div>
+</section>

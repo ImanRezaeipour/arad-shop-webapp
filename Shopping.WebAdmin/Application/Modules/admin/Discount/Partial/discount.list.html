@@ -1,0 +1,96 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن کاربر" ui-sref="dashboard.discount.add"></i>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="k-rtl">
+          <kendo-grid options="mainGridOptions">
+            <table>
+              <thead>
+                <tr>
+                  <th data-field="CreationTime">
+                    <a class="k-link" href="#">تاریخ ایجاد</a>
+                  </th>
+                  <th data-field="Title">
+                    <a class="k-link" href="#"> عنوان </a>
+                  </th>
+                  <th data-field="FromDate">
+                    <a class="k-link" href="#">تاریخ شروع</a>
+                  </th>
+                  <th data-field="ToDate">
+                    <a class="k-link" href="#">تاریخ پایان</a>
+                  </th>
+
+                  <th data-field="UserInfo.FirstName">
+                    <a class="k-link" href="#"> نام ایجاد کننده </a>
+                  </th>
+
+                  <th data-field="UserInfo.LastName">
+                    <a class="k-link" href="#"> نام خانوادگی ایجاد کننده </a>
+                  </th>
+
+                  <th>
+                    عملیات
+                  </th>
+                </tr>
+              </thead>
+            </table>
+            <table role="grid">
+              <tbody role="rowgroup">
+                <tr k-row-template>
+                  <td>
+                    {{dataItem.creationTime}}
+                  </td>
+                  <td>
+                    {{dataItem.title}}
+                  </td>
+                  <td>
+                    {{dataItem.fromDate}}
+                  </td>
+                  <td>
+                    {{dataItem.toDate}}
+                  </td>
+                  <td>
+                    {{dataItem.userInfo.firstName}}
+                  </td>
+                  <td>
+                    {{dataItem.userInfo.lastName}}
+                  </td>
+<!--                  <td>-->
+<!--                    <div class="material-switch ">-->
+<!--                      <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />-->
+<!--                      <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+<!--                    </div>-->
+<!--                  </td>-->
+                  <td>
+                      <button class="btn btn-warning btn-sm" ui-sref="dashboard.discount.details({id : dataItem.id})">
+                          <small> مشخصات</small>
+                      </button>
+                      <button class="btn btn-primary btn-sm" ui-sref="dashboard.discount.report({id : dataItem.id})">
+                          <small> گزارش</small>
+                      </button>
+                      <button class="btn btn-secondary btn-sm" ui-sref="dashboard.discount.shopDebitReport({id : dataItem.id})">
+                          <small> بدهکاری فروشگاه</small>
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </kendo-grid>
+          <br />
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

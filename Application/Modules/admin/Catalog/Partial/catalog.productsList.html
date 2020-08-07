@@ -1,0 +1,143 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن محصول" ui-sref="dashboard.catalog.productsAdd"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-3">
+            <label>برند</label>
+            <select class="form-control" ng-model="self.filter.brand" ng-options="item as item.name for item in self.barnds | orderBy : 'name'"></select>
+          </div>
+          <div class="col-md-3">
+            <label>دسته بندی</label>
+            <select class="form-control" ng-model="self.filter.category" ng-options="item as item.name for item in self.categories"></select>
+          </div>
+          <div class="col-md-3">  
+            <label>زیر دسته بندی</label>
+            <select class="form-control" ng-model="self.filter.subCategory" ng-options="item as item.name for item in self.filter.category.subCategories"></select>
+          </div>  
+          <div class="col-md-3 pt-2">
+            <br/>
+            <button class="btn btn-success" ng-click="self.filterClick()">
+              <i class="fa fa-filter"></i>
+            </button>
+            <button class="btn btn-danger" ng-click="self.filterNull()">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div class="clearfix"></div>
+        <div class="k-rtl">
+          <kendo-grid options="mainGridOptions" id="grid">
+            <table>
+              <thead>
+                <tr>
+                  <th data-field="MainImage">
+                    <a class="k-link" href="#">تصویر</a>
+                  </th>
+                  <th data-field="Name">
+                    <a class="k-link" href="#">نام</a>
+                  </th>
+                  <th data-field="Latiname">
+                    <a class="k-link" href="#">قیمت <small>(ریال)</small></a>
+                  </th>
+
+                  <th data-field="Brand.Name">
+                    <a class="k-link" href="#">برند </a>
+                  </th>
+
+                  <th data-field="Category.Name">
+                    <a class="k-link" href="#">دسته بندی </a>
+                  </th>
+                  <th data-field="IsActive">
+                    <a class="k-link" href="#">وضعیت</a>
+                  </th>
+                  <th>
+                    ویرایش
+                  </th>
+                </tr>
+              </thead>
+            </table>
+            <table role="grid">
+              <tbody role="rowgroup">
+                <tr k-row-template>
+                  <td>
+
+                    <img ng-src="{{fileManagerGetUri}}/{{dataItem.mainImage}}" class="img-fluid img-circle img-thumbnail w-50" />
+                  </td>
+
+                  <td>
+                    {{dataItem.name}}
+                  </td>
+                  <td>
+                      {{dataItem.price}}
+                      <!--{{dataItem.price | currency : "" : 0}}-->
+                  </td>
+
+                  <td>
+                    {{dataItem.brand.name}}
+                  </td>
+
+                  <td>
+                    {{dataItem.categoryName}}
+                  </td>
+                  <td>
+                    <div class="material-switch ">
+                      <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />
+                      <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>
+                    </div>
+                    <!-- <span class="badge badge-success" ng-if="dataItem.isActive">-->
+                    <!-- فعال-->
+                    <!-- </span>-->
+                    <!-- <span class="badge badge-danger" ng-if="!dataItem.isActive">-->
+                    <!-- غیرفعال-->
+                    <!-- </span>-->
+                  </td>
+                  <td>
+                    <div ng-if="dataItem.isDelete != true">
+                      <a class="btn btn-warning btn-sm" target="_blank" ui-sref="dashboard.catalog.productsEdit({id : dataItem.id})">ویرایش</a>
+                      <button class="btn btn-danger btn-small btn-sm" ng-click="dataItem.isDelete = true">
+                        <small>حذف</small>
+                      </button>
+
+                    </div>
+
+                    <div ng-if="dataItem.isDelete" class="btn-group">
+
+                      <button class="btn btn-danger btn-small btn-sm" ng-click="self.removeItem(dataItem)">
+                        <small>حذف</small>
+                      </button>
+
+                      <button class="btn btn-default btn-small btn-sm" ng-click="dataItem.isDelete = false">
+                        <small>انصراف</small>
+                      </button>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </kendo-grid>
+          <br />
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

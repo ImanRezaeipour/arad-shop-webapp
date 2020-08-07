@@ -1,0 +1,135 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+
+      <div class="card-header d-flex align-items-center">
+
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="k-rtl">
+
+
+
+          <kendo-grid options="mainGridOptions">
+
+            <table>
+              <thead>
+                <tr>
+                  <th data-field="CreationTime">
+                    <a class="k-link" href="#">زمان ثبت نام</a>
+                  </th>
+                  <th data-field="FirstName">
+                    <a class="k-link" href="#">نام</a>
+                  </th>
+                  <th data-field="LastName">
+                    <a class="k-link" href="#">نام خانوادگی </a>
+                  </th>
+                  <th data-field="MobileNumber">
+                    <a class="k-link" href="#">شماره موبایل  </a>
+                  </th>
+                  <th data-field="EmailAddress">
+                    <a class="k-link" href="#">آدرس ایمیل</a>
+                  </th>
+
+                  <th data-field="IsActive">
+                    <a class="k-link" href="#">وضعیت</a>
+                  </th>
+
+                  <th>
+                    عملیات
+                  </th>
+
+                </tr>
+              </thead>
+            </table>
+
+
+            <table role="grid">
+
+              <tbody role="rowgroup">
+                <tr k-row-template>
+                  <td>
+                    {{dataItem.creationTime}}
+                  </td>
+                  <td>
+                    {{dataItem.firstName}}
+                  </td>
+                  <td>
+                    {{dataItem.lastName}}
+                  </td>
+                  <td>
+                    {{dataItem.mobileNumber}}
+                  </td>
+
+                  <td>
+                    {{dataItem.emailAddress}}
+                  </td>
+                  <td>
+                    <div class="material-switch ">
+                      <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />
+                      <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-info dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <small>
+                          عملیات
+                        </small>
+                      </button>
+                      <div class="dropdown-menu" style="right: auto">
+                        <a class="dropdown-item" href="" ui-sref="dashboard.customer.view({id : dataItem.id})">
+                          <small>
+                            مشاهده
+                          </small>
+                        </a>
+                        <a class="dropdown-item" href="" ui-sref="dashboard.customer.edit({id : dataItem.id})">
+                          <small>
+                            ویرایش
+                          </small>
+                        </a>
+                        <a class="dropdown-item" href="" ui-sref="dashboard.customer.order({id : dataItem.id})">
+                          <small>
+                            سفارشات
+                          </small>
+                        </a>
+                        <a class="dropdown-item" href="" ui-sref="dashboard.customer.factorList({id : dataItem.id})">
+                          <small>
+                            فاکتورها
+                          </small>
+                        </a>
+                        <a class="dropdown-item" href="" ui-sref="dashboard.message.privateList({id : dataItem.id , type : 1})">
+                          <small>
+                            پیام های خصوصی
+                          </small>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </kendo-grid>
+          <br />
+          <br />
+          <br />
+
+
+
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

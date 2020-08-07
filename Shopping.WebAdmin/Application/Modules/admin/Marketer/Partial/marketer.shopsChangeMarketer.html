@@ -1,0 +1,172 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.marketer.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.shop.name}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            میزان تخفیف پیش فرض : <b>
+                                {{self.shop.defaultDiscount}}
+                            </b>
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.shop.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.shop.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            شماره تماس : <b>
+                                {{self.shop.mobileNumber}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="k-rtl">
+                <kendo-grid options="mainGridOptions">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="Id">
+                                    <a class="k-link" href="#">شناسه</a>
+                                </th>
+                                <th data-field="CreationTime">
+                                    <a class="k-link" href="#">تاریخ ایجاد</a>
+                                </th>
+                                <th>
+                                    تصویر
+                                </th>
+
+                                <th data-field="FirstName">
+                                    <a class="k-link" href="#">نام</a>
+                                </th>
+                                <th data-field="LastName">
+                                    <a class="k-link" href="#">نام خانوادگی</a>
+                                </th>
+
+                                <th data-field="MaxMarketerAllowed">
+                                    <a class="k-link" href="#">تعداد مجاز فروشگاه </a>
+                                </th>
+
+                                <th data-field="SubsetShopCount">
+                                    <a class="k-link" href="#">تعداد فروشگاه های دراختیار </a>
+                                </th>
+                                <th data-field="IsActive">
+                                    <a class="k-link" href="#">وضعیت</a>
+                                </th>
+                                <th>
+                                    ویرایش
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table role="grid">
+                        <tbody role="rowgroup">
+                            <tr k-row-template>
+                                <td>
+                                    {{dataItem.id}}
+                                </td>
+                                <td>
+                                    {{dataItem.creationTime}}
+                                </td>
+
+                                <td>
+                                    <img ng-src="{{self.fileManagerGetUri}}/{{dataItem.image}}" class="img-fluid img-circle img-thumbnail w-50" />
+                                </td>
+
+                                <td>
+                                    {{dataItem.firstName}}
+                                </td>
+
+                                <td>
+                                    {{dataItem.lastName}}
+                                </td>
+
+                                <td>
+                                    {{dataItem.maxMarketerAllowed}}
+                                </td>
+
+                                <td>
+                                    {{dataItem.subsetShopCount}}
+                                </td>
+                                <td>
+
+                                    <small class="badge" ng-class="{'badge-danger': dataItem.isActive == false , 'badge-success': dataItem.isActive == true}">
+
+                                        {{dataItem.isActive == true ? 'فعال' : 'غیر فعال'}}
+
+                                    </small>
+
+                                    <!--                                    <div class="material-switch">-->
+                                    <!--                                        <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)"/>-->
+                                    <!--                                        <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+                                    <!--                                    </div>-->
+
+                                </td>
+                                <td>
+
+                                    <button class="btn btn-info btn-sm" ng-click="self.selectMarketer(dataItem)">
+                                        <small>
+                                            انتخاب بازاریاب
+                                        </small>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </kendo-grid>
+            </div>
+        </div>
+    </div>
+</section>

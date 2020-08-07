@@ -1,0 +1,77 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن پیام عمومی" ui-sref="dashboard.message.add"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ایجاد</a>
+                                    </th>
+                                    <th data-field="Title">
+                                        <a class="k-link" href="#">عنوان</a>
+                                    </th> 
+                                    <th data-field="FirstName">
+                                        <a class="k-link" href="#">نام ثبت کننده</a>
+                                    </th> 
+                                    <th data-field="LastName">
+                                        <a class="k-link" href="#">نام خانوادگی ثبت کننده</a>
+                                    </th>
+                                    <th data-field="PublicMessageType">
+                                        <a class="k-link" href="#">نوع پیام </a>
+                                    </th>
+                                    <th data-field="Body">
+                                        <a class="k-link" href="#"> متن </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <td class="col-md-2 col-lg-2 col-xl-2">
+                                        {{dataItem.creationTime}}
+                                    </td>
+                                    <td class="col-md-3 col-lg-3 col-xl-3">
+                                        {{dataItem.title}}
+                                    </td>   
+                                    <td class="col-md-3 col-lg-3 col-xl-3">
+                                        {{dataItem.userInfo.firstName}}
+                                    </td>  
+                                    <td class="col-md-3 col-lg-3 col-xl-3">
+                                        {{dataItem.userInfo.lastName}}
+                                    </td>
+                                    <td class="col-md-2  col-lg-2 col-xl-2">
+                                        <span class="badge" ng-class="{'badge-warning' : dataItem.publicMessageType == 0 ,  'badge-info' : dataItem.publicMessageType == 1}">
+                                            {{dataItem.publicMessageType | publicMessageTypeFilter}}
+                                        </span>
+                                    </td>
+                                    <td class="col-md-5  col-lg-5 col-xl-5">
+                                        {{dataItem.body}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

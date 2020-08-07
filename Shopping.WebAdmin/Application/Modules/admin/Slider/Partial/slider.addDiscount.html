@@ -1,0 +1,141 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                  <h5 class="pull-right">
+                    {{currentState.label}}
+
+                  </h5>
+                  <span class="pull-left">
+                    <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.slider.discountList"></i>
+                  </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                
+                  <div class="col-md-3">
+                    <div id="upload-img" class="m-auto text-center custom-pointer">
+
+                      <img ng-src="{{self.imageUrl}}" class="img-fluid" ng-if="self.imageData != null">
+<!--                      <div ng-if="self.loadingUploader == true">-->
+<!--                        <i class="fa fa-spin fa-spinner fa-4x" ng-if="self.imageData == null"></i>-->
+<!--                      </div>-->
+<!--                      <i class="fa fa-image fa-4x" ng-if="self.imageData == null && self.loadingUploader != true"></i>-->
+<!--                      <input id="my-file-selector"-->
+<!--                             ngf-select-->
+<!--                             class=""-->
+<!--                             tabindex="24"-->
+<!--                             tooltip="انتخاب فایل"-->
+<!--                             tooltip-placement="bottom"-->
+<!--                             ngf-change="self.upload($files , 'mainImage')"-->
+<!--                             ngf-capture="'camera'"-->
+<!--                             accept="image/*"-->
+<!--                             ngf-accept="''"-->
+<!--                             ngf-max-size="2MB"-->
+<!--                             ng-required="true"-->
+<!--                             ngf-model-invalid="errorFiles"-->
+<!--                             ngf-keep-distinct="true">-->
+               </div>
+                  </div>
+                  <div class="col-md-9">
+                    <button class="btn btn-success pull-left" ng-click="self.addSlider()" ng-disabled="self.imageData == null || self.selecetdId == null">
+                      ذخیره
+                    </button>
+                  </div>
+                    <div class="col-md-12">
+                        <br />
+                        <small ng-if="errorFiles != null" class="text-danger">
+                            حجم فایل انتخابی کمتر از 2 مگابایت باید باشد
+                        </small>
+                    </div>
+
+                </div>
+                <div class="row">
+                  <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th data-field="CreationTime">
+                              <a class="k-link" href="#">تاریخ ایجاد</a>
+                            </th>
+                            <th data-field="Title">
+                              <a class="k-link" href="#"> عنوان </a>
+                            </th>
+                            <th data-field="FromDate">
+                              <a class="k-link" href="#">تاریخ شروع</a>
+                            </th>
+                            <th data-field="ToDate">
+                              <a class="k-link" href="#">تاریخ پایان</a>
+                            </th>
+                            <th data-field="DiscountType">
+                              <a class="k-link" href="#">نوع تخفیف</a>
+                            </th>
+
+                            <th data-field="UserInfo.FirstName">
+                              <a class="k-link" href="#"> نام ایجاد کننده </a>
+                            </th>
+
+                            <th data-field="UserInfo.LastName">
+                              <a class="k-link" href="#"> نام خانوادگی ایجاد کننده </a>
+                            </th>
+
+                            <th>
+                              عملیات
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <table role="grid">
+                        <tbody role="rowgroup">
+                          <tr k-row-template ng-class="{'table-success' : dataItem.id == self.selecetdId}">
+                            <td>
+                              {{dataItem.creationTime}}
+                            </td>
+                            <td>
+                              {{dataItem.title}}
+                            </td>
+                            <td>
+                              {{dataItem.fromDate}}
+                            </td>
+                            <td>
+                              {{dataItem.toDate}}
+                            </td>
+                            <td>
+                              <span class="badge" ng-class="{'badge-warning' : dataItem.discountType == 0 , 'badge-info' : dataItem.discountType == 1 ,  'badge-success' : dataItem.discountType == 2 ,  'badge-danger' : dataItem.discountType == 3}">
+                                {{dataItem.discountType | DiscountTypeFilter}}
+                              </span>
+                            </td>
+                            <td>
+                              {{dataItem.userInfo.firstName}}
+                            </td>
+                            <td>
+                              {{dataItem.userInfo.lastName}}
+                            </td>
+                            <!--                  <td>-->
+                            <!--                    <div class="material-switch ">-->
+                            <!--                      <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />-->
+                            <!--                      <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+                            <!--                    </div>-->
+                            <!--                  </td>-->
+                            <td>
+                              <button class="btn btn-success btn-sm" ng-click="self.selecetdId = dataItem.id">
+                                <i class="fa fa-check-circle"></i>
+                              </button>
+                              
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

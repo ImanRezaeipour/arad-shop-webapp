@@ -1,0 +1,89 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن کاربر" ui-sref="dashboard.user.add"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="k-rtl">
+
+
+                    <table class="table table-striped" at-table at-paginated at-list="list" at-config="config">
+                        <thead></thead>
+                        <tbody>
+                        <tr>
+                            <td at-implicit at-sortable at-attribute="firstName" at-title="نام"  at-initial-sorting="asc"></td>
+                            <td at-implicit at-sortable at-attribute="lastName" at-title="نام خانوادگی"></td>
+                            <td at-implicit at-sortable at-attribute="nationalCode"  at-title="کد ملی"></td>
+                            <td at-implicit at-sortable at-attribute="username" at-title="نام کاربری"></td>
+                            <td at-implicit at-sortable at-attribute="mobileNumber" at-title="شماره تلفن همراه"></td>
+                            <td at-implicit at-sortable at-attribute="email" at-title="آدرس ایمیل"></td>
+                            <td at-title="نقش">
+                                <span class="badge badge-info" ng-repeat="item in item.roles"> {{item}} </span>
+                            </td>
+                            <td  at-title="عملیات">
+                                <div class="btn-group">
+                                    
+                                    <div ng-if="item.isDelete != true" class="btn-group">
+                                      
+                                        <button class="btn btn-warning btn-small btn-sm" ui-sref="dashboard.user.edit({id : item.userId})">
+                                            <small>ویرایش</small>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-small btn-sm" ng-click="item.isDelete = true">
+                                            <small>حذف</small>
+                                        </button>
+
+                                        <button class="btn btn-info btn-small btn-sm" ui-sref="dashboard.user.resetPassword({id : item.userId})"> 
+                                            <small>ریست پسوورد</small>
+                                        </button>
+                                    </div>
+
+
+                                    <div ng-if="item.isDelete" class="btn-group" >
+                                        
+                                        <button class="btn btn-danger btn-small btn-sm" ng-click="self.remove(item)">
+                                            <small>حذف</small>
+                                        </button>
+                                        
+                                        <button class="btn btn-default btn-small btn-sm" ng-click="item.isDelete = false">
+                                            <small>انصراف</small>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--<at-pagination at-list="list" at-config="config"></at-pagination>-->
+
+
+                    <br />
+                    <br />
+                    <br />
+
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

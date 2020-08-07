@@ -1,0 +1,89 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+<!--                    <span class="pull-left">-->
+<!--                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن پیام عمومی" ui-sref="dashboard.message.add"></i>-->
+<!--                    </span>-->
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="k-rtl">
+
+
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ایجاد</a>
+                                    </th>
+                                    <th data-field="Title">
+                                        <a class="k-link" href="#">عنوان</a>
+                                    </th>
+                                    <th data-field="FirstName">
+                                        <a class="k-link" href="#">نام </a>
+                                    </th>
+                                    <th data-field="LastName">
+                                        <a class="k-link" href="#"> نام خانوادگی </a>
+                                    </th>
+                                    <th data-field="Email">
+                                        <a class="k-link" href="#"> ایمیل </a>
+                                    </th>
+
+                                    <th data-field="Description">
+                                        <a class="k-link" href="#"> توضیحات </a>
+                                    </th>
+
+                                    <th data-field="Shop.Name">
+                                        <a class="k-link" href="#"> اسم فروشگاه </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <td>
+                                        {{dataItem.creationTime}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.title}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.firstName}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.lastName}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.email}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.description}}
+                                    </td>
+                                    <td>
+                                        <a href="" ui-sref="dashboard.shop.details({id:dataItem.shop.id})"> 
+                                            {{dataItem.shop.name}}
+                                        </a>
+                                       
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

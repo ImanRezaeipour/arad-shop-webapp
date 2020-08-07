@@ -1,0 +1,120 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                
+                    <div class="col-md-3">
+                        <div id="upload-img" class="m-auto text-center custom-pointer">
+
+                            <img ng-src="{{self.product.mainImageurl}}" class="img-fluid" ng-if="self.product.mainImage != null">
+                            <div ng-if="self.loadingUploader == true">
+                                <i class="fa fa-spin fa-spinner fa-4x" ng-if="self.product.mainImage == null"></i>
+                            </div>
+                            <i class="fa fa-image fa-4x" ng-if="self.product.mainImage == null && self.loadingUploader != true"></i>
+                            <input id="my-file-selector"
+                                   ngf-select
+                                   class=""
+                                   tabindex="24"
+                                   tooltip="انتخاب فایل"
+                                   tooltip-placement="bottom"
+                                   ngf-change="self.upload($files , 'mainImage')"
+                                   ngf-capture="'camera'"
+                                   accept="image/*"
+                                   ngf-accept="''"
+                                   ngf-max-size="2MB"
+                                   ng-required="true"
+                                   ngf-model-invalid="errorFiles"
+                                   ngf-keep-distinct="true">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <small ng-if="errorFiles != null" class="text-danger">
+                            حجم فایل انتخابی کمتر از 2 مگابایت باید باشد
+                        </small>
+                    </div>
+                </div>
+              <div class="row">
+                <div class="mb-2 w-100">
+                  <button class="btn btn-success pull-left" ng-click="self.saveSort()">
+                    ذخیره تغییرات
+                  </button>  
+                </div>
+                
+                <ul ui-sortable="sortableOptions" ng-model="self.sliderList" class="list-group w-100 p-0">
+                  <li ng-repeat="item in  self.sliderList" class="list-group-item">
+                    <img class="card-img-top w-25" ng-src="{{self.fileManagerGetUri}}/{{item.imageName}}" alt="">
+
+                    <div class="pull-left">
+
+                      <div class="direction-ltr">
+                        <div class="material-switch">
+                          <input id="someSwitchOptionDefault-{{item.id}}" ng-model="item.isActive" name="someSwitchOption-{{item.id}}" type="checkbox" ng-change="self.changeActiveDeactive(item)"/>
+                          <label for="someSwitchOptionDefault-{{item.id}}" class="label-success"></label>
+                        </div>
+
+                      </div>
+                      <a href="" class="btn btn-danger btn-sm" ng-if="item.isRemove == false || item.isRemove == null" ng-click="item.isRemove = true">
+                        <i class="fa fa-trash-o"></i>
+                      </a>
+                      <div class="btn-group-sm" ng-if="item.isRemove == true">
+                        <button class="btn btn-danger btn-sm" ng-click="self.removeItem(item)">
+                          حذف
+                        </button>
+
+                        <button class="btn btn-default btn-sm" ng-click="item.isRemove = false">
+                          انصراف
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+
+                <!-- <ul class="list-group w-100">-->
+                <!-- <li class="list-group-item" ng-repeat="item in self.sliderList | orderBy:'order'">-->
+                <!-- -->
+                <!-- -->
+                <!-- </li>-->
+                <!-- </ul>-->
+
+                <!-- <div class="col-md-3" ng-repeat="item in self.sliderList">-->
+                <!-- <div class="card">-->
+                <!-- <img class="card-img-top" ng-src="{{self.fileManagerGetUri}}/{{item.imageName}}" alt="">-->
+                <!-- <div class="card-body text-center">-->
+                <!-- <div class="direction-ltr pull-right">-->
+                <!-- <div class="material-switch">-->
+                <!-- <input id="someSwitchOptionDefault-{{item.id}}" ng-model="item.isActive" name="someSwitchOption-{{item.id}}" type="checkbox" ng-change="self.changeActiveDeactive(item)"/>-->
+                <!-- <label for="someSwitchOptionDefault-{{item.id}}" class="label-success"></label>-->
+                <!-- </div>-->
+                <!---->
+                <!-- </div>-->
+                <!-- <a href="" class="btn btn-danger btn-sm" ng-if="item.isRemove == false || item.isRemove == null" ng-click="item.isRemove = true">-->
+                <!-- <i class="fa fa-trash-o"></i>-->
+                <!-- </a>-->
+                <!-- <div class="btn-group-sm" ng-if="item.isRemove == true">-->
+                <!-- <button class="btn btn-danger btn-sm" ng-click="self.removeItem(item)">-->
+                <!-- حذف-->
+                <!-- </button>-->
+                <!---->
+                <!-- <button class="btn btn-default btn-sm" ng-click="item.isRemove = false">-->
+                <!-- انصراف-->
+                <!-- </button>-->
+                <!-- </div>-->
+                <!-- </div>-->
+                <!-- </div>-->
+                <!-- </div>-->
+              </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,82 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.promoter.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="addForm" name="addForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="firstName">
+                                    نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.user.firstName" ng-required="">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                        نام اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="lastName">
+                                    نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                        نام خانوادگی اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="nationalCode">
+                                    کد ملی <small class="text-danger" ng-if="addForm.nationalCode.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="10" minlength="10" ng-pattern="/^[0-9]*$/" id="nationalCode" name="nationalCode" tabindex="1" ng-class="{'is-invalid' : addForm.nationalCode.$touched &&  addForm.nationalCode.$invalid == true}" ng-model="self.user.nationalCode" ng-required="">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.nationalCode.$touched && addForm.nationalCode.$error.required == true">
+                                        کد ملی اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="mobileNumber">
+                                    شماره موبایل <small class="text-danger" ng-if="addForm.mobileNumber.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="11" ng-pattern="/^[0-9]*$/" ng-maxlength="11" id="mobileNumber" name="mobileNumber" tabindex="1" ng-class="{'is-invalid' : addForm.mobileNumber.$touched &&  addForm.mobileNumber.$invalid == true}" ng-model="self.user.mobileNumber" ng-required="">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.mobileNumber.$touched && addForm.mobileNumber.$error.required == true">
+                                        شماره تلفن همراه اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                                <button class="btn btn-success" ng-click="self.addMarketer()" ng-disabled="addForm.$invalid">
+                                    ذخیره
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

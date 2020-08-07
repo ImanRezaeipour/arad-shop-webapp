@@ -1,0 +1,395 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="addForm" name="addForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="name">
+                                    نام فروشگاه <small class="text-danger" ng-if="addForm.name.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" tabindex="1" ng-class="{'is-invalid' : addForm.name.$touched &&  addForm.name.$invalid == true}" ng-model="self.shop.name" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.name.$touched && addForm.name.$error.required == true">
+                                        نام فروشگاه اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="firstName">
+                                    نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.shop.firstName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                        نام اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="lastName">
+                                    نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.shop.lastName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                        نام خانوادگی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="nationalCode">
+                                    کد ملی <small class="text-danger" ng-if="addForm.nationalCode.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" maxlength="10" ng-pattern="/^[0-9]*$/" id="nationalCode" name="nationalCode" tabindex="1" ng-class="{'is-invalid' : addForm.nationalCode.$touched &&  addForm.nationalCode.$invalid == true}" ng-model="self.shop.nationalCode" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.nationalCode.$touched && addForm.nationalCode.$error.required == true">
+                                        کد ملی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="email">
+                                    ایمیل <small class="text-danger" ng-if="addForm.email.$error.required == true">*</small>
+                                </label>
+
+                                <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.shop.emailAddress" ng-required="false">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.email.$touched && addForm.email.$error.required == true">
+                                        ایمیل اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="areaRadius">
+                                    دایره محدوده <small class="text-danger" ng-if="addForm.areaRadius.$error.required == true">*</small>
+                                </label>
+
+                                <input type="number" class="form-control direction-ltr" id="areaRadius" name="areaRadius" tabindex="1" ng-class="{'is-invalid' : addForm.areaRadius.$touched &&  addForm.areaRadius.$invalid == true}" ng-model="self.shop.areaRadius" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.areaRadius.$touched && addForm.areaRadius.$error.required == true">
+                                        محدوده اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="metrage">
+                                    متراژ <small class="text-danger" ng-if="addForm.metrage.$error.required == true">*</small>
+                                </label>
+
+                                <input type="number" class="form-control direction-ltr" id="metrage" name="metrage" tabindex="1" ng-class="{'is-invalid' : addForm.metrage.$touched &&  addForm.metrage.$invalid == true}" ng-model="self.shop.metrage" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.metrage.$touched && addForm.metrage.$error.required == true">
+                                        متراژ اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="metrage">
+                                    توضیحات
+                                </label>
+                                <!--                <input type="number" class="form-control direction-ltr" id="metrage" name="metrage" tabindex="1" ng-class="{'is-invalid' : addForm.metrage.$touched &&  addForm.metrage.$invalid == true}" ng-model="self.shop.metrage" ng-required="true">-->
+                                <textarea ng-model="self.shop.description" class="form-control"></textarea>
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.metrage.$touched && addForm.metrage.$error.required == true">
+                                        متراژ اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> اطلاعات حساب
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="iban">
+                                    شماره شبا
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="iban" name="iban" minlength="24" maxlength="24" tabindex="1" ng-class="{'is-invalid' : self.shop.bankAccount.iban.length  != 24 &&  self.shop.bankAccount.iban != ''}" ng-model="self.shop.bankAccount.iban" ng-required="false">
+
+                                <div class="invalid-feedback">
+
+                                    <small ng-if="self.shop.bankAccount.iban.length  != 24 &&  self.shop.bankAccount.iban != ''">
+                                        طول شماره شب 24 کاراکتر
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="accountOwnerName">
+                                    نام صاحب حساب
+                                </label>
+                                <input type="text" class="form-control" id="accountOwnerName" name="accountOwnerName" tabindex="1" ng-class="{'is-invalid' : self.shop.bankAccount.accountOwnerName  == '' || self.shop.bankAccount.accountOwnerName  == null}" ng-model="self.shop.bankAccount.accountOwnerName" ng-required="false">
+                                <div class="invalid-feedback">
+                                    <small ng-if=" self.shop.bankAccount.accountOwnerName  == '' || self.shop.bankAccount.accountOwnerName  == null">
+                                        نام صاحب حساب
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="accountNumber">
+                                    شماره حساب
+                                </label>
+                                <input type="text" ng-pattern="/^[0-9]*$/" class="form-control direction-ltr" id="accountNumber" name="accountNumber" tabindex="1" ng-model="self.shop.bankAccount.accountNumber" ng-required="false">
+                                <!-- <div class="invalid-feedback"> -->
+                                <!--   <small ng-if="self.shop.bankAccount.accountNumber  == '' || self.shop.bankAccount.accountNumber  == null"> -->
+                                <!--     شماره حساب -->
+                                <!--   </small> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i>  تصاویر
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label">
+                                    تصویر صورت
+                                </label>
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+
+                                    <img ng-src="{{self.shop.imageDocuments.faceImageUrl}}" class="img-fluid" ng-if="self.shop.imageDocuments.faceImage != null">
+                                    <i class="fa fa-image fa-4x" ng-if="self.shop.imageDocuments.faceImage == null"></i>
+                                    <input id="my-file-selector"
+                                           ngf-select
+                                           class=""
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'faceImage')"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ngf-max-size="2MB"
+                                           ng-required=""
+                                           ngf-model-invalid="errorFiles">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label">
+                                    تصویر مدرک
+                                </label>
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+
+
+                                    <img ng-src="{{self.shop.imageDocuments.nationalCardImageUrl}}" class="img-fluid" ng-if="self.shop.imageDocuments.nationalCardImage != null">
+                                    <i class="fa fa-image fa-4x" ng-if="self.shop.imageDocuments.nationalCardImage == null"></i>
+                                    <input id="my-file-selector"
+                                           ngf-select
+                                           class=""
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'nationalCardImage')"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ngf-max-size="2MB"
+                                           ng-required=""
+                                           ngf-model-invalid="errorFiles">
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> آدرس فروشگاه
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="province">
+                                    استان
+                                </label>
+                                <select class="form-control" id="province" name="province" ng-model="self.shop.shopAddress.province" ng-options="item as item.name for item in self.provinceCity"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="city">
+                                    شهر
+                                </label>
+
+                                <select class="form-control" id="city" name="city" ng-model="self.shop.shopAddress.city" ng-options="item as item.cityName for item in self.shop.shopAddress.province.cities"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="zone">
+                                    منطقه
+                                </label>
+
+                                <select class="form-control" id="zone" name="zone" ng-model="self.shop.shopAddress.zoneId" ng-options="item.id as item.title for item in self.shop.shopAddress.city.zones"></select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="mobileNumber">
+                                    شماره موبایل
+                                </label>
+
+                                <input type="text" class="form-control direction-ltr" maxlength="11" minlength="11" ng-pattern="/^[0-9]*$/" ng-maxlength="11" id="mobileNumber" name="mobileNumber" tabindex="1" ng-class="{'is-invalid' : addForm.mobileNumber.$touched &&  addForm.mobileNumber.$invalid == true}" ng-model="self.shop.shopAddress.shopMobileNumber">
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="phoneNumber">
+                                    شماره تلفن فروشگاه
+                                </label>
+
+                                <input type="text" class="form-control direction-ltr" ng-pattern="/^[0-9]*$/" id="phoneNumber" name="phoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.phoneNumber.$touched &&  addForm.phoneNumber.$invalid == true}" ng-model="self.shop.shopAddress.phoneNumber">
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="addressText">
+                                    آدرس
+                                </label>
+                                <textarea class="form-control" id="addressText" name="addressText" ng-model="self.shop.shopAddress.addressText"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <a class="btn btn-warning btn-small" ng-click="self.edit = true" ng-if="self.edit != true">
+                                ویرایش محل فروشگاه
+                            </a>
+
+                            <div ng-if="self.edit == true">
+
+                                <a class="btn btn-success btn-small" ng-click="self.selectLocation()">
+                                    تایید
+                                </a>
+
+                                <a class="btn btn-default btn-small" ng-click="self.edit = false;">
+                                    انصراف
+                                </a>
+                            </div>
+
+
+                            <div class="clearfix"></div>
+                            <br />
+                            <div class="position-relative w-100">
+                                <img src="/img/select-map.png" ng-if="self.edit == true" ng-click="self.selectLocation()" style="width: 50px; left: 0; right: 0; top: 72px; margin: 0 auto; z-index: 2000; position: absolute" />
+                                <ng-map center="{{self.center}}" zoom="15" on-dragend="self.dragEnd()">
+                                    <custom-marker id="custom-marker" position="[{{self.shop.shopAddress.position.latitude}},{{self.shop.shopAddress.position.longitude}}]" ng-if="self.edit != true">
+                                        <div>
+                                            <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto" />
+                                        </div>
+                                    </custom-marker>
+                                </ng-map>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="clearfix"></div>
+                            <br />
+
+                            <div class="form-group">
+                                <button class="btn btn-success" ng-click="self.editShop()" ng-disabled="addForm.$invalid">
+                                    ذخیره
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

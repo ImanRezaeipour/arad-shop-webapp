@@ -1,0 +1,124 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.customer.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.customer.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.customer.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.customer.emailAddress}}
+                            </b>
+                        </small>
+
+                    </div>
+
+
+
+
+                </div>
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> اطلاعات آدرس
+                    </h6>
+                </div>
+
+                <div class="row" ng-repeat="item in self.customer.customerAddresses">
+                    <div class="col-md-3 form-group">
+                        <small>
+                            عنوان : <b>
+                                {{item.title}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <small>
+                            شماره تماس : <b>
+                                {{item.phoneNumber}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-3">
+                        <small>
+                            شهر :
+                          <b>
+                            {{item.cityName}}
+                          </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <small>
+                            آدرس :
+                          <b>
+                            {{item.addressText}}
+                          </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div>
+                            <ng-map center="[{{item.position.latitude}} , {{item.position.longitude}}]" zoom="15">
+
+                                <custom-marker id="custom-marker"
+                                               position="[{{item.position.latitude}} , {{item.position.longitude}}]">
+                                    <div>
+                                        <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto" />
+                                    </div>
+                                </custom-marker>
+
+                            </ng-map>
+                        </div>
+
+                      <div class="clearfix"></div>
+                      <br/>
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>
+</section>

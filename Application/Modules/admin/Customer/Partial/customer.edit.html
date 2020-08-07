@@ -1,0 +1,196 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="card">
+
+      <div class="card-header d-flex align-items-center">
+
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.customer.list"></i>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <form id="addForm" name="addForm">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-control-label" for="firstName">
+                  نام <small class="text-danger" ng-if="addForm.firstName.$error.required == true">*</small>
+                </label>
+                <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" ng-class="{'is-invalid' : addForm.firstName.$touched &&  addForm.firstName.$invalid == true}" ng-model="self.user.firstName" ng-required="true">
+                <div class="invalid-feedback">
+                  <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                    نام اجباری می باشد
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-control-label" for="lastName">
+                  نام خانوادگی <small class="text-danger" ng-if="addForm.lastName.$error.required == true">*</small>
+                </label>
+                <input type="text" class="form-control" id="lastName" name="lastName" tabindex="1" ng-class="{'is-invalid' : addForm.lastName.$touched &&  addForm.lastName.$invalid == true}" ng-model="self.user.lastName" ng-required="true">
+                <div class="invalid-feedback">
+                  <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                    نام خانوادگی اجباری می باشد
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-control-label" for="email">
+                  ایمیل <small class="text-danger" ng-if="addForm.email.$error.required == true">*</small>
+                </label>
+                <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.user.emailAddress" ng-required="false">
+                <div class="invalid-feedback">
+                  <small ng-if="addForm.email.$touched && addForm.email.$error.required == true">
+                    ایمیل اجباری می باشد
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-control-label" for="birthDate">
+                  تاریخ تولد
+                </label>
+                <adm-dtp class="direction-ltr" ng-model='self.user.birthDate' name="birthDate" id="birthDate" ng-required="true" options='{calType: "jalali", format: "YYYY/MM/DD" , autoClose:"true" , "dtpType" : "date" ,  freezeInput: "true"}'></adm-dtp>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="clearfix"></div>
+              <br />
+              <h6 class="m-0 text-info">
+                <i class="fa fa-caret-left"></i> اطلاعات آدرس
+              </h6>
+
+            </div>
+          </div>
+          <style>
+            .back-success {
+              background-color: #8fd19e
+            }
+          </style>
+          <div ng-repeat="item in self.user.customerAddresses">
+
+            <div class="card card-body card-accent-success" ng-class="{'back-success' : item.isDefault == true}">
+                <div class="row mt-0">
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="title">
+                                عنوان
+                            </label>
+                            <input type="text" class="form-control" id="title" name="title" tabindex="1" ng-class="{'is-invalid' : addForm.title.$touched &&  addForm.title.$invalid == true}" ng-model="item.title" ng-required="false">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="province">
+                                استان
+                            </label>
+                            <select class="form-control" id="province" name="province" ng-model="item.province" ng-options="item as item.name for item in self.provinceCity"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="city">
+                                شهر
+                            </label>
+                            <select class="form-control" id="city" name="city" ng-model="item.city" ng-options="item as item.cityName for item in item.province.cities"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="firstName">
+                                تلفن همراه تحویل گیرنده
+                            </label>
+                            <input type="text" class="form-control direction-ltr" id="phoneNumber" name="phoneNumber" tabindex="1" ng-class="{'is-invalid' : addForm.phoneNumber.$touched &&  addForm.phoneNumber.$invalid == true}" ng-model="item.phoneNumber" ng-required="false">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="addressText">
+                                تلفن تحویل گیرنده
+                            </label>
+                            <textarea class="form-control" id="addressText" name="addressText" ng-model="item.addressText"></textarea>
+                            <!-- <input type="text" class="form-control" id="addressText" name="addressText" tabindex="1" ng-class="{'is-invalid' : addForm.phoneNumber.$touched &&  addForm.phoneNumber.$invalid == true}" ng-model="self.user.defultCustomerAddress.addressText" ng-required="false">-->
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a class="btn btn-warning btn-sm" ng-click="item.edit = true ; self.selectAddress = item" ng-if="item.edit != true">
+                            ویرایش آدرس
+                        </a>
+
+                        <div ng-if="item.edit == true">
+                            <a class="btn btn-success btn-sm" ng-click="self.selectLocation(item)">
+                                تایید
+                            </a>
+                            <a class="btn btn-default btn-sm" ng-click="item.edit = false;">
+                                انصراف
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="clearfix"></div>
+                        <br/>
+                        <div class="position-relative w-100">
+                            <img src="/img/select-map.png" ng-if="item.edit == true" ng-click="self.selectLocation(item)" style="width: 50px; left: 0; right: 0; top: 72px; margin: 0 auto; z-index: 2000; position: absolute"/>
+                            <ng-map id="{{item.id}}" center="[{{item.position.latitude}},{{item.position.longitude}}]" zoom="15" on-dragend="self.dragEnd()">
+                                <custom-marker id="custom-marker" position="[{{item.position.latitude}},{{item.position.longitude}}]" ng-if="item.edit != true">
+                                    <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto"/>
+                                </custom-marker>
+                            </ng-map>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" ng-if="item.isDefault == false">
+                        <div class="clearfix"></div>
+
+                        <br/>
+                        <label class="form-control-label">
+                            انتخاب به عنوان آدرس پیش فرض
+                        </label>
+
+                        <div class="material-switch mt-2">
+                            <input id="someSwitchOptionDefault-{{item.isDefault}}" ng-model="item.isDefault" name="someSwitchOption-{{item.isDefault}}" type="checkbox" ng-click="self.selectAddress(item)"/>
+                            <label for="someSwitchOptionDefault-{{item.isDefault}}" class="label-success"></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <button class="btn btn-success" ng-click="self.editCustomer()" ng-disabled="addForm.$invalid">
+                ذخیره
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

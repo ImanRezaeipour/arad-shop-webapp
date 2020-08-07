@@ -1,0 +1,24 @@
+﻿angular.module('AdminApp',
+  [
+    "admin.IndexApp",
+    "admin.HomeApp",
+    "admin.CatalogApp",
+    "admin.CustomerApp",
+    //"admin.SaleApp",
+    "admin.ShopApp",
+    "admin.ApplicationSettingApp",
+    "admin.suggestionProductApp",
+    "admin.sliderApp",
+    "admin.OrderApp",
+    "admin.UserApp",
+    "admin.FactorApp",
+    "admin.MessageApp",
+    "admin.ComplaintApp",
+    "admin.MarketerApp",
+    "admin.ProvinceCityApp",
+    "admin.VerficationCodeApp",
+    "admin.DiscountApp",
+    "admin.PromoterApp",
+    "admin.FinancialApp"
+  ]);
+

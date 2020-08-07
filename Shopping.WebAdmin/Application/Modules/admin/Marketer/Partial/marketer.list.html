@@ -1,0 +1,255 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن بازاریاب" ui-sref="dashboard.marketer.add"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+             
+
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="Id">
+                                        <a class="k-link" href="#">شناسه</a>
+                                    </th>
+                                    <th data-field="CreationTime">
+                                        <a class="k-link" href="#">تاریخ ایجاد</a>
+                                    </th>
+                                    <th>
+                                        تصویر
+                                    </th>
+
+                                    <th data-field="FirstName">
+                                        <a class="k-link" href="#">نام</a>
+                                    </th>
+                                    <th data-field="LastName">
+                                        <a class="k-link" href="#">نام خانوادگی</a>
+                                    </th>
+
+                                    <th data-field="MaxMarketerAllowed">
+                                        <a class="k-link" href="#">تعداد مجاز فروشگاه </a>
+                                    </th>
+
+                                    <th data-field="SubsetShopCount">
+                                        <a class="k-link" href="#">تعداد فروشگاه های دراختیار </a>
+                                    </th>
+                                    <th data-field="IsActive">
+                                        <a class="k-link" href="#">وضعیت</a>
+                                    </th>
+                                    <th>
+                                        ویرایش
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                                <tr k-row-template>
+                                    <td>
+                                        {{dataItem.id}}
+                                    </td>
+                                    <td>
+                                        {{dataItem.creationTime}}
+                                    </td>
+
+                                    <td>
+                                        <img ng-src="{{self.fileManagerGetUri}}/{{dataItem.image}}" class="img-fluid img-circle img-thumbnail w-50" />
+                                    </td>
+
+                                    <td>
+                                        {{dataItem.firstName}}
+                                    </td>
+
+                                    <td>
+                                        {{dataItem.lastName}}
+                                    </td>
+
+                                    <td>
+                                        {{dataItem.maxMarketerAllowed}}
+                                    </td>
+
+                                    <td>
+                                        {{dataItem.subsetShopCount}}
+                                    </td>
+                                    <td>
+                                        <div class="material-switch">
+                                            <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />
+                                            <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>
+                                        </div>
+
+                                    </td>
+                                    <td>
+
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-info dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <small>
+                                                    عملیات
+
+                                                </small>
+                                            </button>
+                                            <div class="dropdown-menu" style="right: auto">
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.details({id : dataItem.id})">
+                                                    <small class="">
+                                                        جزئیات
+                                                    </small>
+                                                </a>
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.edit({id : dataItem.id})">
+                                                    <small class="">
+                                                        ویرایش
+                                                    </small>
+                                                </a>
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.marketerShop({id : dataItem.id})">
+                                                    <small class="">
+                                                        فروشگاه ها
+                                                    </small>
+                                                </a>  
+                                                
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.marketerDetachedShop({id : dataItem.id})">
+                                                    <small class="">
+                                                       انفصال فروشگاه
+                                                    </small>
+                                                </a>   
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.marketerShopsDetails({id : dataItem.id})">
+                                                    <small class="">
+                                                     آمار بازاریاب
+                                                    </small>
+                                                </a>
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.addSalary({id : dataItem.id})">
+                                                    <small class="">
+                                                        ثبت حقوق
+                                                    </small>
+                                                </a>
+
+                                                <a class="dropdown-item" href="" ui-sref="dashboard.marketer.comments({id : dataItem.id})">
+                                                    <small class="">
+                                                        نظرات
+                                                    </small>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="btn-group-sm">-->
+                                        <!-- <button class="btn btn-info" ui-sref="dashboard.marketer.details({id : dataItem.id})">-->
+                                        <!-- جزئیات-->
+                                        <!-- </button>-->
+                                        <!-- <button class="btn btn-warning" ui-sref="dashboard.marketer.marketerShop({id : dataItem.id})">-->
+                                        <!-- فروشگاه ها-->
+                                        <!-- </button>-->
+                                        <!-- <button class="btn btn-success" ui-sref="dashboard.marketer.addSalary({id : dataItem.id})">-->
+                                        <!-- ثبت حقوق-->
+                                        <!-- </button>-->
+                                        <!-- </div>-->
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---->
+<!--<kendo-grid options="mainGridOptions">-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                $1$                                    <th data-field="CreationTime">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تاریخ ثبت</a>#1#-->
+<!--                $1$                                    </th> #1#-->
+<!--                $1$                                    <th data-field="Image">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تصویر</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="FirstName">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">نام </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="LastName">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">نام خانوادگی</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$#1#-->
+<!--                $1$                                    <th data-field="MaxMarketerAllowed">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تعداد مجاز فروشگاه</a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th data-field="SubsetShopCount">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">تعداد فروشگاه های در اختیار </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$#1#-->
+<!--                $1$                                    <th data-field="IsActive">#1#-->
+<!--                $1$                                        <a class="k-link" href="#">وضعیت </a>#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--                $1$                                    <th>#1#-->
+<!--                $1$                                        عملیات#1#-->
+<!--                $1$                                    </th>#1#-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--    </table>-->
+<!--    <table role="grid">-->
+<!--        <tbody role="rowgroup">-->
+<!--            <tr k-row-template>-->
+<!--                <td>-->
+<!--                    {{dataItem.creationTime}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <img ng-src="{{fileManagerGetUri}}/{{dataItem.Image}}" class="img-fluid img-circle img-thumbnail w-50" />-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.firstName}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.lastName}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.maxMarketerAllowed}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    {{dataItem.subsetShopCount}}-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div class="material-switch switch-sm">-->
+<!--                        <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />-->
+<!--                        <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!---->
+<!--                <td>-->
+<!--                    <div class="btn-group">-->
+<!--                        <button type="button" class="btn btn-info dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                            <small>-->
+<!--                                عملیات-->
+<!---->
+<!--                            </small>-->
+<!--                        </button>-->
+<!--                        <div class="dropdown-menu" style="right: auto">-->
+<!--                            <a class="dropdown-item" href="" ui-sref="dashboard.shop.details({id : dataItem.id})">-->
+<!--                                <small class="">-->
+<!--                                    مشخصات-->
+<!--                                </small>-->
+<!--                            </a>-->
+<!---->
+<!--                            <a class="dropdown-item" href="" ui-sref="dashboard.complaint.add({id : dataItem.id})">-->
+<!--                                <small class="">-->
+<!--                                    ثبت شکایات-->
+<!--                                </small>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</kendo-grid>-->

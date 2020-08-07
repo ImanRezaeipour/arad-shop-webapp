@@ -1,0 +1,160 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.customer.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.customer.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.customer.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.customer.emailAddress}}
+                            </b>
+                        </small>
+
+                    </div>
+
+
+
+
+                </div>
+                <br />
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> سفارشات
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="k-rtl">
+                        <kendo-grid options="mainGridOptions">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-field="CreationTime">
+                                            <a class="k-link" href="#">تاریخ ایجاد</a>
+                                        </th>
+                                        <th data-field="OrderStatus">
+                                            <a class="k-link" href="#">وضعیت سفارش</a>
+                                        </th>
+                                        <th data-field="Customer.FirstName">
+                                            <a class="k-link" href="#">نام مشتری</a>
+                                        </th>
+                                        <th data-field="Customer.LastName">
+                                            <a class="k-link" href="#">نام خانوادگی مشتری </a>
+                                        </th>
+
+                                        <th data-field="Customer.EmailAddress">
+                                            <a class="k-link" href="#">آدرس ایمیل </a>
+                                        </th>
+
+                                        <th data-field="Description">
+                                            <a class="k-link" href="#">توضیحات </a>
+                                        </th>
+
+
+                                        <th>
+                                            ویرایش
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table role="grid">
+                                <tbody role="rowgroup">
+                                    <tr k-row-template>
+                                        <td>
+                                            {{dataItem.creationTime}}
+                                        </td>
+
+                                        <td>
+
+
+                                            <span class="badge badge-warning">
+
+
+
+                                                {{dataItem.orderStatus | orderStatusFilter}}
+                                            </span>
+
+                                        </td>
+
+
+
+                                        <td>
+                                            {{dataItem.customer.firstName}}
+                                        </td>
+
+                                        <td>
+                                            {{dataItem.customer.lastName}}
+                                        </td>
+
+
+                                        <td>
+                                            {{dataItem.customer.emailAddress}}
+                                        </td>
+
+
+                                        <td>
+                                            {{dataItem.description}}
+                                        </td>
+                                        <!-- <td>-->
+                                        <!-- <div class="material-switch ">-->
+                                        <!-- <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)"/>-->
+                                        <!-- <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>-->
+                                        <!-- </div>-->
+                                        <!-- -->
+                                        <!-- </td>-->
+                                        <td>
+                                            <button class="btn btn-warning btn-sm" ui-sref="dashboard.order.details({id : dataItem.id})">
+                                                <small>    مشخصات</small>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </kendo-grid>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</section>

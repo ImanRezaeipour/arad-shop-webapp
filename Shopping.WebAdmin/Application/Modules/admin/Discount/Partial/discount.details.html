@@ -1,0 +1,354 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.discount.list"></i>
+                    </span>
+                    <!--                    <span class="badge pull-left" ng-class="{'badge-warning' : self.shop.shopStatus == 0 , 'badge-success' : self.shop.shopStatus == 1 ,  'badge-danger' : self.shop.shopStatus == 2  }">-->
+                    <!--                        {{self.shop.shopStatus | shopStatusFilter}}-->
+                    <!--                    </span>-->
+                </div>
+            </div>
+            <div class="card-body">
+
+
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i>  مشخصات تخفیف
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تاریخ ثبت تخفیف : <b>
+                                {{self.discount.creationTime}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            عنوان تخفیف :
+                            <b>
+                                {{self.discount.title}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            درصد تخفیف :
+                        </small>
+                        <b>
+                            {{self.discount.percent}} %
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد سفارش مجاز
+                        </small>
+                        <b>
+                            {{self.discount.maxOrderCount}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد باقی مانده از سفارش  :
+                        </small>
+                        <b>
+                            {{self.discount.remainOrderCount}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد محصول :
+                        </small>
+                        <b>
+                            {{self.discount.maxProductCount}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نوع تخفیف :
+                        </small>
+                        <small class="badge badge-warning">
+                            {{self.discount.discountType | DiscountTypeFilter}}
+                        </small>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تاریخ شروع :
+                        </small>
+                        <b>
+                            {{self.discount.fromDate}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تاریخ پایان :
+                        </small>
+                        <b>
+                            {{self.discount.toDate}}
+                        </b>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            ساعت شروع :
+                        </small>
+                        <b>
+                            {{self.discount.fromTime}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            ساعت پایان :
+                        </small>
+                        <b>
+                            {{self.discount.toTime}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-12 form-group" ng-if="self.order.description != ''">
+                        <small>
+                            توضیحات :
+                        </small>
+                        <span>
+                            {{self.discount.description}}
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات ثبت کننده
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.discount.userInfo.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.discount.userInfo.lastName}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> محصولات
+                    </h6>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="m-0">
+                            <i class="fa fa-caret-left"></i> محصولات انتخابی <small class="badge badge-primary">{{self.discountProducts.length}}</small>
+                        </h6>
+                        <br />
+                        <div class="w-100 table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="w-25">
+                                            تصویر
+                                        </th>
+                                        <th>
+                                            نام
+                                        </th>
+                                        <th>
+                                            قیمت <small>(ریال)</small>
+                                        </th>
+                                        <th>
+                                            برند
+                                        </th>
+                                        <th>
+                                            دسته بندی
+                                        </th>
+
+                                        <th>
+                                            عملیات
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in self.discountProducts">
+                                        <td>
+                                            <img ng-src="{{fileManagerGetUri}}/{{item.product.mainImage}}" class="img-fluid img-circle img-thumbnail w-25" />
+                                        </td>
+                                        <td>
+                                            {{item.product.name}}
+                                        </td>
+                                        <td>
+                                            {{item.product.price | currency : "" : 0}}
+                                        </td>
+                                        <td>
+                                            {{item.product.brand.name}}
+                                        </td>
+                                        <td>
+                                            {{item.product.categoryName}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" ng-click="item.remove = true" ng-if="item.remove != true">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                            <div class="btn-group">
+                                                <button class="btn btn-danger btn-sm" ng-click="self.removeProduct(item)" ng-if="item.remove == true">
+                                                    <small>
+                                                        تایید
+                                                    </small>
+                                                </button>
+
+                                                <button class="btn btn-default btn-sm" ng-click="item.remove = false" ng-if="item.remove == true">
+                                                    <small>
+                                                        انصراف
+                                                    </small>
+                                                </button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <h6 class="m-0">
+                            <i class="fa fa-caret-left"></i> کل محصولات
+                        </h6>
+                        <div class="clearfix"></div>
+
+                        <i class="fa fa-filter cursor-pointer pull-left" ng-click="isCollapsed = !isCollapsed"></i>
+
+
+                        <div ng-if="isCollapsed">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>برند</label>
+                                    <select class="form-control" ng-model="self.filter.brand" ng-options="item as item.name for item in self.barnds | orderBy : 'name'"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>دسته بندی</label>
+                                    <select class="form-control" ng-model="self.filter.category" ng-options="item as item.name for item in self.categories"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>زیر دسته بندی</label>
+                                    <select class="form-control" ng-model="self.filter.subCategory" ng-options="item as item.name for item in self.filter.category.subCategories"></select>
+                                </div>
+                                <div class="col-md-6 pt-2">
+                                    <br />
+                                    <button class="btn btn-success" ng-click="self.filterClick()">
+                                        <i class="fa fa-filter"></i>
+                                    </button>
+                                    <button class="btn btn-danger" ng-click="self.filterNull()">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="clearfix"></div>
+                        <div class="k-rtl">
+                            <kendo-grid options="mainGridOptions" id="grid">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th data-field="MainImage">
+                                                <a class="k-link" href="#">تصویر</a>
+                                            </th>
+                                            <th data-field="Name">
+                                                <a class="k-link" href="#">نام</a>
+                                            </th>
+                                            <th data-field="Latiname">
+                                                <a class="k-link" href="#">قیمت <small>(ریال)</small></a>
+                                            </th>
+                                            <th data-field="Brand.Name">
+                                                <a class="k-link" href="#">برند </a>
+                                            </th>
+                                            <th data-field="Category.Name">
+                                                <a class="k-link" href="#">دسته بندی </a>
+                                            </th>
+                                            <th data-field="IsActive">
+                                                <a class="k-link" href="#">وضعیت</a>
+                                            </th>
+                                            <th>
+                                                انتخاب
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table role="grid">
+                                    <tbody role="rowgroup">
+                                        <tr k-row-template>
+                                            <td>
+                                                <img ng-src="{{fileManagerGetUri}}/{{dataItem.mainImage}}" class="img-fluid img-circle img-thumbnail w-75" />
+                                            </td>
+                                            <td>
+                                                {{dataItem.name}}
+                                            </td>
+                                            <td>
+                                                {{dataItem.price | currency : "" : 0}}
+                                            </td>
+                                            <td>
+                                                {{dataItem.brand.name}}
+                                            </td>
+                                            <td>
+                                                {{dataItem.categoryName}}
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success" ng-if="dataItem.isActive">
+                                                    فعال
+                                                </span>
+                                                <span class="badge badge-danger" ng-if="!dataItem.isActive">
+                                                    غیرفعال
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm" ng-click="self.selectProduct(dataItem)">
+                                                    <i class="fa fa-arrow-circle-left"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </kendo-grid>
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>
+</section>

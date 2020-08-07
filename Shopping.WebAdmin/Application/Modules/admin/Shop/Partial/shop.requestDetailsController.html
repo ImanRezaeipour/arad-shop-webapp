@@ -1,0 +1,247 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.shop.request"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="addForm" name="addForm">
+                    <div class="row">
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="shopName">
+                                    نام فروشگاه :
+                                </label>
+                                <b>
+                                    {{self.user.shopName}}
+                                </b>
+                                <!-- <input type="text" class="form-control" id="shopName" name="shopName" tabindex="1" ng-class="{'is-invalid' : addForm.shopName.$touched &&  addForm.shopName.$invalid == true}" ng-model="self.user.shopName" ng-required="true">-->
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.shopName.$touched && addForm.shopName.$error.required == true">
+                                        نام فروشگاه اجباری می باشد :
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="firstName">
+                                    نام :
+                                </label>
+                                <b>
+                                    {{self.user.firstName}}
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.firstName.$touched && addForm.firstName.$error.required == true">
+                                        نام اجباری می باشد :
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="lastName">
+                                    نام خانوادگی :
+                                </label>
+                                <b>
+                                    {{self.user.lastName}}
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.lastName.$touched && addForm.lastName.$error.required == true">
+                                        نام خانوادگی اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="mobileNumber">
+                                    شماره موبایل :
+                                </label>
+                                <b>
+                                    {{self.user.mobileNumber}}
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.mobileNumber.$touched && addForm.mobileNumber.$error.required == true">
+                                        شماره تلفن همراه اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="phoneNumber">
+                                    شماره تلفن ثابت :
+                                </label>
+                                <b>
+                                    {{self.user.phoneNumber}}
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.phoneNumber.$touched && addForm.phoneNumber.$error.required == true">
+                                        شماره تلفن منزل اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                    </div>  
+                    
+                    
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="phoneNumber">
+                                 وضعیت :
+                                </label>
+                                <b>
+                                    <span class="badge" ng-class="{'badge-warning' : self.user.shopAcceptorStatus == 0 , 'badge-success' :  self.user.shopAcceptorStatus == 1 ,  'badge-danger' :  self.user.shopAcceptorStatus == 2  }">
+
+                                        {{self.user.shopAcceptorStatus | shopAcceptorStatusFilter}}
+                                    </span> 
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.phoneNumber.$touched && addForm.phoneNumber.$error.required == true">
+                                        شماره تلفن منزل اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+                        <br />
+
+                        <div class="col-md-12">
+                            <h6 class="m-0 text-info">
+                                <i class="fa fa-caret-left"></i> اطلاعات تماس
+                            </h6>
+                        </div>
+                        <div class="w-100"></div>
+                        <br />
+
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="city">
+                                    شهر :
+                                </label>
+
+                                <b>
+                                    {{self.user.shopAcceptorAddress.cityName}}
+                                </b>
+
+
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.city.$touched && addForm.city.$error.required == true">
+                                        شهر اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control-label" for="address">
+                                    آدرس محل فروشگاه :
+                                </label>
+                                <b>
+                                    {{self.user.shopAcceptorAddress.addressText}}
+                                </b>
+
+                                <div class="invalid-feedback">
+                                    <small ng-if="addForm.address.$touched && addForm.address.$error.required == true">
+                                        آدرس اجباری می باشد
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12 form-group">
+                            <div class="btn-group" ng-if="self.user.acceptItem == null && self.user.deAcceptItem == null && self.user.shopAcceptorStatus == 0">
+                                <button class="btn btn-success btn-sm" ng-click="self.user.acceptItem = true">
+                                    <small>
+                                        تایید
+
+                                    </small>
+                                </button>
+                                <button class="btn btn-danger btn-sm" ng-click="self.user.deAcceptItem = true;self.showDescription = true">
+                                    <small>
+                                        رد کردن
+
+                                    </small>
+                                </button>
+                            </div>
+
+
+                            <div ng-if="self.user.acceptItem" class="alert alert-success">
+                                <small>
+                                    آیا از تایید فروشگاه اطمینان دارید؟
+                                </small>
+
+
+                                <button class="btn btn-success btn-sm" ng-click="self.changeActiveDeactive(self.user , 0)">
+                                    <small>تایید</small>
+
+                                </button>
+                                <button class="btn btn-default btn-sm" ng-click="self.user.acceptItem = null;self.showDescription = false">
+                                    <small>انصراف</small>
+                                </button>
+                            </div>
+
+                            <div ng-if="self.user.deAcceptItem" class="alert alert-danger">
+                                <small>آیا از رد کردن فروشگاه اطمینان دارید؟</small>
+<!--                                <br />-->
+<!--                                <textarea ng-model="self.description" class="form-control"></textarea>-->
+<!--                                <br />-->
+                                <button class="btn btn-danger btn-sm" ng-click="self.changeActiveDeactive(self.user , 1)" >
+                                    <small>رد کردن</small>
+                                </button>
+                                <button class="btn btn-default btn-sm" ng-click="self.user.deAcceptItem = null;self.showDescription = false">
+                                    <small>انصراف</small>
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,368 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.catalog.productsList"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <form name="addFrom" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-md-3 p-0">
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label class="form-control-label" for="name">
+                                        عنوان <small class="text-danger" ng-if="addFrom.name.$error.required == true">*</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="name" name="name" tabindex="1" ng-class="{'is-invalid' : addFrom.name.$touched &&  addFrom.name.$invalid == true}" ng-model="self.product.name" ng-required="true">
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addFrom.name.$touched && addFrom.name.$error.required == true">
+                                            عنوان اجباری می باشد
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label class="form-control-label" for="price">
+                                        قیمت <small class="text-danger" ng-if="addFrom.price.$error.required == true">*</small>
+                                    </label>
+
+                                    <div class="input-group mb-3">
+                                        <!--currency-input-->
+                                        <input type="text" class="form-control direction-ltr" id="price" name="price" tabindex="1" ng-class="{'is-invalid' : addFrom.price.$touched &&  addFrom.price.$invalid == true}" ng-model="self.product.price" ng-required="true">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><small>ریال</small></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addFrom.price.$touched && addFrom.price.$error.required == true">
+                                            قیمت اجباری می باشد
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label class="form-control-label" for="brand">
+                                        برند <small class="text-danger" ng-if="addFrom.brand.$error.required == true">*</small>
+                                    </label>
+                                    <select class="form-control" name="brand" id="brand" ng-class="{'is-invalid' : addFrom.brand.$touched &&  addFrom.brand.$invalid == true}" ng-model="self.product.brandId" ng-required="true" ng-options="item.id as item.name for item in self.brands"></select>
+                                    <!-- <input type="text" class="form-control" id="brand" name="brand" tabindex="1" ng-class="{'is-invalid' : addFrom.brand.$touched &&  addFrom.brand.$invalid == true}" ng-model="self.product.brandId" ng-required="true">-->
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addFrom.brand.$touched && addFrom.brand.$error.required == true">
+                                            یرند اجباری می باشد
+                                        </small>
+                                        <div class="clearfix"></div>
+                                        <small ng-if="self.selectedCategory == null">
+                                            ابتدا دسته بندی انتخاب نمایید
+                                        </small>
+
+                                        <small ng-if="self.selectedCategory != null || self.brands.length == 0">
+                                            دسته بندی انتخابی فاقد برند می باشد
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label class="form-control-label" for="price">
+                                        تخفیف از <small class="text-danger" ng-if="addFrom.from.$error.required == true">*</small>
+                                    </label>
+
+                                    <div class="input-group mb-3">
+
+                                        <input type="number" class="form-control direction-ltr" id="from" name="from" min="0" max="100" tabindex="1" ng-class="{'is-invalid' : addFrom.from.$touched &&  addFrom.from.$invalid == true}" ng-model="self.product.productDiscount.from" ng-required="true">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><small>%</small></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addFrom.from.$touched && addFrom.from.$error.required == true">
+                                            تخفیف از اجباری می باشد
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label class="form-control-label" for="price">
+                                        تخفیف تا <small class="text-danger" ng-if="addFrom.to.$error.required == true">*</small>
+                                    </label>
+
+                                    <div class="input-group mb-3">
+
+                                        <input type="number" class="form-control direction-ltr" id="to" name="to" min="{{self.product.productDiscount.from}}" max="100" tabindex="1" ng-class="{'is-invalid' : addFrom.to.$touched &&  addFrom.to.$invalid == true}" ng-model="self.product.productDiscount.to" ng-required="true">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><small>%</small></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addFrom.to.$touched && addFrom.to.$error.required == true">
+                                            تخفیف تا اجباری می باشد
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-9">
+                            <div class="col-md-12">
+                                <style>
+                                    .tree-ui-modify .angular-ui-tree-handle {
+                                        cursor: default
+                                    }
+
+                                    .tree-ui-modify .tree-node-content {
+                                        margin: 0
+                                    }
+
+                                    .tree-ui-modify .angular-ui-tree-handle {
+                                        padding: 3px 10px;
+                                    }
+                                </style>
+                                <script type="text/ng-template" id="nodes_renderer.html">
+
+
+                                    <div ui-tree-handle class="tree-node tree-node-content">
+                                        <a class="" ng-if="node.subCategories && node.subCategories.length > 0" data-nodrag ng-click="self.toggle(this)">
+                                            <span class="glyphicon cursor-pointer" ng-class="{'fa fa-angle-left': collapsed,'fa fa-angle-down': !collapsed}"></span>
+                                        </a>
+                                        <small>
+                                            {{node.name}}
+                                        </small>
+                                        <div class="custom-control custom-radio pull-left cursor-pointer">
+                                            <input type="radio" id="customRadio1-{{node.id}}" name="customRadio" ng-click="self.selectedCategory = node;" ng-model="self.product.categoryId" value="{{node.id}}" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1-{{node.id}}" ng-if="node.isRoot ==false">.</label>
+                                        </div>
+                                        <!--                                        <a class="pull-left btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">-->
+                                        <!--                                            <span class="glyphicon glyphicon-remove"></span>-->
+                                        <!--                                        </a>-->
+                                        <!--                                        <a class="pull-left btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">-->
+                                        <!--                                            <span class="glyphicon glyphicon-plus"></span>-->
+                                        <!--                                        </a>-->
+                                    </div>
+                                    <ol ui-tree-nodes="" ng-model="node.subCategories" ng-class="{hidden: collapsed}">
+                                        <li ng-repeat="node in node.subCategories" ui-tree-node data-nodrop-enabled="true" ng-include="'nodes_renderer.html'">
+                                        </li>
+                                    </ol>
+
+                                </script>
+
+                                <div class="col-md-12">
+
+                                    <label class="form-control-label" for="category">
+                                        دسته بندی <small class="text-danger" ng-if="addFrom.category.$error.required == true">*</small> - <small class="text-success">
+                                            {{self.selectedCategory.name}}
+                                        </small>
+                                    </label>
+
+                                    <div class="pull-left">
+                                        <i class="fa  fa-indent cursor-pointer" ng-click="expandAll()"></i>
+                                        <i class="fa fa-list-ul cursor-pointer" ng-click="collapseAll()"></i>
+                                        <!-- <button ng-click="expandAll()">Expand all</button>-->
+                                        <!-- <button ng-click="collapseAll()">Collapse all</button>-->
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+
+                                <div class="col-md-12">
+                                    <div ui-tree id="tree-root" class="tree-ui-modify" data-drag-enabled="false">
+                                        <ol ui-tree-nodes ng-model="data">
+                                            <li ng-repeat="node in data" ui-tree-node data-nodrop-enabled="true" ng-include="'nodes_renderer.html'"></li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <!--public Guid Id => Guid.NewGuid();-->
+                        <!-- public string Name { get; set; }-->
+                        <!-- public string ShortDescription { get; set; }-->
+                        <!-- public string Description { get; set; }-->
+                        <!-- public decimal Price { get; set; }-->
+                        <!-- public Guid BrandId { get; set; }-->
+                        <!-- public Guid CategoryId { get; set; }-->
+                        <!-- public string MainImage { get; set; }-->
+                        <!-- public List<ProductImageCommand> ProductImages { get; set; }-->
+                        <!--                        <div class="col-md-12">-->
+                        <!--                            <div class="form-group">-->
+                        <!--                                <label class="form-control-label" for="shortDescription">-->
+                        <!--                                    توضیحات مختصر-->
+                        <!--                                </label>-->
+                        <!--                                <textarea class="form-control" id="shortDescription" name="shortDescription" ng-model="self.product.shortDescription"></textarea>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description">
+                                    توضیحات
+                                </label>
+                                <textarea class="form-control" id="description" name="description" ng-model="self.product.description"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <!--public string MainCatImage { get; set; }
+                        public string FullMainCatImage { get; set; }
+                        public string TopPageCatImage { get; set; }-->
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        تصویر اصلی <small class="text-danger" ng-if="self.product.mainImage == null">*</small>
+                                    </label>
+                                    <div id="upload-img" class="m-auto text-center custom-pointer">
+
+
+                                        <img ng-src="{{self.product.mainImageurl}}" class="img-fluid" ng-if="self.product.mainImage != null">
+                                        <i class="fa fa-image fa-4x" ng-if="self.product.mainImage == null"></i>
+                                        <input id="my-file-selector"
+                                               ngf-select
+                                               class=""
+                                               tabindex="24"
+                                               tooltip="انتخاب فایل"
+                                               tooltip-placement="bottom"
+                                               ngf-change="self.upload($files , 'mainImage')"
+                                               ngf-capture="'camera'"
+                                               accept="image/*"
+                                               ngf-accept="''"
+                                               ngf-max-size="2MB"
+                                               ng-required="true"
+                                               ngf-model-invalid="errorFiles"
+                                               ngf-keep-distinct="true">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div ng-if="self.product.mainImage != null">
+
+
+                                <div class="col-md-12">
+                                    <label class="form-control-label">
+                                        تصاویر
+                                    </label>
+                                </div>
+                                <div class="row p-0">
+
+                                    <div class="col-md-3" ng-repeat="item in  self.product.productImages">
+                                        <div class="form-group">
+
+                                            <div id="upload-img" class="m-auto text-center custom-pointer">
+
+                                                <!--                                            <img ngf-thumbnail="self.images[$index]" class="img-fluid" ng-if="self.images[$index] !=null">-->
+                                                <!--                                            <i class="fa fa-image fa-4x" ng-if="self.images[$index] == {}"></i>-->
+                                                <!--                                            <input id="my-file-selector"-->
+                                                <!--                                                   type="file"-->
+                                                <!--                                                   ngf-select-->
+                                                <!--                                                   ng-model="self.images[$index]"-->
+                                                <!--                                                   name="file"-->
+                                                <!--                                                   accept="image/*"-->
+                                                <!--                                                   ngf-max-size="2MB"-->
+                                                <!--                                                   ng-required="true"-->
+                                                <!--                                                   ngf-model-invalid="errorFile"-->
+                                                <!--                                                   tabindex="1">-->
+
+
+
+                                                <img ng-src="{{self.product.productImages[$index].imageUrl}}" class="img-fluid" ng-if="self.product.productImages[$index] != null">
+                                                <i class="fa fa-image fa-4x" ng-if="self.product.productImages[$index] == null"></i>
+                                                <input id="my-file-selector"
+                                                       ngf-select
+                                                       class=""
+                                                       tabindex="24"
+                                                       tooltip="انتخاب فایل"
+                                                       tooltip-placement="bottom"
+                                                       ngf-change="self.upload($files , 'secendryImage' , {{$index}})"
+                                                       ngf-capture="'camera'"
+                                                       accept="image/*"
+                                                       ngf-accept="''"
+                                                       ng-required="true"
+                                                       ngf-keep-distinct="true">
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                            <div id="upload-img" class="m-auto text-center custom-pointer" ng-click="self.product.productImages.push({})">
+
+                                                <i class="fa fa-plus fa-4x"></i>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <br />
+
+                            <small ng-if="errorFiles != null" class="text-danger">
+                                حجم فایل انتخابی کمتر از 2 مگابایت باید باشد
+                            </small>
+                        </div>
+
+                        <div class="col-md-12">
+
+
+                            <button type="submit" ng-disabled="addFrom.$invalid || self.product.mainImage == null" class="btn btn-success btn-sm mt-2" ng-click="self.save()">
+                                ذخیره <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>

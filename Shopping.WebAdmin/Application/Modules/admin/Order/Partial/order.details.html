@@ -1,0 +1,286 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.order.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.order.customer.firstName}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.order.customer.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            ایمیل : <b>
+                                {{self.order.customer.emailAddress}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            شماره همراه : <b>
+                                {{self.order.customer.mobileNumber}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <small>
+                            مجوز فعالیت  :
+                            <span class="badge badge-success" ng-if="self.order.customer.isActive == true">
+                                دارد
+                            </span>
+
+                            <span class="badge badge-danger" ng-if="self.order.customer.isActive != true">
+                                ندارد
+                            </span>
+
+                        </small>
+
+                    </div>
+
+                    <!--                    <div class="col-md-4">-->
+                    <!--                        <button class="btn btn-info btn-sm">-->
+                    <!--                            مشاهده پروفایل-->
+                    <!--                        </button>-->
+                    <!---->
+                    <!--                    </div>-->
+
+
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <small>
+                            نام فروشگاه : <b>
+                                {{self.order.shop.name}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-3">
+                        <small>
+                            نام و نام خانوادگی :
+                            <b>
+                                {{self.order.shop.firstName}}
+                                {{self.order.shop.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-3">
+                        <small>
+                            شماره همراه :
+                            <b>
+                                {{self.order.shop.mobileNumber}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info btn-sm" ui-sref="dashboard.shop.details({id :self.order.shop.id})">
+                            <small>
+                                برو به فروشگاه
+                            </small>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i>  مشخصات سفارش
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تاریخ و ساعت سفارش : <b>
+                                {{self.order.creationTime}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            شماره سفارش :
+                            <b>
+                                {{self.order.id}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            قیمت کل :
+                            <b>
+                                {{self.order.totalPrice | number}}
+                            </b>
+                        </small>
+                    </div>
+
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            وضعیت سفارش :
+                        </small>
+
+                        <!-- <span class="badge-warning badge"> -->
+                      <span class="badge" ng-class="{
+                            'badge-warning' : self.order.orderStatus == 0 ,
+                            'badge-info' : self.order.orderStatus == 1 ||  dataItem.orderStatus == 3  || dataItem.orderStatus == 4 , 
+                            'badge-success' : self.order.orderStatus == 2 , 
+                        
+                            'badge-danger' : self.order.orderStatus == 5}">
+                            {{self.order.orderStatus | orderStatusFilter}}
+                        </span>
+                        <button class="btn btn-info btn-sm" ng-if="self.order.orderStatus == 2" ui-sref="dashboard.order.suggestion({id : self.order.id})">
+                            <small>
+                                مشاهده پیشنهاد قبول شده
+                            </small>
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نوع سفارش :
+
+                        </small>
+                        <span class="badge-warning badge">
+                            {{self.order.orderType | orderType}}
+                        </span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <b class="badge" ng-class="{'badge-success' : !self.order.isExpired , 'badge-danger': self.order.isExpired}">
+                            {{self.order.isExpired | orderIsExpired}}
+                        </b>
+                    </div>
+
+                    <div class="col-md-12 form-group" ng-if="self.order.description != ''">
+                        <small>
+                            توضیحات :
+
+                        </small>
+                        <b>
+                            {{self.order.description}}
+                        </b>
+                    </div>
+
+
+                    <div class="col-md-12 form-group">
+                        <table class="table table-bordered table-responsive-sm table-sm">
+                            <thead>
+                                <tr>
+                                    <th>تصویر محصول</th>
+                                    <th>نام محصول</th>
+                                    <th>برند</th>
+                                    <th>مبلغ</th>
+                                    <th>تعداد</th>
+                                    <th>توضیحات</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in self.order.orderItems">
+                                    <td style="width: 100px">
+                                        <img class="img-fluid" width="100" ng-src="{{self.fileManagerGetUri}}/{{item.orderProduct.productImage}}" />
+                                    </td>
+                                    <td>
+                                        {{item.orderProduct.name}}
+                                    </td>
+                                    <td>
+                                        {{item.orderProduct.brandName}}
+                                    </td>
+                                    <td>
+                                        {{item.orderProduct.price | currency : '' : 0 }}
+                                    </td>
+                                    <td>
+                                        {{item.quantity }}
+                                    </td>
+                                    <td>
+                                        {{item.description}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> آدرس
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <small>
+                            شهر : <b>
+                                {{self.order.orderAddress.cityName}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-6">
+                        <small>
+                            تلفن :
+                            <b>
+                                {{self.order.orderAddress.phoneNumber}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <small>
+                            آدرس :
+                            <b>
+                                {{self.order.orderAddress.addressText}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <ng-map center="[{{self.order.orderAddress.position.latitude}} ,{{self.order.orderAddress.position.longitude}}]" zoom="15">
+                                <custom-marker id="custom-marker"
+                                               position="[{{self.order.orderAddress.position.latitude}} ,{{self.order.orderAddress.position.longitude}}]">
+                                    <div>
+                                        <img src="/img/Map-Marker-Free-Download-PNG.png" style="width: 50px; margin: 0 auto" />
+                                    </div>
+                                </custom-marker>
+                            </ng-map>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</section>

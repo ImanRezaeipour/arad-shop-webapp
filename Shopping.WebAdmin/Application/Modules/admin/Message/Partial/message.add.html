@@ -1,0 +1,94 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.message.list"></i>
+                    </span>
+                    <!--                    <span class="badge pull-left" ng-class="{'badge-warning' : self.shop.shopStatus == 0 , 'badge-success' : self.shop.shopStatus == 1 ,  'badge-danger' : self.shop.shopStatus == 2  }">-->
+                    <!--                        {{self.shop.shopStatus | shopStatusFilter}}-->
+                    <!--                    </span>-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form id="addForm" name="addForm">
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="title">
+                                        عنوان <small class="text-danger" ng-if="addForm.title.$error.required == true">*</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="title" name="title" tabindex="1" ng-class="{'is-invalid' : addForm.title.$touched &&  addForm.title.$invalid == true}" ng-model="self.message.title" ng-required="true">
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.title.$touched && addForm.title.$error.required == true">
+                                            عنوان اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div> 
+                                
+                                
+                                <div class="form-group">
+                                    <label class="form-control-label" for="messageType">
+                                        نوع کاربری <small class="text-danger" ng-if="addForm.messageType.$error.required == true">*</small>
+                                    </label>
+                                    <select class="form-control" ng-model="self.message.messageType" tabindex="3" ng-options="item.id as item.title for item in self.messageTypes" name="messageType" id="messageType" ng-class="{'is-invalid' : addForm.messageType.$touched &&  addForm.messageType.$invalid == true}" ng-required="true"></select>
+                                    <!-- <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.user.email" ng-required="true">-->
+                                    <div class="invalid-feedback">
+                                        <small ng-if="addForm.messageType.$touched && addForm.messageType.$error.required == true">
+                                            نوع کاربری اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="messageType">
+                                        متن پیام <small class="text-danger" ng-if="addForm.body.$error.required == true">*</small>
+                                    </label>
+                                    <!-- <input type="text" class="form-control" id="title" name="title" tabindex="1" ng-class="{'is-invalid' : addForm.title.$touched &&  addForm.title.$invalid == true}" ng-model="self.message.title" ng-required="true">-->
+                                    <textarea class="form-control p-3" rows="4" id="body" name="body" tabindex="2" ng-class="{'is-invalid' : addForm.body.$touched &&  addForm.body.$invalid == true}" ng-model="self.message.body" ng-required="true"></textarea>
+                                    <!--   <select class="form-control" ng-model="self.message.body" ng-options="item.id as item.title for item in self.messageTypes" name="body" id="body" ng-class="{'is-invalid' : addForm.messageType.$touched &&  addForm.messageType.$invalid == true}" ng-required="true"></select>-->
+                                    <!-- <input type="email" class="form-control direction-ltr" id="email" name="email" tabindex="1" ng-class="{'is-invalid' : addForm.email.$touched &&  addForm.email.$invalid == true}" ng-model="self.user.email" ng-required="true">-->
+                                    <div class="invalid-feedback" >
+                                        <small ng-if="addForm.body.$touched && addForm.body.$error.required == true">
+                                            متن پیام اجباری می باشد
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button ng-disabled="addForm.$invalid" class="btn btn-success text-white" ng-click="self.isSave = true" ng-if="self.isSave != true">
+                                    ارسال
+                                </button>
+                                
+                                <div class="alert-warning alert" ng-if="self.isSave == true">
+                                    <small>
+
+                                        آیا از ارسال پیام اطمینان دارید؟ پیام به تمام کاربران ارسال خواهد گردید
+                                    </small>
+                                    <div class="clearfix"></div>
+                                    <br/>
+                                    <button class="btn btn-success" ng-click="self.saveMessage()">
+                                        ارسال
+                                    </button>
+                                    <button class="btn btn-default" ng-click="self.isSave = false">
+                                        انصراف
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

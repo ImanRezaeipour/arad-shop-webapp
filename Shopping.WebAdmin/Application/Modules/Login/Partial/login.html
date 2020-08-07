@@ -1,0 +1,125 @@
+﻿<div class="position-relative">
+  <!-- <div class="box-relative"> -->
+  <!--     <div class="box-screen d-md-block d-lg-block"> -->
+  <!--         <div class="m-2"></div> -->
+  <!--         <label class="text-white p-2"> -->
+  <!--             سوپر مارکت آنلاین -->
+  <!-- -->
+  <!--         </label> -->
+  <!--         <p class="text-white pl-2" style="font-size: 10px; "> -->
+  <!--             دلیل سوم: اما دلیل سوم خرید مجدد من از یک سوپر مارکت اینترنتی چیزی بود که در هنگام خرید اول متوجه آن شدم و آن دسته بندی منظم و جستجوی سریع بود، من در هنگام خرید اول با گشت و گذار تقریبا 40 دقیقه ای در سایت سوپر مارکت اینترنتی متوجه شدم چقدر سریع می توانم به دسته محصولات مورد نظرم برسم و در هنگام جستجو با کالاهایی مواجه میشدم که فراموش کرده بودم به آنها احتیاج دارم یا قبلا از آنها استفاده می کردم و پیدا کردن این کالاها نیز احساس خوبی برای من ایجاد کرد و سفارش من را نیز بیشتر کرد. -->
+  <!-- -->
+  <!--             دلیل چهارم: در آخر نیز معمولا اکثر ما بعد از کار روزانه و عصرها برای خرید های روزمره اقدام می کنیم و با خستگی کار روزانه خرید با لپ تاپ یا گوشی و تعیین روز و زمان تحویل آن خود یک مزیت رقابتی نسبت به سوپر مارکت های سنتی محسوب می شود و با داشتن لیست علاقه مندی ها در این سایت ها نیز مسئولیت به خاطر آوردن کالاهای مورد نیاز هم از بین می رود و فقط با مراجعه به لیست شخ -->
+  <!--         </p> -->
+  <!--     </div> -->
+  <!--     $1$ <img src="/img/1.png" class="img-hand" /> #1# -->
+  <!--     $1$ <img src="/img/back.png" class="back-login" /> #1# -->
+  <!-- </div> -->
+
+  <div class="container">
+    <div class="row">
+
+
+
+      <div class="col-lg-4 offset-lg-1 col-md-8">
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1 class="text-right header-panel-text animated fadeIn">
+           پنل مدیریت شاپر 
+        </h1>
+        <br />
+     
+        <div class="box-login animated fadeIn">
+
+          
+          <form name="loginForm" id="loginForm">
+            <br/>
+            <div class="col-12">
+              <div class="card-body">
+                <!-- <p class="text-muted text-center">سوپر مارکت آنلاین </p>-->
+
+                <div class="">
+                  <label>نام کاربری</label><span></span>
+                  <input type="text" class="direction-ltr form-control" ng-required="true" ng-model="self.login.userName" />
+
+                </div>
+                <br/>
+                <div class="">
+                  <label>کلمه عبور</label><span></span>
+                  <input type="password" class="direction-ltr form-control" ng-required="true" ng-model="self.login.password" />
+
+                </div>
+
+                <br />
+                <div class="m-3"></div>
+
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <button ng-click="self.login()" ng-disabled="loginForm.$invalid || self.loading" class="btn btn-danger btn-block pull-left border-0">
+                      <small>
+                        <span class="" ng-if="self.loading != true">
+                          ورود
+                        </span>
+
+                        <span class="" ng-if="self.loading != false">
+                          <i class="fa fa-spin fa-spinner"></i>
+                        </span>
+                      </small>
+
+                    </button>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="text-danger pt-1" ng-if="self.errorLogin">
+                      <small class="text-small">
+                        نام کاربری و یا کلمه عبور اشتباه است
+                      </small>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+
+
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-1 col-md-8">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+     
+        <img src="/img/analyze_on_screen.svg" class="img-fluid animated fadeIn" />
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- <style> -->
+<!--   .footer-text { -->
+<!--     position: absolute; -->
+<!--     bottom: 20px; -->
+<!--     margin: 0 auto; -->
+<!--     left: 0; -->
+<!--     right: 0 -->
+<!--   } -->
+<!-- </style> -->
+<br />
+<br />
+<br />
+
+<div class="row footer-text animated fadeIn">
+  <small class="text-center w-100">
+    CopyRights All Reserved for Sana Arvand Paya Co. © 2018-2019
+  </small>
+</div>

@@ -1,0 +1,62 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.catalog.brandList"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form name="addBrand" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="name">
+                                    عنوان <small class="text-danger" ng-if="addBrand.name.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="title" name="name" tabindex="1" ng-class="{'is-invalid' : addBrand.name.$touched &&  addBrand.name.$invalid == true}" ng-model="self.brand.name" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addBrand.name.$touched && addBrand.name.$error.required == true">
+                                  عنوان اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div> 
+                        
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="latinName">
+                                    عنوان به لاتین <small class="text-danger" ng-if="addBrand.latinName.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control direction-ltr" id="latinName" name="latinName" tabindex="1" ng-class="{'is-invalid' : addBrand.latinName.$touched &&  addBrand.latinName.$invalid == true}" ng-model="self.brand.latinName" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addBrand.latinName.$touched && addBrand.latinName.$error.required == true">
+                                       عنوان لاتین اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-9">
+                            <button type="submit" ng-disabled="addBrand.$invalid" class="btn btn-success btn-sm mt-2" ng-click="self.save()">
+                                ذخیره <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+      
+    </div>
+</section>

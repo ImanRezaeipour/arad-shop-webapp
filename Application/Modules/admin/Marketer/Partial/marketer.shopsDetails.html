@@ -1,0 +1,102 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.marketer.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فردی
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            نام : <b>
+                                {{self.marketer.firstName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            نام خانوادگی : <b>
+                                {{self.marketer.lastName}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4">
+                        <small>
+                            شماره تماس : <b>
+                                {{self.marketer.marketerAddress.mobileNumber}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> 
+                        مجموع فروش  : <span class="badge badge-success">
+                            {{ self.cellAmount | currency : '' : 0}}
+                        </span>
+                        ریال
+                    </h6>
+                </div>
+
+<!--                <h1>-->
+<!--                    مجموع فروش  : <span class="badge badge-success">-->
+<!--                        {{ self.cellAmount | currency : '' : 0}}-->
+<!--                    </span>-->
+<!--                    ریال-->
+<!--                </h1>-->
+
+                <br/>
+                <div class="btn-group">
+                    <label class="btn btn-success" ng-model="self.selectType" uib-btn-radio="'day'" uib-uncheckable="true" ng-click="self.chart()">
+                        <small>روز</small>
+                    </label>
+                    <label class="btn btn-success" ng-model="self.selectType" uib-btn-radio="'week'" uib-uncheckable="true" ng-click="self.chart()">   <small>هفته</small></label>
+                    <label class="btn btn-success" ng-model="self.selectType" uib-btn-radio="'month'" uib-uncheckable="true" ng-click="self.chart()">   <small>ماه</small></label>
+                    <label class="btn btn-success" ng-model="self.selectType" uib-btn-radio="'year'" uib-uncheckable="true" ng-click="self.chart()">   <small>سال</small></label>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <div class="row">
+                    <div class="" ng-class="{'col-md-12' :  self.selectType == 'year' ||  self.selectType == 'month', 'col-md-6' : self.selectType == 'day' || self.selectType == 'week' }">
+                        <h6 class="text-info">
+                            تعداد
+                        </h6>
+                        <canvas id="line" class="chart chart-line" chart-data="totalData"
+                                chart-labels="labels" chart-series="total" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                    <div class="" ng-class="{'col-md-12 mt-5' : self.selectType == 'year' || self.selectType == 'month', 'col-md-6' : self.selectType == 'day' || self.selectType == 'week'  }">
+
+                        <h6 class="text-info">
+                            جمع فروش
+                        </h6>
+                        <canvas id="line" class="chart chart-line" chart-data="sumData"
+                                chart-labels="labels" chart-series="sum" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

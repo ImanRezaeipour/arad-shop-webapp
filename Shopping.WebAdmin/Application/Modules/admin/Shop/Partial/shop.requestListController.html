@@ -1,0 +1,131 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-plus custom-pointer" tooltip-append-to-body="true" uib-tooltip="افزودن درخواست" ui-sref="dashboard.shop.requestAdd"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+              
+                <div class="clearfix"></div>
+                <br/>
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+
+
+                            <tr>
+                                <th data-field="creationTime">
+                                    <a class="k-link" href="#">تاریخ ثبت نام</a>
+                                </th>
+                                <th data-field="shopName">
+                                    <a class="k-link" href="#">نام فروشگاه</a>
+                                </th>
+                                <th data-field="firstName">
+                                    <a class="k-link" href="#">نام مدیر</a>
+                                </th>
+                                <th data-field="lastName">
+                                    <a class="k-link" href="#">نام خانوادگی</a>
+                                </th>
+
+                                <th data-field="mobileNumber">
+                                    <a class="k-link" href="#">شماره موبایل</a>
+                                </th> 
+                                
+                                <th data-field="phoneNumber">
+                                    <a class="k-link" href="#">شماره تلفن </a>
+                                </th>
+
+
+
+                                <th data-field="shopAcceptorStatus">
+                                    <a class="k-link" href="#">وضعیت </a>
+                                </th>
+
+
+
+
+
+
+                                <th>
+                                    ویرایش
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                            <tr k-row-template>
+                                <td>
+                                    {{dataItem.creationTime}}
+                                </td>
+                                <td>
+                                    {{dataItem.shopName}}
+                                </td>
+                                <td>
+                                    {{dataItem.firstName}}
+                                </td>
+                                <td>
+                                    {{dataItem.lastName}}
+                                </td>
+                                <td>
+                                    {{dataItem.mobileNumber}}
+                                </td>
+
+                                <td>
+                                    {{dataItem.phoneNumber}}
+                                </td>
+
+                                <td>
+                                    <span class="badge" ng-class="{'badge-warning' : dataItem.shopAcceptorStatus == 0 , 'badge-success' : dataItem.shopAcceptorStatus == 1 ,  'badge-danger' : dataItem.shopAcceptorStatus == 2}">
+                                        {{dataItem.shopAcceptorStatus | shopAcceptorStatusFilter}}
+                                    </span>
+                                </td>
+
+
+
+                                <td>
+                                    <button class="btn btn-info btn-sm" ui-sref="dashboard.shop.requestDetails({id : dataItem.id})">
+                                        <small>
+                                            <i class="fa fa-eye"></i>
+
+                                        </small>
+                                    </button>
+
+                                    <div ng-if="dataItem.acceptItem">
+                                        <button class="btn btn-success btn-sm w-100 mb-1" ng-click="self.changeActiveDeactive(dataItem , 0)">
+                                            <small>تایید</small>
+
+                                        </button>
+                                        <button class="btn btn-default btn-sm w-100" ng-click="dataItem.acceptItem = null">
+                                            <small>انصراف</small>
+                                        </button>
+                                    </div>
+
+                                    <div ng-if="dataItem.deAcceptItem">
+                                        <button class="btn btn-danger btn-sm w-100 mb-1" ng-click="self.changeActiveDeactive(dataItem , 1)">
+                                            <small>رد کردن</small>
+                                        </button>
+                                        <button class="btn btn-default btn-sm w-100" ng-click="dataItem.deAcceptItem = null">
+                                            <small>انصراف</small>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,115 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+  <div class="container-fluid">
+    <div class="row bg-white has-shadow">
+      <div class="col-md-12">
+
+        <div class="w-100">
+          <h5 class="pull-right">
+            {{currentState.label}}
+          </h5>
+          <span class="pull-left">
+            <i class="fa fa-plus" ui-sref="dashboard.catalog.brandAdd"></i>
+          </span>
+        </div>
+
+      </div>
+      <br />
+      <br />
+
+      <!--            <div excel-export export-data="exportData" file-name="{{fileName}}"></div>-->
+
+      <div class="k-rtl">
+
+
+        <kendo-grid options="mainGridOptions" id="grid">
+
+          <table>
+            <thead>
+              <tr>
+                <th data-field="Name">
+                  <a class="k-link" href="#">نام</a>
+                </th>
+                <th data-field="Latiname">
+                  <a class="k-link" href="#">نام لاتین</a>
+                </th>
+                <th data-field="IsActive">
+                  <a class="k-link" href="#">وضعیت</a>
+                </th>
+                <th>
+                  ویرایش
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <table role="grid">
+            <tbody role="rowgroup" >
+              <tr k-row-template>
+                <td>
+                  {{dataItem.name}}
+                </td>
+                <td>
+                  {{dataItem.latinName}}
+                </td>
+                <td>
+                  <div class="material-switch ">
+                    <input id="someSwitchOptionDefault-{{dataItem.id}}" ng-model="dataItem.isActive" name="someSwitchOption-{{dataItem.id}}" type="checkbox" ng-change="self.changeActiveDeactive(dataItem)" />
+                    <label for="someSwitchOptionDefault-{{dataItem.id}}" class="label-success"></label>
+                  </div>
+
+                  <!--                                    <span class="badge badge-success" ng-if="dataItem.isActive">-->
+                  <!--                                        فعال-->
+                  <!--                                    </span>-->
+                  <!--                                    <span class="badge badge-danger" ng-if="!dataItem.isActive">-->
+                  <!--                                        غیرفعال-->
+                  <!--                                    </span>-->
+                </td>
+                <td>
+                  <div ng-if="dataItem.isDelete != true">
+                    <button class="btn btn-warning btn-sm" ui-sref="dashboard.catalog.brandEdit({id : dataItem.id})">ویرایش</button>
+                    <button class="btn btn-danger btn-small btn-sm" ng-click="dataItem.isDelete = true">
+                      <small>حذف</small>
+                    </button>
+                  </div>
+
+                  <div ng-if="dataItem.isDelete" class="btn-group">
+                    <button class="btn btn-danger btn-small btn-sm" ng-click="self.removeItem(dataItem)">
+                      <small>حذف</small>
+                    </button>
+
+                    <button class="btn btn-default btn-small btn-sm" ng-click="dataItem.isDelete = false">
+                      <small>انصراف</small>
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+
+        </kendo-grid>
+
+
+
+        <br />
+        <br />
+        <br />
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+
+</script>

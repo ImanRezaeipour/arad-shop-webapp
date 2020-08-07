@@ -1,0 +1,174 @@
+﻿
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+
+        <div class="card">
+
+            <div class="card-header d-flex align-items-center">
+
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.catalog.categoriesList"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12" ng-if="self.id != null">
+
+                    <span>افزودن زیر دسته بندی : </span>
+                    <span class="text-info">
+                        {{self.parentCategory.name}}
+                    </span>
+                </div>
+                <form name="addFrom" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="name">
+                                    عنوان <small class="text-danger" ng-if="addFrom.name.$error.required == true">*</small>
+                                </label>
+                                <input type="text" class="form-control" id="title" name="name" tabindex="1" ng-class="{'is-invalid' : addFrom.name.$touched &&  addFrom.name.$invalid == true}" ng-model="self.category.name" ng-required="true">
+                                <div class="invalid-feedback">
+                                    <small ng-if="addFrom.name.$touched && addFrom.name.$error.required == true">
+                                        عنوان اجباری می باشد
+                                    </small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                                <label class="form-control-label" for="description">
+                                    توضیحات
+                                </label>
+                                <textarea class="form-control" id="description" name="descritopn" ng-model="self.category.description"></textarea>
+
+
+                            </div>
+                        </div>
+                        <!--public string MainCatImage { get; set; }
+                        public string FullMainCatImage { get; set; }
+                        public string TopPageCatImage { get; set; }-->
+                        <div class="col-md-3" ng-if="self.id == null">
+                            <div class="form-group">
+                                <label class="form-control-label"> 
+                                    تصویر آیکن <small class="text-danger" ng-if="self.category.categoryImage.mainCatImageurl == null && self.id == null">
+                                        *
+                                    </small>
+                                </label>
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+                           
+                                  <img ng-src="{{self.category.categoryImage.mainCatImageurl}}" class="img-fluid" ng-if="self.category.categoryImage.mainCatImage != null">
+                                  <i class="fa fa-image fa-4x" ng-if="self.category.categoryImage.mainCatImage == null"></i>
+                                  <input id="my-file-selector"
+                                         ngf-select
+                                         class=""
+                                         tabindex="24"
+                                         tooltip="انتخاب فایل"
+                                         tooltip-placement="bottom"
+                                         ngf-change="self.upload($files , 'mainCatImage')"
+                                         ngf-capture="'camera'"
+                                         accept="image/*"
+                                         ngf-accept="''"
+                                         ngf-max-size="2MB"
+                                         ng-required="{{self.id == null}}"
+                                         ngf-model-invalid="errorFiles">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3" ng-if="self.id == null">
+                            <div class="form-group">
+                                <label class="form-control-label">
+                                    تصویر اصلی بزرگ شده <small class="text-danger" ng-if="self.category.categoryImage.fullMainCatImageurl == null && self.id == null">
+                                        *
+                                    </small>
+                                </label>
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+
+
+                                    <img ng-src="{{self.category.categoryImage.fullMainCatImageurl}}" class="img-fluid" ng-if="self.category.categoryImage.fullMainCatImage != null">
+                                    <i class="fa fa-image fa-4x" ng-if="self.category.categoryImage.fullMainCatImage == null"></i>
+                                    <input id="my-file-selector"
+                                           ngf-select
+                                           class=""
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'fullMainCatImage')"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ngf-max-size="2MB"
+                                           ng-required="{{self.id == null}}"
+                                           ngf-model-invalid="errorFiles"
+                                           required>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" ng-if="self.id == null">
+                            <div class="form-group">
+                                <label class="form-control-label">
+                                    تصویر نوار دسته بندی <small class="text-danger" ng-if="self.category.categoryImage.topPageCatImageurl == null && self.id == null">
+                                        *
+                                    </small>
+                                </label>
+                                <div id="upload-img" class="m-auto text-center custom-pointer">
+
+                                    <img ng-src="{{self.category.categoryImage.topPageCatImageurl}}" class="img-fluid" ng-if="self.category.categoryImage.topPageCatImage != null">
+                                    <i class="fa fa-image fa-4x" ng-if="self.category.categoryImage.topPageCatImage == null"></i>
+                                    <input id="my-file-selector"
+                                           ngf-select
+                                           class=""
+                                           tabindex="24"
+                                           tooltip="انتخاب فایل"
+                                           tooltip-placement="bottom"
+                                           ngf-change="self.upload($files , 'topPageCatImage')"
+                                           ngf-capture="'camera'"
+                                           accept="image/*"
+                                           ngf-accept="''"
+                                           ngf-max-size="2MB"
+                                           ng-required="{{self.id == null}}"
+                                           ngf-model-invalid="errorFiles"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br />
+                            <small ng-if="errorFiles != null" class="text-danger">
+                                حجم فایل انتخابی کمتر از 2 مگابایت باید باشد
+                            </small>
+                        </div>
+
+
+                        <div class="col-md-12">
+
+
+                          <button type="submit" ng-if="self.id == null" ng-disabled="addFrom.$invalid || self.category.categoryImage.topPageCatImageurl == null || self.category.categoryImage.topPageCatImageurl == null || self.category.categoryImage.fullMainCatImageurl == null" class="btn btn-success btn-sm mt-2" ng-click="self.save()">
+                            ذخیره <i class="fa fa-save"></i>
+                          </button>
+                          
+                          <button type="submit"  ng-if="self.id != null" ng-disabled="addFrom.$invalid" class="btn btn-success btn-sm mt-2" ng-click="self.save()">
+                                ذخیره <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>

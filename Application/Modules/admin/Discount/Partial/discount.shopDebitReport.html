@@ -1,0 +1,68 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.discount.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="k-rtl">
+                    <kendo-grid options="mainGridOptions">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th data-field="Shop.FirstName">
+                                    <a class="k-link" href="#">نام</a>
+                                </th>
+                                <th data-field="Shop.LastName">
+                                    <a class="k-link" href="#"> نام خانوادگی </a>
+                                </th>
+                                <th data-field="Shop.Name">
+                                    <a class="k-link" href="#">فروشگاه</a>
+                                </th>
+                                <th data-field="Shop.MobileNumber">
+                                    <a class="k-link" href="#">شماره همراه</a>
+                                </th>
+
+                                <th data-field="Debit">
+                                    <a class="k-link" href="#"> بدهکار </a>
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <table role="grid">
+                            <tbody role="rowgroup">
+                            <tr k-row-template>
+                                <td>
+                                    {{dataItem.shop.firstName}}
+                                </td>
+                                <td>
+                                    {{dataItem.shop.lastName}}
+                                </td>
+                                <td>
+                                    {{dataItem.shop.name}}
+                                </td>
+                                <td>
+                                    {{dataItem.shop.mobileNumber}}
+                                </td>
+                                <td>
+                                    {{dataItem.debit}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </kendo-grid>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

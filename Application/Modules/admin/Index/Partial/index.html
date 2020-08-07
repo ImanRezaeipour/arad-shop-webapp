@@ -1,0 +1,234 @@
+﻿<style>
+  .loading-all {
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+  }
+
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #FF8C1E;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loading-all h6 {
+    position: absolute;
+    right: 48%;
+    top: 60%;
+    color: #FF8C1E;
+  }
+</style>
+<div class="loading-all" ng-if="loadingMain">
+  <div class="loader"></div>
+  <h6>
+      در حال انجام عملیات ...
+  </h6>
+</div>
+<div class="page">
+  <!-- Main Navbar-->
+  <header class="header">
+    <nav class="navbar">
+      <!-- Search Box-->
+      <div class="search-box">
+        <button class="dismiss">
+          <i class="icon-close"></i>
+        </button>
+        <form id="searchForm" action="#" role="search">
+          <input type="search" placeholder="What are you looking for..." class="form-control">
+        </form>
+      </div>
+      <div class="container-fluid">
+        <div class="navbar-holder d-flex align-items-center justify-content-between">
+          <!-- Navbar Header-->
+          <div class="navbar-header">
+            <!-- Navbar Brand -->
+            <a href="" target="_self" class="navbar-brand d-none d-sm-inline-block">
+              <div class="brand-text d-none d-lg-inline-block">
+
+                <p>پنل ادمین</p>
+              </div>
+
+
+              <div class="brand-text d-none d-sm-inline-block d-lg-none">
+                <strong>پنل ادمین</strong>
+              </div>
+            </a>
+            <!-- Toggle Button-->
+            <a id="toggle-btn" class="menu-btn active">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+
+          </div>
+          <!-- Navbar Menu -->
+
+
+          <style>
+            .notification-alert {
+              height: 300px;
+              overflow: hidden;
+              overflow-y: scroll;
+            }
+          </style>
+
+          <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+
+            <li class="nav-item dropdown">
+              <a id="notifications" rel="nofollow" data-target="#" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">{{notification.length}}</span></a>
+              <ul aria-labelledby="notifications" class="dropdown-menu">
+                <li ng-repeat="item in notification" ng-if="item.type == 1" ui-sref="dashboard.shop.details({id : item.additionalData})" ng-click="clickItem(item)">
+                  <a rel="nofollow" href="" class="dropdown-item">
+                    <div class="notification">
+                      <div class="notification-content"><i class="fa fa-shopping-cart bg-orange"></i> <b>{{item.title}}</b> ، <small class="mr-0">{{item.body}}</small> </div>
+                      <div class="notification-time">
+                        <small>
+                          {{item.creationTime}}
+                        </small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+              </ul>
+
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link logout" href="" target="_self" ng-click="self.logOut()">
+                <span class="d-none d-sm-inline">خروج</span>
+                <i class="fa fa-sign-out"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="page-content d-flex align-items-stretch">
+    <!-- Side Navbar -->
+    <nav class="side-navbar" ng-if="showItems">
+      <!-- Sidebar Header-->
+      <div class="sidebar-header d-flex align-items-center">
+        <!--<div class="avatar">
+            <img src="/img/user.svg" class="img-fluid rounded-circle" />
+
+        </div>-->
+        <!--<div class="title" ng-if="admin">
+            <h1 class="h4">پنل ادمین </h1>
+            <p>{{personInfo.admin.userName}} </p>
+        </div>
+
+        <div class="title" ng-if="!admin">
+            <h1 class="h4">پنل اپراتور </h1>
+            <p>{{personInfo.operator.userName}} </p>
+        </div>-->
+
+      </div>
+      <!-- Sidebar Navidation Menus-->
+      <!--<span class="heading"></span>-->
+      <!-- Main content -->
+      <ul class="list-unstyled">
+        <li ng-repeat="state in states" ng-if="state.abstract == true && state.menuItem.isUnique == true" has-permission permission="state.permission">
+          <a href="{{state.menuItem.url}}" target="_self">
+            <i class="{{state.menuItem.icon}}"></i>
+            {{state.menuItem.title}}
+          </a>
+        </li>
+        <!-- isOperator: false, -->
+        <!-- isAdmin: true, -->
+        <li ng-repeat="state in states" ng-if="state.abstract == true && state.menuItem.isUnique == false" has-permission permission="state.permission">
+          <a href="#exampledropdownDropdown{{$index}}" target="_self" aria-expanded="false" data-toggle="collapse">
+            <i class="{{state.menuItem.icon}}">
+            </i>
+            {{state.menuItem.title}}
+          </a>
+          <ul id="exampledropdownDropdown{{$index}}" class="collapse list-unstyled">
+
+            <li class="nav-item" ng-repeat="subState in state.menuItem.menus">
+
+              <a target="_self" href="{{subState.url}}">
+                <i class="{{state.menuItem.icon}}"></i>
+                {{subState.title}}
+
+              </a>
+            </li>
+          </ul>
+        </li>
+     
+      </ul>
+
+    </nav>
+    <main class="main">
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb" ng-if="showItems">
+        <div ncy-breadcrumb class="breadcrumb-item"></div>
+      </ol>
+      <div class="content-inner">
+        <!-- Projects Section-->
+        <div class="col-md-12">
+          <ui-view></ui-view>
+        </div>
+        <!-- Page Footer-->
+        <!--<footer class="main-footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <p>شرکت آمبولانس مشهد; 2017-2019</p>
+              </div>
+              <div class="col-sm-6 text-left">
+                <p>
+
+                  <a href="https://bootstrapious.com/admin-templates" class="external">تجارت الکترونیک آرمان</a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </footer>-->
+      </div>
+      <!-- /.conainer-fluid -->
+    </main>
+
+  </div>
+</div>
+<script>
+  $(document).ready(function ($) {
+    reloadJqoury();
+
+  });
+</script>

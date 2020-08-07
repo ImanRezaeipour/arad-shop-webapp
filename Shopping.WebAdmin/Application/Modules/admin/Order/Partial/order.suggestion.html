@@ -1,0 +1,192 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+                    </h5>
+                    <span class="pull-left">
+                        <i class="fa fa-arrow-left custom-pointer" tooltip-append-to-body="true" uib-tooltip="بازگشت" ui-sref="dashboard.order.list"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i>  مشخصات سفارش
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تاریخ و ساعت سفارش : <b>
+                                {{self.orderSuggestion.creationTime}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            شماره سفارش :
+                            <b>
+                                {{self.orderSuggestion.orderId}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تخغیف :
+                            <b>
+                                {{self.orderSuggestion.discount}} %
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            مبلغ تخفیف :
+                            <b>
+                                {{self.orderSuggestion.discountTotalPrice | currency : "" : 0 }}  ریال
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            مبلغ کل :
+                            <b>
+                                {{self.orderSuggestion.totalPrice | currency : "" : 0 }}  ریال
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد  مورد قبول :
+                            <b>
+                                {{self.orderSuggestion.orderSuggestionItemTypeCount.acceptedCount}}
+                            </b>
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد جایگزین  :
+                            <b>
+                                {{self.orderSuggestion.orderSuggestionItemTypeCount.alternativeCount}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            تعداد بازگشت داده شده :
+                            <b>
+                                {{self.orderSuggestion.orderSuggestionItemTypeCount.rejectedCount}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <small>
+                            زمان ارسال :
+                            <b>
+                                {{self.orderSuggestion.shippingTime}}
+                            </b>
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-md-12 form-group">
+                        <table class="table table-bordered table-responsive-sm table-sm">
+                            <thead>
+                                <tr>
+                                    <th>تصویر محصول</th>
+                                    <th>نام محصول</th>
+                                    <th>مبلغ</th>
+                                    <th>تعداد</th>
+                                    <th>نوع</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in self.orderSuggestion.orderSuggestionItems">
+                                    <td style="width: 100px">
+                                        <img class="img-fluid" width="100" ng-if="item.orderSuggestionItemType == 0 || item.orderSuggestionItemType == 2"
+                                             ng-src="{{self.fileManagerGetUri}}/{{item.orderItem.orderProduct.productImage}}" />
+
+                                        <img class="img-fluid" width="100" ng-if="item.orderSuggestionItemType == 1"
+                                             ng-src="{{self.fileManagerGetUri}}/{{item.alternativeProductSuggestion.productImage}}" />
+                                    </td>
+                                    <td>
+                                        <span ng-if="item.orderSuggestionItemType == 0 || item.orderSuggestionItemType == 2">
+                                            {{item.orderItem.orderProduct.name}}
+                                        </span>
+                                        <span ng-if="item.orderSuggestionItemType == 1">
+                                            {{item.alternativeProductSuggestion.name}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{item.price | currency : '' : 0 }}
+                                    </td>
+                                    <td>
+                                        {{item.quantity }}
+                                    </td>
+                                    <td>
+                                        {{item.orderSuggestionItemType | OrderSuggestionTypeFilter }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6 class="m-0 text-info">
+                        <i class="fa fa-caret-left"></i> مشخصات فروشگاه
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <small>
+                            نام فروشگاه : <b>
+                                {{self.orderSuggestion.shop.name}}
+                            </b>
+                        </small>
+
+                    </div>
+                    <div class="col-md-3">
+                        <small>
+                            نام و نام خانوادگی : <b>
+                                {{self.orderSuggestion.shop.firstName}}
+                                {{self.orderSuggestion.shop.lastName}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-3">
+                        <small>
+                            شماره همراه : <b>
+                                {{self.orderSuggestion.shop.mobileNumber}}
+                            </b>
+                        </small>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info btn-sm" ui-sref="dashboard.shop.details({id :self.orderSuggestion.shop.id})">
+                            <small>
+                                برو به فروشگاه
+                            </small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

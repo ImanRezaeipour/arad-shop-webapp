@@ -1,0 +1,255 @@
+﻿<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="w-100">
+                    <h5 class="pull-right">
+                        {{currentState.label}}
+
+                    </h5>
+
+                </div>
+            </div>
+            <div class="card-body">
+            <form name="addProvice" id="addProvice">
+                
+                <div class="row">
+                    <div class="col-md-3 pr-0">
+                        <div class="form-group">
+                            <label>افزودن استان</label>
+                            <input type="text" class="form-control" ng-model="self.province.name" placeholder="کد استان" ng-required="true"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <br/>
+                            <input type="text" class="form-control mt-2" ng-model="self.province.code" placeholder="نام استان" ng-required="true"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <br/>
+
+                            <button class="btn btn-success mt-2 pt-2" ng-disabled="addProvice.$invalid" ng-click="self.addProvince()">
+                                <i class="fa fa-plus">
+
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="card-deck">
+                    <div class="card" ng-repeat="item in self.provinceCity" style="min-width: 400px;max-width: 400px;">
+                        <div class="card-header">
+                            <span ng-if="item.isEdit != true">
+                             {{item.code}} - {{item.name}}
+                            </span>
+
+                            <div class="input-group input-group-sm" ng-if="item.isEdit == true">
+                                <input type="text" class="form-control" placeholder="" ng-model="item.editCode">
+                                <input type="text" class="form-control" placeholder="" ng-model="item.editName">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success rounded-0" type="button" ng-click="self.editProvince(item)" ng-disabled="item.editName == null || item.editName == '' || item.editCode == null || item.editCode == ''">
+                                        <small>
+                                            <i class="fa fa-check"></i>
+
+                                        </small>
+                                    </button>
+                                    <button class="btn btn-default" type="button" ng-click="item.isEdit = null">
+                                        <small>
+                                            <i class="fa fa-remove"></i>
+
+                                        </small>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-warning btn-sm pull-left" ng-if="item.isEdit != true" ng-click="item.isEdit = true ; item.editName = item.name ;item.editCode = item.code">
+                                <small>
+                                    ویرایش
+                                </small>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group  p-0">
+                                <div class="list-group-item list-group-item-action" ng-repeat="city in item.cities">
+                                    <small ng-if="city.isEdit != true">
+                                      {{city.code}} - {{city.cityName}}
+                                    </small>
+
+                                    <div class="input-group input-group-sm" ng-if="city.isEdit == true">
+                                        <input type="text" class="form-control" placeholder="" ng-model="city.editCode">
+                                        <input type="text" class="form-control" placeholder="" ng-model="city.editName">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success rounded-0" type="button" ng-click="self.editCity(city , item)">
+                                                <small>
+                                                    <i class="fa fa-check"></i>
+
+                                                </small>
+                                            </button>
+                                            <button class="btn btn-default" type="button" ng-click="city.isEdit = null">
+                                                <small>
+                                                    <i class="fa fa-remove"></i>
+
+                                                </small>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-group pull-left" ng-if="city.isEdit != true">
+                                        <button class="btn btn-warning btn-sm" ng-click="city.isEdit = true ; city.editName = city.cityName ; city.editCode = city.code">
+                                            <small>
+                                                ویرایش
+
+                                            </small>
+                                        </button>
+                                        <button class="btn btn-info btn-sm" ui-sref="dashboard.provinceCity.ZoneList({provinceId : item.id , cityId :city.id })">
+                                            <small>
+                                                مناطق
+
+                                            </small>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="material-switch switch-sm pull-left mr-3 mt-2" ng-if="city.isEdit != true">
+                                        <input id="someSwitchOptionDefault-{{city.id}}" ng-model="city.isActive" name="someSwitchOption-{{city.id}}" type="checkbox" ng-change="self.changeActiveDeactive(city)" />
+                                        <label for="someSwitchOptionDefault-{{city.id}}" class="label-success"></label>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" ng-model="item.newCityCode" placeholder="کد شهر">
+                                        <input type="text" class="form-control" ng-model="item.newCity" placeholder="نام شهر">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit" ng-click="self.addCity(item)" ng-disabled="item.newCity == null || item.newCity == '' || item.newCityCode == null || item.newCityCode == ''">
+                                                <i class="fa fa-plus pt-1"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!---->
+                <!-- <div class="k-rtl">-->
+                <!-- <kendo-grid options="mainGridOptions">-->
+                <!-- <table>-->
+                <!-- <thead>-->
+                <!-- <tr>-->
+                <!---->
+                <!-- -->
+                <!---->
+                <!-- <th data-field="Id">-->
+                <!-- <a class="k-link" href="#">شناسه فاکتور</a>-->
+                <!-- </th> -->
+                <!-- -->
+                <!-- <th data-field="CreationTime">-->
+                <!-- <a class="k-link" href="#">تاریخ ایجاد</a>-->
+                <!-- </th>-->
+                <!-- <th data-field="FactoRawCount">-->
+                <!-- <a class="k-link" href="#">تعداد سفارش</a>-->
+                <!-- </th>-->
+                <!---->
+                <!-- <th data-field="Discount">-->
+                <!-- <a class="k-link" href="#">تخفیف </a>-->
+                <!-- </th>-->
+                <!---->
+                <!-- <th data-field="DiscountPrice">-->
+                <!-- <a class="k-link" href="#">مبلغ تخفیف </a>-->
+                <!-- </th>-->
+                <!---->
+                <!-- <th data-field="Price">-->
+                <!-- <a class="k-link" href="#">مبلغ </a>-->
+                <!-- </th>-->
+                <!---->
+                <!-- <th data-field="FactorState">-->
+                <!-- <a class="k-link" href="#">وضعبت فاکتور </a>-->
+                <!-- </th>-->
+                <!---->
+                <!-- <th data-field="ShipmentState">-->
+                <!-- <a class="k-link" href="#">وضعبت تحویل </a>-->
+                <!-- </th>-->
+                <!---->
+                <!---->
+                <!-- <th>-->
+                <!-- ویرایش-->
+                <!-- </th>-->
+                <!-- </tr>-->
+                <!-- </thead>-->
+                <!-- </table>-->
+                <!-- <table role="grid">-->
+                <!-- <tbody role="rowgroup">-->
+                <!-- <tr k-row-template>-->
+                <!-- <td>-->
+                <!-- {{dataItem.id}}-->
+                <!-- </td> -->
+                <!-- <td>-->
+                <!-- {{dataItem.creationTime}}-->
+                <!-- </td>-->
+                <!---->
+                <!-- <td>-->
+                <!---->
+                <!-- {{dataItem.factoRawCount}}-->
+                <!---->
+                <!---->
+                <!-- </td>-->
+                <!---->
+                <!---->
+                <!--$1$#1#-->
+                <!--$1$ <td>#1#-->
+                <!--$1$ {{dataItem.timeLeft}}#1#-->
+                <!--$1$ </td>#1#-->
+                <!---->
+                <!-- <td>-->
+                <!-- {{dataItem.discount}}-->
+                <!-- </td>-->
+                <!---->
+                <!---->
+                <!-- <td>-->
+                <!-- {{dataItem.discountPrice | currency : '' : 0 }}-->
+                <!-- </td>-->
+                <!---->
+                <!---->
+                <!-- <td>-->
+                <!-- {{dataItem.price | currency : '' : 0}}-->
+                <!-- </td>-->
+                <!---->
+                <!-- <td>-->
+                <!-- <span class="badge" ng-class="{'badge-warning' : dataItem.factorState == 0 ,  'badge-success' : dataItem.factorState == 1}">-->
+                <!-- {{dataItem.factorState | factorStateFilter}}-->
+                <!-- </span>-->
+                <!-- </td>-->
+                <!---->
+                <!-- <td>-->
+                <!-- -->
+                <!-- <span class="badge" ng-class="{'badge-warning' : dataItem.shipmentState == 0 ,  'badge-info' : dataItem.shipmentState == 1,  'badge-success' : dataItem.shipmentState == 2 ,  'badge-danger' : dataItem.shipmentState == 3 }">-->
+                <!-- {{dataItem.shipmentState | shipmentStateFilter}}-->
+                <!-- </span>-->
+                <!-- </td>-->
+                <!---->
+                <!-- <td>-->
+                <!-- <button class="btn btn-warning btn-sm" ui-sref="dashboard.factor.details({id : dataItem.id})">-->
+                <!-- <small> جزئیات</small>-->
+                <!-- </button>-->
+                <!-- </td>-->
+                <!-- </tr>-->
+                <!-- </tbody>-->
+                <!-- </table>-->
+                <!-- </kendo-grid>-->
+                <!-- <br/>-->
+                <!-- <br/>-->
+                <!-- <br/>-->
+                <!-- </div>-->
+            </div>
+        </div>
+    </div>
+</section>
